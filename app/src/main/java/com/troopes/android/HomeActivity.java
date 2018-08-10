@@ -19,10 +19,29 @@ public class HomeActivity extends BaseActivity{
     @Override
     protected void init() {
         super.init();
+        hideToolbar();
+        replaceFragment(new HomeFragment());
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                return false;
+                switch (item.getItemId()) {
+                    case R.id.home:
+                        replaceFragment(new HomeFragment());
+                        break;
+                    case R.id.favoutite_store:
+                        replaceFragment(new HomeFragment());
+                        break;
+                    case R.id.my_account_option:
+                        replaceFragment(new HomeFragment());
+                        break;
+                    case R.id.notification_option:
+                        replaceFragment(new HomeFragment());
+                        break;
+                    case R.id.subscription:
+                        replaceFragment(new HomeFragment());
+                        break;
+                }
+                return true;
             }
         });
     }

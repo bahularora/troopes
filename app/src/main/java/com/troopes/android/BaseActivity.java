@@ -54,7 +54,7 @@ public abstract class BaseActivity extends AppCompatActivity{
         }
     }
 
-    protected void replaceFragment(Fragment fragment, int containerId) {
+    protected void replaceFragment(Fragment fragment) {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         List<Fragment> fragments = manager.getFragments();
@@ -69,7 +69,7 @@ public abstract class BaseActivity extends AppCompatActivity{
         Fragment f = manager.findFragmentByTag(tag);
         if (f == null) {
             f = fragment;
-            transaction.add(containerId, f, tag);
+            transaction.add(R.id.container, f, tag);
         } else {
             transaction.show(f);
         }
