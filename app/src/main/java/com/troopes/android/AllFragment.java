@@ -15,9 +15,6 @@ public class AllFragment extends BaseFragment {
     @BindView(R.id.banner)
     ViewPager viewPager;
 
-    @BindView(R.id.viewpager_indicator)
-    TabLayout tabLayout;
-
     @BindView(R.id.all_list)
     RecyclerView recyclerView;
 
@@ -35,6 +32,5 @@ public class AllFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewPager.setAdapter(new BannerAdapter(getContext()));
-        tabLayout.setupWithViewPager(viewPager, true);
     }
 }

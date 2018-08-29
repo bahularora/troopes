@@ -1,99 +1,181 @@
 package com.troopes.android;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.facebook.accountkit.Account;
-import com.facebook.accountkit.AccountKit;
-import com.facebook.accountkit.AccountKitCallback;
-import com.facebook.accountkit.AccountKitError;
-import com.facebook.accountkit.AccountKitLoginResult;
-import com.facebook.accountkit.ui.AccountKitActivity;
-import com.facebook.accountkit.ui.AccountKitConfiguration;
-import com.facebook.accountkit.ui.LoginType;
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.firebase.ui.auth.AuthUI;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.truecaller.android.sdk.ITrueCallback;
+import com.truecaller.android.sdk.TrueButton;
+import com.truecaller.android.sdk.TrueError;
+import com.truecaller.android.sdk.TrueProfile;
+import com.truecaller.android.sdk.TrueSDK;
+import com.truecaller.android.sdk.TrueSdkScope;
 
-public class MainActivity extends BaseActivity {
+import org.json.JSONException;
+import org.json.JSONObject;
 
-    public static int APP_REQUEST_CODE = 99;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
-    @Override
-    protected int getLayoutResId() {
-        return R.layout.activity_main;
-    }
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-    @Override
-    protected void init() {
-        super.init();
-        hideToolbar();
-        Button fbButton = findViewById(R.id.fb_button);
-        fbButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Intent intent = new Intent(MainActivity.this, AccountKitActivity.class);
-                AccountKitConfiguration.AccountKitConfigurationBuilder configurationBuilder =
-                        new AccountKitConfiguration.AccountKitConfigurationBuilder(
-                                LoginType.PHONE,
-                                AccountKitActivity.ResponseType.TOKEN); // or .ResponseType.TOKEN
-                // ... perform additional configuration ...
-                intent.putExtra(
-                        AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION,
-                        configurationBuilder.build());
-                startActivityForResult(intent, APP_REQUEST_CODE);
-            }
-        });
-    }
+public class MainActivity extends AppCompatActivity implements ITrueCallback {
+
+    @BindView(R.id.true_button)
+    FrameLayout trueButtonContainer;
+
+    @BindView(R.id.com_truecaller_android_sdk_truebutton)
+    TrueButton trueButton;
+
+    private static final int RC_SIGN_IN = 123;
+    private static final int RC_OTP = 111;
 
     @Override
-    protected void onActivityResult(
-            final int requestCode,
-            final int resultCode,
-            final Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == APP_REQUEST_CODE) { // confirm that this response matches your request
-            AccountKitLoginResult loginResult = data.getParcelableExtra(AccountKitLoginResult.RESULT_KEY);
-            String toastMessage;
-            if (loginResult.getError() != null) {
-                toastMessage = loginResult.getError().getErrorType().getMessage();
-            } else if (loginResult.wasCancelled()) {
-                toastMessage = "Login Cancelled";
-            } else {
-                if (loginResult.getAccessToken() != null) {
-                    toastMessage = "Success:" + loginResult.getAccessToken().getAccountId();
-                } else {
-                    toastMessage = String.format(
-                            "Success:%s...",
-                            loginResult.getAuthorizationCode().substring(0,10));
-                }
-
-                AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
-                    @Override
-                    public void onSuccess(Account account) {
-                        Toast.makeText(MainActivity.this,account.getEmail(),Toast.LENGTH_SHORT).show();
-                        Toast.makeText(MainActivity.this, account.getPhoneNumber().getPhoneNumber(), Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onError(AccountKitError accountKitError) {
-
-                    }
-                });
-                // If you have an authorization code, retrieve it from
-                // loginResult.getAuthorizationCode()
-                // and pass it to your server and exchange it for an access token.
-
-                // Success! Start your next activity...
-            }
-
-            // Surface the result to your user in an appropriate way.
-            Toast.makeText(
-                    this,
-                    toastMessage,
-                    Toast.LENGTH_LONG)
-                    .show();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+        initTrueCaller();
+        if(TrueSDK.getInstance().isUsable()) {
+            trueButtonContainer.setVisibility(View.VISIBLE);
         }
+    }
+
+    @OnClick(R.id.true_button)
+    public void clickTrueButton() {
+        trueButton.performClick();
+    }
+
+    @OnClick(R.id.fire_button)
+    public void initFirebase() {
+        List<String> permissions = new ArrayList<>();
+        Collections.addAll(permissions, "public_profile","email");
+
+        List<AuthUI.IdpConfig> providers = Arrays.asList(
+                new AuthUI.IdpConfig.GoogleBuilder().build(),
+                new AuthUI.IdpConfig.FacebookBuilder()
+                        .setPermissions(permissions)
+                        .build());
+
+        startActivityForResult(
+                AuthUI.getInstance()
+                        .createSignInIntentBuilder()
+                        .setAvailableProviders(providers)
+                        .build(),
+                RC_SIGN_IN);
+    }
+
+    public void initTrueCaller() {
+        TrueSdkScope trueScope = new TrueSdkScope.Builder(this, this)
+                .consentMode(TrueSdkScope.CONSENT_MODE_FULLSCREEN )
+                .consentTitleOption( TrueSdkScope.SDK_CONSENT_TITLE_VERIFY )
+                .footerType( TrueSdkScope.FOOTER_TYPE_SKIP )
+                .build();
+
+        TrueSDK.init(trueScope);
+    }
+
+    public void initOtp() {
+        List<AuthUI.IdpConfig> providers = Arrays.asList(
+                new AuthUI.IdpConfig.PhoneBuilder().build());
+
+        startActivityForResult(
+                AuthUI.getInstance()
+                        .createSignInIntentBuilder()
+                        .setAvailableProviders(providers)
+                        .build(),
+                RC_OTP);
+    }
+
+    public void getFbData() {
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        if(accessToken!=null) {
+            GraphRequest request = GraphRequest.newMeRequest(
+                    accessToken,
+                    new GraphRequest.GraphJSONObjectCallback() {
+                        @Override
+                        public void onCompleted(
+                                JSONObject object,
+                                GraphResponse response) {
+                            try {
+                                Toast.makeText(MainActivity.this, ""+object.getString("email"), Toast.LENGTH_SHORT).show();
+                            } catch (JSONException e) {
+                                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+            Bundle parameters = new Bundle();
+            parameters.putString("fields", "email");
+            request.setParameters(parameters);
+            request.executeAsync();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        if (requestCode == RC_SIGN_IN) {
+            if (resultCode == RESULT_OK) {
+                // Successfully signed in
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if(user!=null) {
+                    if(user.getProviderData().get(1).getProviderId().equals("facebook.com")) {
+                        getFbData();
+                    }
+                    else {
+                        Toast.makeText(this,user.getEmail(), Toast.LENGTH_SHORT).show();
+                    }
+                    initOtp();
+                }
+                // ...
+            } else {
+                // Sign in failed. If response is null the user canceled the
+                // sign-in flow using the back button. Otherwise check
+                // response.getError().getErrorCode() and handle the error.
+                // ...
+            }
+        }
+        else if(requestCode == RC_OTP) {
+            if(resultCode == RESULT_OK) {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if(user!=null) {
+                    Toast.makeText(this, ""+user.getPhoneNumber(), Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(this, HomeActivity.class));
+                }
+            }
+        }
+        else {
+            TrueSDK.getInstance().onActivityResultObtained( this,resultCode, data);
+        }
+    }
+
+    @Override
+    public void onSuccessProfileShared(@NonNull TrueProfile trueProfile) {
+        Toast.makeText(this, trueProfile.phoneNumber, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, trueProfile.email, Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, HomeActivity.class));
+    }
+
+    @Override
+    public void onFailureProfileShared(@NonNull TrueError trueError) {
+        Toast.makeText(this, trueError.toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onOtpRequired() {
+        Toast.makeText(this, "OTP REQUIRED", Toast.LENGTH_SHORT).show();
     }
 }
