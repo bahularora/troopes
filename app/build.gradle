@@ -48,10 +48,13 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
 
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 
     //SmartTabLayout
     implementation 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
-    implementation 'com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar'
+    //implementation 'com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar'
 
     //Others
     implementation 'de.hdodenhof:circleimageview:2.2.0'
