@@ -9,10 +9,8 @@ import android.view.ViewGroup;
 
 public class BannerAdapter extends PagerAdapter {
 
-    private Context context;
 
-    public BannerAdapter(Context context) {
-        this.context = context;
+    public BannerAdapter() {
     }
 
     @Override
@@ -28,7 +26,7 @@ public class BannerAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        LayoutInflater layoutInflater = LayoutInflater.from(container.getContext());
         ViewGroup viewGroup = (ViewGroup) layoutInflater.inflate(R.layout.layout_banner, container, false);
         container.addView(viewGroup);
         return viewGroup;
