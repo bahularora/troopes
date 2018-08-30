@@ -6,7 +6,7 @@ import android.view.MenuItem;
 
 import butterknife.BindView;
 
-public class HomeActivity extends BaseActivity{
+public class HomeActivity extends BaseActivity {
 
     @BindView(R.id.bottom_navigation)
     BottomNavigationView bottomNavigationView;
@@ -28,16 +28,10 @@ public class HomeActivity extends BaseActivity{
                     case R.id.home:
                         replaceFragment(new HomeFragment());
                         break;
-                    case R.id.favoutite_store:
+                    case R.id.search:
                         replaceFragment(new HomeFragment());
                         break;
-                    case R.id.my_account_option:
-                        replaceFragment(new HomeFragment());
-                        break;
-                    case R.id.notification_option:
-                        replaceFragment(new HomeFragment());
-                        break;
-                    case R.id.subscription:
+                    case R.id.account:
                         replaceFragment(new HomeFragment());
                         break;
                 }

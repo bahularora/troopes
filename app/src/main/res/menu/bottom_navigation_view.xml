@@ -1,33 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- TODO: replace icons -->
     <item
         android:id="@+id/home"
-        android:icon="@mipmap/ic_launcher"
-        android:title="home"
-        app:showAsAction="never" />
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home" />
 
     <item
-        android:id="@+id/favoutite_store"
-        android:icon="@mipmap/ic_launcher"
-        android:title="favourite"
-        app:showAsAction="never" />
+        android:id="@+id/search"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="@string/title_search" />
 
     <item
-        android:id="@+id/my_account_option"
-        android:icon="@mipmap/ic_launcher"
-        android:title="profile"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/notification_option"
-        android:icon="@mipmap/ic_launcher"
-        android:title="store"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/subscription"
-        android:icon="@mipmap/ic_launcher"
-        android:title="list"
-        app:showAsAction="never"/>
+        android:id="@+id/account"
+        android:icon="@drawable/ic_account_black_24dp"
+        android:title="@string/title_account" />
 </menu>

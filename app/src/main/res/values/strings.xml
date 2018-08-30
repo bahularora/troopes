@@ -3,4 +3,8 @@
     <string name="facebook_application_id" translatable="false">213907572633115</string>
     <string name="facebook_login_protocol_scheme" translatable="false">fb213907572633115</string>
     <string name="partnerKey">7btQU0de34497c321453ba71d5f3681b53c49</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_search">Search</string>
+    <string name="title_account">Account</string>
 </resources>
