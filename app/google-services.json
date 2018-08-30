@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "778193635621",
+    "firebase_url": "https://troopes-24517.firebaseio.com",
+    "project_id": "troopes-24517",
+    "storage_bucket": "troopes-24517.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778193635621:android:9c2782782f120c78",
+        "android_client_info": {
+          "package_name": "com.troopes.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "778193635621-2d81pl1cigmegl6pujej4ajt0acnmv4q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.troopes.android",
+            "certificate_hash": "62d75874d4b2b8a8647e89b6764581b11dee3bcb"
+          }
+        },
+        {
+          "client_id": "778193635621-sbf2c3njeam8if6dog962k7i8r6ik8ub.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJh1pN1G3iMzFifoBbCaLa4K3YRPNxaM4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "778193635621-sbf2c3njeam8if6dog962k7i8r6ik8ub.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

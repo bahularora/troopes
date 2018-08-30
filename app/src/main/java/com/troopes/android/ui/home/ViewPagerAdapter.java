@@ -1,8 +1,11 @@
-package com.troopes.android;
+package com.troopes.android.ui.home;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.troopes.android.ui.home.CategoryFragment;
+import com.troopes.android.ui.home.all.AllFragment;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
@@ -12,7 +15,11 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return new AllFragment();
+        if (position == 0) {
+            return new AllFragment();
+        } else {
+            return CategoryFragment.newInstance();
+        }
     }
 
     @Override

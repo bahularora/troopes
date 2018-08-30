@@ -4,6 +4,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
 
+import com.troopes.android.ui.home.HomeFragment;
+
 import butterknife.BindView;
 
 public class HomeActivity extends BaseActivity {

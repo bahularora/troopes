@@ -33,7 +33,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity implements ITrueCallback {
+public class LoginActivity extends AppCompatActivity implements ITrueCallback {
 
     @BindView(R.id.true_button)
     FrameLayout trueButtonContainer;
@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements ITrueCallback {
         if(TrueSDK.getInstance().isUsable()) {
             trueButtonContainer.setVisibility(View.VISIBLE);
         }
+        //TODO remove it after implmenting login properly
+        startActivity(new Intent(this, HomeActivity.class));
     }
 
     @OnClick(R.id.true_button)
@@ -112,9 +114,9 @@ public class MainActivity extends AppCompatActivity implements ITrueCallback {
                                 JSONObject object,
                                 GraphResponse response) {
                             try {
-                                Toast.makeText(MainActivity.this, ""+object.getString("email"), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, ""+object.getString("email"), Toast.LENGTH_SHORT).show();
                             } catch (JSONException e) {
-                                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

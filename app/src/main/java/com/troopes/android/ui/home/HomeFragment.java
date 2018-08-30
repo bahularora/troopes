@@ -1,4 +1,4 @@
-package com.troopes.android;
+package com.troopes.android.ui.home;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,12 +8,14 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
+import com.troopes.android.BaseFragment;
+import com.troopes.android.R;
 
 import butterknife.BindView;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeFragment extends BaseFragment {
 
@@ -30,6 +32,7 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected int getProgressBarLayoutId() {
+        // we have delegated progress bar to each of its child fragment
         return 0;
     }
 
@@ -41,31 +44,31 @@ public class HomeFragment extends BaseFragment {
             @Override
             public View createTabView(ViewGroup container, int position, PagerAdapter adapter) {
                 View view1 = LayoutInflater.from(smartTabLayout.getContext()).inflate(R.layout.layout_tab,container, false);
-                ImageView imageView = view1.findViewById(R.id.tab_image);
+                CircleImageView imageView = view1.findViewById(R.id.tab_image);
                 TextView textView = view1.findViewById(R.id.tab_text);
                 switch (position) {
                     case 0:
-                        imageView.setImageResource(R.mipmap.ic_launcher);
-                        textView.setText("Launcher");
+                        imageView.setImageResource(R.drawable.sample_category);
+                        textView.setText("AllLauncher");
                         break;
                     case 1:
-                        imageView.setImageResource(R.mipmap.ic_launcher);
+                        imageView.setImageResource(R.drawable.sample_category);
                         textView.setText("Launcher");
                         break;
                     case 2:
-                        imageView.setImageResource(R.mipmap.ic_launcher);
+                        imageView.setImageResource(R.drawable.sample_category);
                         textView.setText("Launcher");
                         break;
                     case 3:
-                        imageView.setImageResource(R.mipmap.ic_launcher);
+                        imageView.setImageResource(R.drawable.sample_category);
                         textView.setText("Launcher");
                         break;
                     case 4:
-                        imageView.setImageResource(R.mipmap.ic_launcher);
+                        imageView.setImageResource(R.drawable.sample_category);
                         textView.setText("Launcher");
                         break;
                     case 5:
-                        imageView.setImageResource(R.mipmap.ic_launcher);
+                        imageView.setImageResource(R.drawable.sample_category);
                         textView.setText("Launcher");
                         break;
                     case 6:

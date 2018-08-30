@@ -33,7 +33,10 @@ public abstract class BaseFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         progressBar = view.findViewById(getProgressBarLayoutId());
+        init(view);
     }
+
+    protected void init(View view) {}
 
     protected void showProgressBar() {
         if(progressBar!=null) {
