@@ -1,4 +1,4 @@
-package com.troopes.android.ui.home;
+package com.troopes.android.ui.product.gridList;
 
 
 import android.os.Bundle;
@@ -9,19 +9,15 @@ import android.view.ViewGroup;
 import com.troopes.android.R;
 import com.troopes.android.common.BaseFragment;
 
+public class ProductGridListFragment extends BaseFragment {
 
-public class CategoryFragment extends BaseFragment {
-    public CategoryFragment() {
-        // Required empty public constructor
-    }
-
-    public static CategoryFragment newInstance() {
-        return new CategoryFragment();
+    public static ProductGridListFragment newInstance() {
+        return new ProductGridListFragment();
     }
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.fragment_category;
+        return R.layout.product_grid_list_fragment;
     }
 
     @Override
@@ -33,7 +29,7 @@ public class CategoryFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_category, container, false);
+        return inflater.inflate(R.layout.product_grid_list_fragment, container, false);
     }
 
 }
