@@ -7,8 +7,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.troopes.android.BaseFragment;
 import com.troopes.android.R;
+import com.troopes.android.common.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;

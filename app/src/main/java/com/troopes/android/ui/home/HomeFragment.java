@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
-import com.troopes.android.BaseFragment;
 import com.troopes.android.R;
+import com.troopes.android.common.BaseFragment;
 
 import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;

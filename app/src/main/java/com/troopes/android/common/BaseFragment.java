@@ -1,4 +1,4 @@
-package com.troopes.android;
+package com.troopes.android.common;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;

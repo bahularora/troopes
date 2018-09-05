@@ -6,8 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.troopes.android.BaseFragment;
 import com.troopes.android.R;
+import com.troopes.android.common.BaseFragment;
 
 
 public class CategoryFragment extends BaseFragment {

@@ -3,8 +3,8 @@ package com.troopes.android.ui.account;
 
 import android.view.View;
 
-import com.troopes.android.BaseFragment;
 import com.troopes.android.R;
+import com.troopes.android.common.BaseFragment;
 
 public class AccountFragment extends BaseFragment {
     public static AccountFragment newInstance() {

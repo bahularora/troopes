@@ -3,8 +3,8 @@ package com.troopes.android.ui.search;
 
 import android.view.View;
 
-import com.troopes.android.BaseFragment;
 import com.troopes.android.R;
+import com.troopes.android.common.BaseFragment;
 
 public class SearchFragment extends BaseFragment {
 
