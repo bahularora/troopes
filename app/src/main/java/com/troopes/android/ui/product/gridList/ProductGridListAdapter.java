@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class ProductGridListAdapter extends BaseAdapter<GridListProductHolder> implements BaseViewHolder.OnViewHolderClickListener {
 
-    private ArrayList<Product> data = new ArrayList<>();
+    private ArrayList<Product> data = getSampleData();
     private OnItemClickListener onItemClickListener;
 
     @NonNull
