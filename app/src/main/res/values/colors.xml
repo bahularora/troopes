@@ -6,4 +6,7 @@
 
     <color name="colorAppMain">#f15541</color>
     <color name="colorAppSecondary">#4a90e2</color>
+
+    <!-- Payment -->
+    <color name="divider_color">#979797</color>
 </resources>

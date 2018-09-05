@@ -21,4 +21,8 @@
     <string name="reviews_title">Reviews</string>
     <string name="product_description_title">Product Description</string>
     <string name="similar_products_title">Similar Products</string>
+
+    <!-- Order Screen -->
+    <string name="payment_method">Payment Method</string>
+    <string name="quantity_title">Quantity</string>
 </resources>
