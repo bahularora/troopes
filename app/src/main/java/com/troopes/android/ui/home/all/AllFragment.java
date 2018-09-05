@@ -29,7 +29,7 @@ public class AllFragment extends BaseFragment {
     @BindView(R.id.indicator)
     CircleIndicator indicator;
 
-    BannerAdapter bannerAdapter;
+    BannerPagerAdapter bannerPagerAdapter;
     ProductAdapter productAdapter;
 
     private int currentBannerPage = 0;
@@ -53,7 +53,7 @@ public class AllFragment extends BaseFragment {
         super.init(view);
         showProgressBar();
         bannerImages.addAll(Arrays.asList(IMAGES));
-        bannerAdapter = new BannerAdapter(bannerImages);
+        bannerPagerAdapter = new BannerPagerAdapter(bannerImages);
         productAdapter = new ProductAdapter();
 
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
@@ -61,9 +61,9 @@ public class AllFragment extends BaseFragment {
         recyclerView.setLayoutManager(llm);
 
         recyclerView.setAdapter(productAdapter);
-        bannerPager.setAdapter(bannerAdapter);
+        bannerPager.setAdapter(bannerPagerAdapter);
         indicator.setViewPager(bannerPager);
-//        bannerAdapter.registerDataSetObserver(indicator.getDataSetObserver());
+//        bannerPagerAdapter.registerDataSetObserver(indicator.getDataSetObserver());
         ViewCompat.setNestedScrollingEnabled(recyclerView, false);
 
         // stimulating network call
@@ -72,7 +72,7 @@ public class AllFragment extends BaseFragment {
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-
+        // TODO use something other than handler and fix circle indicator not showing
         final Handler handler = new Handler();
         final Runnable bannerUpdater = new Runnable() {
             public void run() {
