@@ -1,4 +1,4 @@
-package com.troopes.android.ui.home.all;
+package com.troopes.android.ui.product.linearList;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -6,13 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.troopes.android.data.model.Product;
 import com.troopes.android.R;
+import com.troopes.android.data.model.Product;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
+public class LinearListProductAdapter extends RecyclerView.Adapter<LinearListProductHolder> {
 
     // TODO - do something and getProduct
     ArrayList<Product> data = new ArrayList<>();
@@ -28,19 +28,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
         return temp;
     }
 
-    public ProductAdapter() {
+    public LinearListProductAdapter() {
         data = getSomeSampleData();
     }
 
     @NonNull
     @Override
-    public ProductHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public LinearListProductHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.holder_product, viewGroup, false);
-        return new ProductHolder(view);
+        return new LinearListProductHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductHolder productHolder, int position) {
+    public void onBindViewHolder(@NonNull LinearListProductHolder productHolder, int position) {
         productHolder.bindData(data.get(position));
     }
 

@@ -1,4 +1,4 @@
-package com.troopes.android.ui.home.all;
+package com.troopes.android.ui.product.linearList;
 
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -10,10 +10,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.troopes.android.data.model.Product;
 import com.troopes.android.R;
+import com.troopes.android.data.model.Product;
 
-public class ProductHolder extends RecyclerView.ViewHolder {
+public class LinearListProductHolder extends RecyclerView.ViewHolder {
     private TextView name;
     private TextView cost;
     private TextView quantitySold;
@@ -22,7 +22,7 @@ public class ProductHolder extends RecyclerView.ViewHolder {
 
     private static final String CURRENCY = "Rs ";
 
-    public ProductHolder(@NonNull View itemView) {
+    public LinearListProductHolder(@NonNull View itemView) {
         super(itemView);
         initView(itemView);
     }

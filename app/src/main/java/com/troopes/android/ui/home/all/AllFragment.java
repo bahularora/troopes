@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.troopes.android.R;
 import com.troopes.android.common.BaseFragment;
+import com.troopes.android.ui.product.linearList.LinearListProductAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,7 +31,7 @@ public class AllFragment extends BaseFragment {
     CircleIndicator indicator;
 
     BannerPagerAdapter bannerPagerAdapter;
-    ProductAdapter productAdapter;
+    LinearListProductAdapter linearListProductAdapter;
 
     private int currentBannerPage = 0;
 
@@ -54,13 +55,13 @@ public class AllFragment extends BaseFragment {
         showProgressBar();
         bannerImages.addAll(Arrays.asList(IMAGES));
         bannerPagerAdapter = new BannerPagerAdapter(bannerImages);
-        productAdapter = new ProductAdapter();
+        linearListProductAdapter = new LinearListProductAdapter();
 
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
 
-        recyclerView.setAdapter(productAdapter);
+        recyclerView.setAdapter(linearListProductAdapter);
         bannerPager.setAdapter(bannerPagerAdapter);
         indicator.setViewPager(bannerPager);
 //        bannerPagerAdapter.registerDataSetObserver(indicator.getDataSetObserver());
