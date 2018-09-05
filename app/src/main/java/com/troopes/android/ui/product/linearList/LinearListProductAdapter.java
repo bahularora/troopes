@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class LinearListProductAdapter extends BaseAdapter<LinearListProductHolder> {
 
-    ArrayList<Product> data = new ArrayList<>();
+    ArrayList<Product> data = getSampleData();
 
     @NonNull
     @Override
