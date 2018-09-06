@@ -1,9 +1,6 @@
 package com.troopes.android.ui.home;
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -42,8 +39,8 @@ public class HomeFragment extends BaseFragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void init(View view) {
+        super.init(view);
         categoryViewModel = ViewModelProviders.of(getActivity()).get(CategoryViewModel.class);
         final int categoriesCount = categoryViewModel.getCategoriesCount();
         viewPager.setAdapter(new TabPagerAdapter(getChildFragmentManager(), categoriesCount));
