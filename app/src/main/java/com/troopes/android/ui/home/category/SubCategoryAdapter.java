@@ -7,8 +7,14 @@ import android.view.ViewGroup;
 
 import com.troopes.android.R;
 import com.troopes.android.common.BaseAdapter;
+import com.troopes.android.data.model.SubCategory;
+
+import java.util.ArrayList;
 
 public class SubCategoryAdapter extends BaseAdapter<SubCategoryHolder> {
+
+    private ArrayList<SubCategory> subCategories = new ArrayList<>();
+
     @NonNull
     @Override
     public SubCategoryHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -17,13 +23,16 @@ public class SubCategoryAdapter extends BaseAdapter<SubCategoryHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SubCategoryHolder subCategoryHolder, int i) {
-        subCategoryHolder.bindData();
+    public void onBindViewHolder(@NonNull SubCategoryHolder subCategoryHolder, int position) {
+        subCategoryHolder.bindData(subCategories.get(position));
     }
 
     @Override
     public int getItemCount() {
-        // todo
-        return 7;
+        return subCategories.size();
+    }
+
+    public void setSubCategories(ArrayList<SubCategory> subCategories) {
+        this.subCategories = subCategories;
     }
 }

@@ -1,7 +1,9 @@
 package com.troopes.android.ui.home.category;
 
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,20 +12,35 @@ import android.view.View;
 
 import com.troopes.android.R;
 import com.troopes.android.common.BaseFragment;
+import com.troopes.android.data.model.Product;
+import com.troopes.android.data.model.SubCategory;
 import com.troopes.android.ui.product.gridList.ProductGridListAdapter;
+import com.troopes.android.viewmodel.CategoryViewModel;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 
 
 public class CategoryFragment extends BaseFragment {
 
+    private static final String ARG_CATEGORY_ID = "categoryId";
+
+    private int categoryId;
+
     @BindView(R.id.sub_category_list)
     RecyclerView subCategoryList;
     @BindView(R.id.product_grid_listing)
     RecyclerView productList;
 
-    public static CategoryFragment newInstance() {
-        return new CategoryFragment();
+    private CategoryViewModel categoryViewModel;
+
+    public static CategoryFragment newInstance(int categoryId) {
+        CategoryFragment fragment = new CategoryFragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_CATEGORY_ID, categoryId);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -39,15 +56,26 @@ public class CategoryFragment extends BaseFragment {
     @Override
     protected void init(View view) {
         super.init(view);
+        if (getArguments() != null) {
+            categoryId = getArguments().getInt(ARG_CATEGORY_ID);
+        }
+
+        categoryViewModel = ViewModelProviders.of(getActivity()).get(CategoryViewModel.class);
 
         int subCategoryListGridCount = calculateNoOfColumns(view.getContext());
         GridLayoutManager subCategoryLayoutManager = new GridLayoutManager(view.getContext(), subCategoryListGridCount);
-        subCategoryList.setAdapter(new SubCategoryAdapter());
+        SubCategoryAdapter subCategoryAdapter = new SubCategoryAdapter();
+        ArrayList<SubCategory> subCategories = categoryViewModel.getCategory(categoryId).getSubCategories();
+        subCategoryAdapter.setSubCategories(subCategories);
+        subCategoryList.setAdapter(subCategoryAdapter);
         subCategoryList.setLayoutManager(subCategoryLayoutManager);
         ViewCompat.setNestedScrollingEnabled(subCategoryList, false);
 
         GridLayoutManager productGridLayoutManager = new GridLayoutManager(view.getContext(), 2);
-        productList.setAdapter(new ProductGridListAdapter());
+        ProductGridListAdapter productGridListAdapter = new ProductGridListAdapter();
+        ArrayList<Product> products = categoryViewModel.getCategoryProduct();
+        productGridListAdapter.setProductList(products);
+        productList.setAdapter(productGridListAdapter);
         productList.setLayoutManager(productGridLayoutManager);
         ViewCompat.setNestedScrollingEnabled(productList, false);
 

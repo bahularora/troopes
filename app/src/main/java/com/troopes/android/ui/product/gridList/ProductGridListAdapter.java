@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class ProductGridListAdapter extends BaseAdapter<GridListProductHolder> implements BaseViewHolder.OnViewHolderClickListener {
 
-    private ArrayList<Product> data = getSampleData();
+    private ArrayList<Product> products = new ArrayList<>();
     private OnItemClickListener onItemClickListener;
 
     @NonNull
@@ -27,13 +27,13 @@ public class ProductGridListAdapter extends BaseAdapter<GridListProductHolder> i
 
     @Override
     public void onBindViewHolder(@NonNull GridListProductHolder gridListProductHolder, int position) {
-        gridListProductHolder.bindData(data.get(position));
+        gridListProductHolder.bindData(products.get(position));
         gridListProductHolder.setOnViewHolderClick(this);
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return products.size();
     }
 
     @Override
@@ -46,5 +46,10 @@ public class ProductGridListAdapter extends BaseAdapter<GridListProductHolder> i
         if (onItemClickListener != null) {
             onItemClickListener.onItemClick(viewHolder.getAdapterPosition());
         }
+    }
+
+    public void setProductList(ArrayList<Product> products) {
+        this.products = products;
+        notifyDataSetChanged();
     }
 }

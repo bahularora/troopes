@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.troopes.android.R;
 import com.troopes.android.common.BaseViewHolder;
+import com.troopes.android.data.model.SubCategory;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,12 +27,12 @@ public class SubCategoryHolder extends BaseViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    public void bindData() {
-        // TODO: Get data dynamically
+    public void bindData(SubCategory subCategory) {
+        // TODO: Get image from url
         Glide.with(itemView.getContext())
                 .load(ContextCompat.getDrawable(itemView.getContext(), R.drawable.sample_sub_category))
                 .into(image);
-        text.setText("Sub Cat");
+        text.setText(subCategory.getName());
     }
 
 }
