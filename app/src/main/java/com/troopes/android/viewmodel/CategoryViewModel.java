@@ -61,6 +61,10 @@ public class CategoryViewModel extends ViewModel {
         return data;
     }
 
+    public ArrayList<Category> getCategoryList() {
+        return categories;
+    }
+
     public int getCategoriesCount() {
         return categories.size();
     }

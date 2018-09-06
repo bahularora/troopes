@@ -9,8 +9,11 @@ import com.troopes.android.ui.home.category.CategoryFragment;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
-    public ViewPagerAdapter(FragmentManager fm) {
+    private int categoriesCount;
+
+    public ViewPagerAdapter(FragmentManager fm, int categoriesCount) {
         super(fm);
+        this.categoriesCount = categoriesCount;
     }
 
     @Override
@@ -18,12 +21,13 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         if (position == 0) {
             return new AllFragment();
         } else {
-            return CategoryFragment.newInstance();
+            return CategoryFragment.newInstance(position - 1);
         }
     }
 
     @Override
     public int getCount() {
-        return 12;
+        // + 1 for all fragment screen
+        return categoriesCount + 1;
     }
 }
