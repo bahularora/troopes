@@ -1,5 +1,6 @@
 package com.troopes.android.ui.home.all;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Handler;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
@@ -10,9 +11,9 @@ import android.view.View;
 import com.troopes.android.R;
 import com.troopes.android.common.BaseFragment;
 import com.troopes.android.ui.product.linearList.LinearListProductAdapter;
+import com.troopes.android.viewmodel.AllProductListViewModel;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -23,21 +24,17 @@ public class AllFragment extends BaseFragment {
 
     @BindView(R.id.banner)
     ViewPager bannerPager;
-
     @BindView(R.id.all_list)
     RecyclerView recyclerView;
-
     @BindView(R.id.indicator)
     CircleIndicator indicator;
 
     BannerPagerAdapter bannerPagerAdapter;
     LinearListProductAdapter linearListProductAdapter;
 
-    private int currentBannerPage = 0;
+    private AllProductListViewModel allProductListViewModel;
 
-    // sample banner images
-    private final Integer[] IMAGES = {R.drawable.sample_viewpager1, R.drawable.sample_viewpager2, R.drawable.sample_viewpager3, R.drawable.sample_viewpager4};
-    private ArrayList<Integer> bannerImages = new ArrayList<>();
+    private int currentBannerPage = 0;
 
     @Override
     protected int getLayoutResId() {
@@ -53,9 +50,12 @@ public class AllFragment extends BaseFragment {
     protected void init(View view) {
         super.init(view);
         showProgressBar();
-        bannerImages.addAll(Arrays.asList(IMAGES));
-        bannerPagerAdapter = new BannerPagerAdapter(bannerImages);
+
+        allProductListViewModel = ViewModelProviders.of(getActivity()).get(AllProductListViewModel.class);
+        final ArrayList<Integer> bannerImageList = allProductListViewModel.getBannerImages();
+        bannerPagerAdapter = new BannerPagerAdapter(bannerImageList);
         linearListProductAdapter = new LinearListProductAdapter();
+        linearListProductAdapter.setProductListData(allProductListViewModel.getAllProductList());
 
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -67,17 +67,12 @@ public class AllFragment extends BaseFragment {
 //        bannerPagerAdapter.registerDataSetObserver(indicator.getDataSetObserver());
         ViewCompat.setNestedScrollingEnabled(recyclerView, false);
 
-        // stimulating network call
-//        try {
-//            Thread.sleep(1000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-        // TODO use something other than handler and fix circle indicator not showing
+        // TODO: use something other than handler and fix circle indicator not showing
+        // TODO: decouple this part from bannerImagesList
         final Handler handler = new Handler();
         final Runnable bannerUpdater = new Runnable() {
             public void run() {
-                if (currentBannerPage == bannerImages.size()) {
+                if (currentBannerPage == bannerImageList.size()) {
                     currentBannerPage = 0;
                 }
                 bannerPager.setCurrentItem(currentBannerPage++, true);
@@ -90,23 +85,6 @@ public class AllFragment extends BaseFragment {
                 handler.post(bannerUpdater);
             }
         }, 3000, 3000);
-
-        // Pager listener over indicator
-//        indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-//
-//            @Override
-//            public void onPageSelected(int position) {
-//                currentBannerPage = position;
-//            }
-//
-//            @Override
-//            public void onPageScrolled(int pos, float arg1, int arg2) {
-//            }
-//
-//            @Override
-//            public void onPageScrollStateChanged(int pos) {
-//            }
-//        });
 
         hideProgressBar();
     }

@@ -31,4 +31,9 @@ public class LinearListProductAdapter extends BaseAdapter<LinearListProductHolde
     public int getItemCount() {
         return data.size();
     }
+
+    public void setProductListData(ArrayList<Product> data) {
+        this.data = data;
+        notifyDataSetChanged();
+    }
 }
