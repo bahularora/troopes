@@ -2,6 +2,7 @@ package com.troopes.android.ui.home.category;
 
 
 import android.content.Context;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
@@ -43,10 +44,13 @@ public class CategoryFragment extends BaseFragment {
         GridLayoutManager subCategoryLayoutManager = new GridLayoutManager(view.getContext(), subCategoryListGridCount);
         subCategoryList.setAdapter(new SubCategoryAdapter());
         subCategoryList.setLayoutManager(subCategoryLayoutManager);
+        ViewCompat.setNestedScrollingEnabled(subCategoryList, false);
 
         GridLayoutManager productGridLayoutManager = new GridLayoutManager(view.getContext(), 2);
         productList.setAdapter(new ProductGridListAdapter());
         productList.setLayoutManager(productGridLayoutManager);
+        ViewCompat.setNestedScrollingEnabled(productList, false);
+
     }
 
     private int calculateNoOfColumns(Context context) {
