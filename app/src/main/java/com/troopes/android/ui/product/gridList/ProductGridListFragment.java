@@ -1,10 +1,7 @@
 package com.troopes.android.ui.product.gridList;
 
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.troopes.android.R;
 import com.troopes.android.common.BaseFragment;
@@ -26,10 +23,9 @@ public class ProductGridListFragment extends BaseFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.product_grid_list_fragment, container, false);
-    }
+    protected void init(View view) {
+        super.init(view);
 
+        // TODO::
+    }
 }

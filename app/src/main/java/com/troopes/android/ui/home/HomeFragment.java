@@ -46,7 +46,7 @@ public class HomeFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         categoryViewModel = ViewModelProviders.of(getActivity()).get(CategoryViewModel.class);
         final int categoriesCount = categoryViewModel.getCategoriesCount();
-        viewPager.setAdapter(new ViewPagerAdapter(getChildFragmentManager(), categoriesCount));
+        viewPager.setAdapter(new TabPagerAdapter(getChildFragmentManager(), categoriesCount));
         smartTabLayout.setCustomTabView(new SmartTabLayout.TabProvider() {
             @Override
             public View createTabView(ViewGroup container, int position, PagerAdapter adapter) {
