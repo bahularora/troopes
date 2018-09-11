@@ -33,7 +33,7 @@ public class BannerPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         LayoutInflater layoutInflater = LayoutInflater.from(container.getContext());
-        View imageLayout = layoutInflater.inflate(R.layout.layout_banner, container, false);
+        View imageLayout = layoutInflater.inflate(R.layout.banner_item, container, false);
         if (imageLayout != null) {
             ImageView currBannerImage = imageLayout.findViewById(R.id.banner_image);
             currBannerImage.setImageResource(images.get(position));
