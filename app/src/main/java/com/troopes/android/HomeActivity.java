@@ -7,8 +7,11 @@ import android.view.MenuItem;
 
 import com.troopes.android.common.BaseActivity;
 import com.troopes.android.ui.home.HomeFragment;
+import com.troopes.android.ui.product.ProductFragment;
+import com.troopes.android.ui.product.productOption.ProductOptionFragment;
 import com.troopes.android.viewmodel.AllProductListViewModel;
 import com.troopes.android.viewmodel.CategoryViewModel;
+import com.troopes.android.viewmodel.ProductViewModel;
 
 import butterknife.BindView;
 
@@ -19,6 +22,7 @@ public class HomeActivity extends BaseActivity {
 
     private AllProductListViewModel allProductListViewModel;
     private CategoryViewModel categoryViewModel;
+    private ProductViewModel productViewModel
 
     @Override
     protected int getLayoutResId() {
@@ -32,6 +36,7 @@ public class HomeActivity extends BaseActivity {
 
         allProductListViewModel = ViewModelProviders.of(this).get(AllProductListViewModel.class);
         categoryViewModel = ViewModelProviders.of(this).get(CategoryViewModel.class);
+        productViewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
 
         replaceFragment(new HomeFragment());
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -42,10 +47,10 @@ public class HomeActivity extends BaseActivity {
                         replaceFragment(new HomeFragment());
                         break;
                     case R.id.search:
-                        replaceFragment(new HomeFragment());
+                        replaceFragment(ProductFragment.newInstance(101);
                         break;
                     case R.id.account:
-                        replaceFragment(new HomeFragment());
+                        replaceFragment(ProductOptionFragment.newInstance(101));
                         break;
                 }
                 return true;
