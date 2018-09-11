@@ -13,10 +13,40 @@ import java.util.Arrays;
 public class ProductViewModel extends ViewModel {
 
     private Product product;
+    private ArrayList<Product> similarProductList;
 
     public ProductViewModel() {
         product = setProductDetail(101);
+        similarProductList = setSimilarProducts(101);
+    }
 
+    private ArrayList<Product> setSimilarProducts(long productId) {
+        ArrayList<Color> colors = new ArrayList<>(Arrays.asList(new Color("Black", android.graphics.Color.BLACK),
+                new Color("Blue", android.graphics.Color.BLUE),
+                new Color("Green", android.graphics.Color.GREEN),
+                new Color("Yellow", android.graphics.Color.YELLOW)));
+        ArrayList<Size> sizeList = new ArrayList<>(Arrays.asList(new Size("S"),
+                new Size("M"),
+                new Size("L"),
+                new Size("XL"),
+                new Size("XXL")));
+        ArrayList<Variant> variantList = new ArrayList<>(Arrays.asList(new Variant("https://images.pexels.com/photos/21492/pexels-photo.jpg"),
+                new Variant("http://www.bidjeeto.com/img/files/image/Products/Logitech%20QuickCam%20IM.jpg"),
+                new Variant("http://www.bidjeeto.com/img/files/image/Products/Nokia-1280-Inexpensive-and-Cheapest-Phone-Technical-Specifications-Reviews-and-Price-in-India.jpg"),
+                new Variant("http://www.bidjeeto.com/img/files/image/Products/lenovo_S10-3_black.jpg"),
+                new Variant("http://www.bidjeeto.com/img/files/image/Products/xbox-360-arcade.jpg"),
+                new Variant("http://www.bidjeeto.com/img/files/image/Products/headphone2.jpg")));
+        ArrayList<String> productImagesUrl = new ArrayList<>(Arrays.asList("http://www.bidjeeto.com/img/files/image/Products/headphone2.jpg",
+                "http://www.bidjeeto.com/img/files/image/Products/lenovo_S10-3_black.jpg",
+                "http://www.bidjeeto.com/img/files/image/Products/Logitech%20QuickCam%20IM.jpg",
+                "https://images.pexels.com/photos/21492/pexels-photo.jpg"));
+        Product one = new Product(101, "lakme", 200, 10101, "http://www.bidjeeto.com/img/files/image/Benq_MP515.jpg", colors, sizeList, variantList, productImagesUrl);
+        Product two = new Product(210, "two", 200, 20101, "http://www.bidjeeto.com/img/files/image/Creative-GigaWorks-T20-Series-II.jpg", colors, sizeList, variantList, productImagesUrl);
+        Product three = new Product(133, "HP Ak007tx", 60000, 4642, "http://www.bidjeeto.com/img/files/image/LG-22LE5300-TV.jpg", colors, sizeList, variantList, productImagesUrl);
+        Product four = new Product(24, "Predator", 80000, 353, "http://www.bidjeeto.com/img/files/image/HTC%20Tattoo%20A3288.jpg", colors, sizeList, variantList, productImagesUrl);
+        Product five = new Product(351, "Thinkpad", 200000, 599, "http://www.bidjeeto.com/img/files/image/Sony_NWZ_B153_B150_B_Series_Demo.jpg", colors, sizeList, variantList, productImagesUrl);
+        Product six = new Product(124, "iPhone X", 100000, 101, "http://www.bidjeeto.com/img/files/image/Sony%20Ericsson%20T715.jpg", colors, sizeList, variantList, productImagesUrl);
+        return new ArrayList<>(Arrays.asList(one, two, three, four, five, six));
     }
 
     private Product setProductDetail(long productId) {
@@ -60,5 +90,9 @@ public class ProductViewModel extends ViewModel {
 
     public Product getProduct(long productId) {
         return product;
+    }
+
+    public ArrayList<Product> getSimilarProductList(long productId) {
+        return similarProductList;
     }
 }
