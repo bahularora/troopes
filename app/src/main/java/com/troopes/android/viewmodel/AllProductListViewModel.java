@@ -3,8 +3,8 @@ package com.troopes.android.viewmodel;
 import android.arch.lifecycle.ViewModel;
 
 import com.troopes.android.R;
-import com.troopes.android.data.model.Product;
 import com.troopes.android.data.model.product.Color;
+import com.troopes.android.data.model.product.Product;
 import com.troopes.android.data.model.product.Size;
 import com.troopes.android.data.model.product.Variant;
 

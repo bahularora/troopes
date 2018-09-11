@@ -10,7 +10,7 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 import com.troopes.android.R;
 import com.troopes.android.common.BaseViewHolder;
-import com.troopes.android.data.model.Product;
+import com.troopes.android.data.model.product.Product;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

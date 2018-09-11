@@ -12,8 +12,8 @@ import android.view.View;
 
 import com.troopes.android.R;
 import com.troopes.android.common.BaseFragment;
-import com.troopes.android.data.model.Product;
 import com.troopes.android.data.model.SubCategory;
+import com.troopes.android.data.model.product.Product;
 import com.troopes.android.ui.product.gridList.ProductGridListAdapter;
 import com.troopes.android.viewmodel.CategoryViewModel;
 

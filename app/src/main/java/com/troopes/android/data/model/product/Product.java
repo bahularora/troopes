@@ -1,8 +1,4 @@
-package com.troopes.android.data.model;
-
-import com.troopes.android.data.model.product.Color;
-import com.troopes.android.data.model.product.Size;
-import com.troopes.android.data.model.product.Variant;
+package com.troopes.android.data.model.product;
 
 import java.util.ArrayList;
 
