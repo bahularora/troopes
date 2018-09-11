@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -97,6 +98,8 @@ public class ProductFragment extends BaseFragment {
         productImagesPagerAdapter = new ProductImagesPagerAdapter();
         similarProductAdapter = new ProductGridListAdapter();
         variantAdapter = new VariantAdapter();
+
+        ViewCompat.setNestedScrollingEnabled(similarProductList, false);
 
         Product product = productViewModel.getProduct(productId);
         ArrayList<Product> similarProducts = productViewModel.getSimilarProductList(productId);
