@@ -1,14 +1,13 @@
 package com.troopes.android.ui.product.linearList;
 
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 import com.troopes.android.R;
 import com.troopes.android.common.BaseViewHolder;
 import com.troopes.android.data.model.Product;
@@ -47,9 +46,6 @@ public class LinearListProductHolder extends BaseViewHolder {
                 Toast.makeText(itemView.getContext(), "Going to product page..", Toast.LENGTH_SHORT).show();
             }
         });
-        // TODO: get product image from net
-        Glide.with(itemView.getContext())
-                .load(ContextCompat.getDrawable(itemView.getContext(), R.drawable.sample_product))
-                .into(image);
+        Picasso.get().load(product.imageUrl).fit().centerCrop().into(image);
     }
 }

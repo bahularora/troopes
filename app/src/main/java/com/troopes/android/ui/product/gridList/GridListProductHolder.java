@@ -1,12 +1,11 @@
 package com.troopes.android.ui.product.gridList;
 
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 import com.troopes.android.R;
 import com.troopes.android.common.BaseViewHolder;
 import com.troopes.android.data.model.Product;
@@ -37,10 +36,7 @@ public class GridListProductHolder extends BaseViewHolder implements View.OnClic
         productCost.setText(costMessage);
         String quantitySoldMessage = "sold " + String.valueOf(product.itemsSold) + " pieces";
         productQuantitySold.setText(quantitySoldMessage);
-        // TODO: set image dynamically
-        Glide.with(itemView.getContext())
-                .load(ContextCompat.getDrawable(itemView.getContext(), R.drawable.sample_product))
-                .into(productImage);
+        Picasso.get().load(product.imageUrl).fit().into(productImage);
     }
 
     @Override
