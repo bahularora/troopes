@@ -23,7 +23,15 @@ public class ProductViewModel extends ViewModel {
         ArrayList<Color> colors = setColors();
         ArrayList<Size> sizeList = setSizeList();
         ArrayList<Variant> variantList = setVariantList();
-        return new Product(productId, "Flower portrait", 34204, 23355, "https://images.pexels.com/photos/1212487/pexels-photo-1212487.jpeg", colors, sizeList, variantList);
+        ArrayList<String> productImagesUrl = setProductImagesUrl();
+        return new Product(productId, "Flower portrait", 34204, 23355, "https://images.pexels.com/photos/1212487/pexels-photo-1212487.jpeg", colors, sizeList, variantList, productImagesUrl);
+    }
+
+    private ArrayList<String> setProductImagesUrl() {
+        return new ArrayList<>(Arrays.asList("http://www.bidjeeto.com/img/files/image/Products/headphone2.jpg",
+                "http://www.bidjeeto.com/img/files/image/Products/lenovo_S10-3_black.jpg",
+                "http://www.bidjeeto.com/img/files/image/Products/Logitech%20QuickCam%20IM.jpg",
+                "https://images.pexels.com/photos/21492/pexels-photo.jpg"));
     }
 
     private ArrayList<Color> setColors() {

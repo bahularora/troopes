@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Product {
     public long productId;
-
     public ArrayList<Color> colorList;
     public String name;
     // don't want product to cost money in denomination smaller than 1 rs
@@ -14,8 +13,9 @@ public class Product {
     public String imageUrl = null;
     public ArrayList<Size> sizeList;
     public ArrayList<Variant> variantList;
+    public ArrayList<String> productImagesUrl;
 
-    public Product(long productId, String name, int cost, long itemsSold, String imageUrl, ArrayList<Color> colorList, ArrayList<Size> sizeList, ArrayList<Variant> variantList) {
+    public Product(long productId, String name, int cost, long itemsSold, String imageUrl, ArrayList<Color> colorList, ArrayList<Size> sizeList, ArrayList<Variant> variantList, ArrayList<String> productImagesUrl) {
         this.name = name;
         this.cost = cost;
         this.itemsSold = itemsSold;
@@ -24,5 +24,6 @@ public class Product {
         this.colorList = colorList;
         this.sizeList = sizeList;
         this.variantList = variantList;
+        this.productImagesUrl = productImagesUrl;
     }
 }
