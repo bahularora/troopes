@@ -24,7 +24,7 @@ public class ColorHolder extends BaseViewHolder {
     }
 
     public void bindData(Color color) {
-        colorSquare.setColorFilter(color.color);
+        colorSquare.setBackgroundColor(color.color);
         colorText.setText(color.name);
     }
 }
