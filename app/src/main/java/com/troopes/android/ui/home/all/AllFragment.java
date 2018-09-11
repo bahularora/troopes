@@ -50,6 +50,9 @@ public class AllFragment extends BaseFragment {
     protected void init(View view) {
         super.init(view);
         showProgressBar();
+        if (getActivity() == null) {
+            return;
+        }
 
         allProductListViewModel = ViewModelProviders.of(getActivity()).get(AllProductListViewModel.class);
         final ArrayList<Integer> bannerImageList = allProductListViewModel.getBannerImages();
