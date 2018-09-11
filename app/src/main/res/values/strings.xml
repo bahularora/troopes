@@ -25,4 +25,10 @@
     <!-- Order Screen -->
     <string name="payment_method">Payment Method</string>
     <string name="quantity_title">Quantity</string>
+
+    <!-- Product Option Screen -->
+    <string name="choose_button">Choose</string>
+    <string name="color_heading">Color</string>
+    <string name="variant_heading">Variant</string>
+    <string name="quantity_heading">Quantity</string>
 </resources>

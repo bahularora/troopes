@@ -9,4 +9,5 @@
 
     <!-- Payment -->
     <color name="divider_color">#979797</color>
+    <color name="product_option_heading_text_color">#777777</color>
 </resources>
