@@ -10,8 +10,6 @@
 
     <!-- Product -->
     <style name="smallProductRatingBar" parent="android:style/Widget.Material.RatingBar.Small">
-        <item name="android:scaleX">1</item>
-        <item name="android:scaleY">1</item>
     </style>
 
 </resources>
