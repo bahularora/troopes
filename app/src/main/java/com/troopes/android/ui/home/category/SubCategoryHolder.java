@@ -32,7 +32,7 @@ public class SubCategoryHolder extends BaseViewHolder {
         Glide.with(itemView.getContext())
                 .load(ContextCompat.getDrawable(itemView.getContext(), R.drawable.sample_sub_category))
                 .into(image);
-        text.setText(subCategory.getName());
+        text.setText(subCategory.name);
     }
 
 }
