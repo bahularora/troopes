@@ -11,7 +11,7 @@ import android.view.View;
 import com.troopes.android.R;
 import com.troopes.android.common.BaseFragment;
 import com.troopes.android.ui.product.linearList.LinearListProductAdapter;
-import com.troopes.android.viewmodel.AllProductListViewModel;
+import com.troopes.android.viewmodel.MainViewModel;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -32,7 +32,7 @@ public class AllFragment extends BaseFragment {
     BannerPagerAdapter bannerPagerAdapter;
     LinearListProductAdapter linearListProductAdapter;
 
-    private AllProductListViewModel allProductListViewModel;
+    private MainViewModel mainViewModel;
 
     private int currentBannerPage = 0;
 
@@ -54,11 +54,11 @@ public class AllFragment extends BaseFragment {
             return;
         }
 
-        allProductListViewModel = ViewModelProviders.of(getActivity()).get(AllProductListViewModel.class);
-        final ArrayList<Integer> bannerImageList = allProductListViewModel.getBannerImages();
+        mainViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
+        final ArrayList<Integer> bannerImageList = mainViewModel.getBannerImages();
         bannerPagerAdapter = new BannerPagerAdapter(bannerImageList);
         linearListProductAdapter = new LinearListProductAdapter();
-        linearListProductAdapter.setProductListData(allProductListViewModel.getAllProductList());
+        linearListProductAdapter.setProductListData(mainViewModel.getAllProductList());
 
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);

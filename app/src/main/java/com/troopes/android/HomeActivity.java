@@ -7,8 +7,7 @@ import android.view.MenuItem;
 
 import com.troopes.android.common.BaseActivity;
 import com.troopes.android.ui.home.HomeFragment;
-import com.troopes.android.viewmodel.AllProductListViewModel;
-import com.troopes.android.viewmodel.CategoryViewModel;
+import com.troopes.android.viewmodel.MainViewModel;
 
 import butterknife.BindView;
 
@@ -17,8 +16,7 @@ public class HomeActivity extends BaseActivity {
     @BindView(R.id.bottom_navigation)
     BottomNavigationView bottomNavigationView;
 
-    private AllProductListViewModel allProductListViewModel;
-    private CategoryViewModel categoryViewModel;
+    private MainViewModel mainViewModel;
 
     @Override
     protected int getLayoutResId() {
@@ -30,8 +28,7 @@ public class HomeActivity extends BaseActivity {
         super.init();
         hideToolbar();
 
-        allProductListViewModel = ViewModelProviders.of(this).get(AllProductListViewModel.class);
-        categoryViewModel = ViewModelProviders.of(this).get(CategoryViewModel.class);
+        mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
         replaceFragment(new HomeFragment());
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

@@ -12,7 +12,7 @@ import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.troopes.android.R;
 import com.troopes.android.common.BaseFragment;
 import com.troopes.android.data.model.Category;
-import com.troopes.android.viewmodel.CategoryViewModel;
+import com.troopes.android.viewmodel.MainViewModel;
 
 import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -25,7 +25,7 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.viewpager)
     ViewPager viewPager;
 
-    private CategoryViewModel categoryViewModel;
+    private MainViewModel mainViewModel;
 
     @Override
     protected int getLayoutResId() {
@@ -41,8 +41,11 @@ public class HomeFragment extends BaseFragment {
     @Override
     protected void init(View view) {
         super.init(view);
-        categoryViewModel = ViewModelProviders.of(getActivity()).get(CategoryViewModel.class);
-        final int categoriesCount = categoryViewModel.getCategoriesCount();
+        if (getActivity() == null) {
+            return;
+        }
+        mainViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
+        final int categoriesCount = mainViewModel.getCategoriesCount();
         viewPager.setAdapter(new TabPagerAdapter(getChildFragmentManager(), categoriesCount));
         smartTabLayout.setCustomTabView(new SmartTabLayout.TabProvider() {
             @Override
@@ -55,7 +58,7 @@ public class HomeFragment extends BaseFragment {
                     imageView.setImageResource(R.drawable.ic_launcher_background);
                     textView.setText("All");
                 } else {
-                    Category category = categoryViewModel.getCategory(position - 1);
+                    Category category = mainViewModel.getCategory(position - 1);
                     imageView.setImageResource(R.drawable.ic_launcher_background);
                     textView.setText(category.getName());
                 }

@@ -15,7 +15,7 @@ import com.troopes.android.common.BaseFragment;
 import com.troopes.android.data.model.SubCategory;
 import com.troopes.android.data.model.product.Product;
 import com.troopes.android.ui.product.gridList.ProductGridListAdapter;
-import com.troopes.android.viewmodel.CategoryViewModel;
+import com.troopes.android.viewmodel.MainViewModel;
 
 import java.util.ArrayList;
 
@@ -33,7 +33,7 @@ public class CategoryFragment extends BaseFragment {
     @BindView(R.id.product_grid_listing)
     RecyclerView productList;
 
-    private CategoryViewModel categoryViewModel;
+    private MainViewModel mainViewModel;
 
     public static CategoryFragment newInstance(int categoryId) {
         CategoryFragment fragment = new CategoryFragment();
@@ -60,12 +60,12 @@ public class CategoryFragment extends BaseFragment {
             categoryId = getArguments().getInt(ARG_CATEGORY_ID);
         }
 
-        categoryViewModel = ViewModelProviders.of(getActivity()).get(CategoryViewModel.class);
+        mainViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
 
         int subCategoryListGridCount = calculateNoOfColumns(view.getContext());
         GridLayoutManager subCategoryLayoutManager = new GridLayoutManager(view.getContext(), subCategoryListGridCount);
         SubCategoryAdapter subCategoryAdapter = new SubCategoryAdapter();
-        ArrayList<SubCategory> subCategories = categoryViewModel.getCategory(categoryId).getSubCategories();
+        ArrayList<SubCategory> subCategories = mainViewModel.getCategory(categoryId).getSubCategories();
         subCategoryAdapter.setSubCategories(subCategories);
         subCategoryList.setAdapter(subCategoryAdapter);
         subCategoryList.setLayoutManager(subCategoryLayoutManager);
@@ -73,7 +73,7 @@ public class CategoryFragment extends BaseFragment {
 
         GridLayoutManager productGridLayoutManager = new GridLayoutManager(view.getContext(), 2);
         ProductGridListAdapter productGridListAdapter = new ProductGridListAdapter();
-        ArrayList<Product> products = categoryViewModel.getCategoryProduct();
+        ArrayList<Product> products = mainViewModel.getCategoryProducts();
         productGridListAdapter.setProductList(products);
         productList.setAdapter(productGridListAdapter);
         productList.setLayoutManager(productGridLayoutManager);
