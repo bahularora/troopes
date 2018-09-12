@@ -1,9 +1,9 @@
 package com.troopes.android;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity implements ITrueCallback {
             trueButtonContainer.setVisibility(View.VISIBLE);
         }
         //TODO remove it after implmenting login properly
-        startActivity(new Intent(this, HomeActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     @OnClick(R.id.true_button)
@@ -155,7 +155,7 @@ public class LoginActivity extends AppCompatActivity implements ITrueCallback {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if(user!=null) {
                     Toast.makeText(this, ""+user.getPhoneNumber(), Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(this, HomeActivity.class));
+                    startActivity(new Intent(this, MainActivity.class));
                 }
             }
         }
@@ -168,7 +168,7 @@ public class LoginActivity extends AppCompatActivity implements ITrueCallback {
     public void onSuccessProfileShared(@NonNull TrueProfile trueProfile) {
         Toast.makeText(this, trueProfile.phoneNumber, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, trueProfile.email, Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(this, HomeActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     @Override

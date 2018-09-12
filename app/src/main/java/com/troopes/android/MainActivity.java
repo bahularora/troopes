@@ -11,7 +11,7 @@ import com.troopes.android.viewmodel.MainViewModel;
 
 import butterknife.BindView;
 
-public class HomeActivity extends BaseActivity {
+public class MainActivity extends BaseActivity {
 
     @BindView(R.id.bottom_navigation)
     BottomNavigationView bottomNavigationView;
