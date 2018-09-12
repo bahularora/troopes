@@ -2,6 +2,7 @@ package com.troopes.android.viewmodel;
 
 import android.arch.lifecycle.ViewModel;
 
+import com.troopes.android.data.model.Review;
 import com.troopes.android.data.model.product.Color;
 import com.troopes.android.data.model.product.Product;
 import com.troopes.android.data.model.product.Size;
@@ -9,15 +10,18 @@ import com.troopes.android.data.model.product.Variant;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class ProductViewModel extends ViewModel {
 
     private Product product;
     private ArrayList<Product> similarProductList;
+    private ArrayList<Review> reviews;
 
     public ProductViewModel() {
         product = setProductDetail(101);
         similarProductList = setSimilarProducts(101);
+        reviews = setReviews();
     }
 
     private ArrayList<Product> setSimilarProducts(long productId) {
@@ -88,11 +92,58 @@ public class ProductViewModel extends ViewModel {
                 new Variant("http://www.bidjeeto.com/img/files/image/Products/headphone2.jpg")));
     }
 
+    private ArrayList<Review> setReviews() {
+        List<String> reviewImages = Arrays.asList("http://fiveonlineclient.in/loginkar/product-images/--details-1.rice.jpg",
+                "http://fiveonlineclient.in/loginkar/product-images/amul-butter--details-1.amul%20butter.gif",
+                "http://fiveonlineclient.in/loginkar/product-images/amul-badam-milk-shake-tin-RD001-details-1.amul%20badam%20milk%20shake%20tin.jpg", "" +
+                        "http://fiveonlineclient.in/loginkar/product-images/bledline-baby-food-Bledline%20Baby%20Food-details-1.images18.jpg",
+                "http://fiveonlineclient.in/loginkar/product-images/apple-Apple-details-1.sweetie3.jpg",
+                "http://fiveonlineclient.in/loginkar/product-images/apple-Apple-details-1.sweetie3.jpg",
+                "http://fiveonlineclient.in/loginkar/product-images/demo-product-CAR-012-details-1.product7.jpg");
+
+        String review = "This plot shows the distribution of salaries in USD for the top 10 metro areas in the US by number of " +
+                "respondents. (Notice that the y-axis is on a log scale.) The cities are ordered from the lowest median salary " +
+                "(Minneapolis) to the highest median salary (the San Francisco area). Take a look at this graph and see how " +
+                "close together the median salaries for cities like Chicago, Dallas, Denver, Portland, Boston, and even Austin" +
+                " are. In our modeling, the data we have only supports a statistically different salary for the cities shown " +
+                "in orange. San Francisco, Seattle, and New York have developer salaries that are high enough compared to " +
+                "typical US norms and enough developers working there that we can confidently predict a different salary " +
+                "for a developer living in one of these cities than the US in general. For developers living in cities like " +
+                "Chicago or Boston, salaries are just about the same as what is typical for the US overall, so we can’t build " +
+                "a confident, separate prediction for each of these cities. You might look at this plot and wonder about cities" +
+                " with salaries that appear slightly lower like Minneapolis, but there we had fewer respondents, so again we " +
+                "can’t build a confident, separate prediction. In the US, we have individual city-level predictions for San " +
+                "Francisco, Seattle, and New York, and then a country-level prediction that covers the rest of the US. This" +
+                " same pattern holds true in other countries including France, Germany, and Canada, for the same reasons.";
+
+        Review one = new Review("Joel", "29-8-2018", 4.3f, "variant1", "XL", "Yellow", review, reviewImages);
+        Review two = new Review("Joel", "29-8-2018", 4.3f, "variant1", "XL", "Yellow", review, reviewImages);
+        Review three = new Review("Joel", "29-8-2018", 4.3f, "variant1", "XL", "Yellow", review, reviewImages);
+        Review four = new Review("Joel", "29-8-2018", 4.3f, "variant1", "XL", "Yellow", review, reviewImages);
+        Review five = new Review("Joel", "29-8-2018", 4.3f, "variant1", "XL", "Yellow", review, reviewImages);
+        Review six = new Review("Joel", "29-8-2018", 4.3f, "variant1", "XL", "Yellow", review, reviewImages);
+        Review seven = new Review("Joel", "29-8-2018", 4.3f, "variant1", "XL", "Yellow", review, reviewImages);
+        return new ArrayList<>(Arrays.asList(one, two, three, four, five, six, seven));
+    }
+
     public Product getProduct(long productId) {
         return product;
     }
 
     public ArrayList<Product> getSimilarProductList(long productId) {
         return similarProductList;
+    }
+
+    // where will be define the product id ??
+    public List<Review> latestReview(int count) {
+        ArrayList<Review> temp = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            temp.add(reviews.get(i));
+        }
+        return temp;
+    }
+
+    public ArrayList<Review> getReviews() {
+        return reviews;
     }
 }
