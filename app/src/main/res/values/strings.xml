@@ -32,4 +32,8 @@
     <string name="variant_heading">Variant</string>
     <string name="quantity_heading">Quantity</string>
     <string name="size_heading">Size</string>
+
+    <!-- Search Screen -->
+    <string name="search_for_anything">Search for anything</string>
+    <string name="see_more">See More</string>
 </resources>
