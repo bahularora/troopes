@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModel;
 
 import com.troopes.android.R;
 import com.troopes.android.data.model.Category;
+import com.troopes.android.data.model.Search;
 import com.troopes.android.data.model.SubCategory;
 import com.troopes.android.data.model.product.Color;
 import com.troopes.android.data.model.product.Product;
@@ -20,12 +21,14 @@ public class MainViewModel extends ViewModel {
     private ArrayList<Integer> bannerImages = new ArrayList<>();
     private ArrayList<SubCategory> subCategories;
     private ArrayList<Category> categories;
+    private ArrayList<Search> sectionNameList;
 
     public MainViewModel() {
         allProducts = setAllProductsData();
         categoryProducts = setCategoryProducts();
         subCategories = getSubCategories();
         categories = getCategories();
+        sectionNameList = setSearchSectionList();
         bannerImages.addAll(Arrays.asList(R.drawable.sample_viewpager1, R.drawable.sample_viewpager2, R.drawable.sample_viewpager3, R.drawable.sample_viewpager4));
     }
 
@@ -112,6 +115,34 @@ public class MainViewModel extends ViewModel {
         Product five = new Product(351, "Thinkpad", 200000, 599, "http://www.bidjeeto.com/img/files/image/Sony_NWZ_B153_B150_B_Series_Demo.jpg", colors, sizeList, variantList, productImagesUrl);
         Product six = new Product(124, "iPhone X", 100000, 101, "http://www.bidjeeto.com/img/files/image/Sony%20Ericsson%20T715.jpg", colors, sizeList, variantList, productImagesUrl);
         return new ArrayList<>(Arrays.asList(one, two, three, four, five, six));
+    }
+
+    private ArrayList<Search> setSearchSectionList() {
+        SubCategory one = new SubCategory("sub cat1", "http://www.google.com");
+        SubCategory two = new SubCategory("sub shoes", "http://www.google.com");
+        SubCategory three = new SubCategory("sub c", "http://www.google.org");
+        SubCategory four = new SubCategory("sub cat1", "http://www.google.com");
+        SubCategory five = new SubCategory("books", "http://www.google.com");
+        SubCategory six = new SubCategory("mobiles", "http://www.google.com");
+        SubCategory seven = new SubCategory("others", "http://www.google.com");
+        ArrayList<SubCategory> list2 = new ArrayList<>(Arrays.asList(one, two, three, four, five, six, seven));
+        ArrayList<SubCategory> list1 = new ArrayList<>(Arrays.asList(one, two, three, four, five, six));
+
+        Search o1 = new Search("shoes", "url", list1);
+        Search o2 = new Search("men", "url", list2);
+        Search o3 = new Search("women", "url", list1);
+        Search o4 = new Search("kids", "url", list2);
+        Search o5 = new Search("sports", "url", list2);
+        Search o6 = new Search("accessories", "url", list1);
+        Search o7 = new Search("gadgets", "url", list1);
+        Search o8 = new Search("shoes", "url", list1);
+        Search o9 = new Search("make-up", "url", list2);
+
+        return new ArrayList<>(Arrays.asList(o1, o2, o3, o4, o5, o6, o7, o8, o9));
+    }
+
+    public ArrayList<Search> getSearchSectionList() {
+        return sectionNameList;
     }
 
     public ArrayList<Product> getCategoryProducts() {
