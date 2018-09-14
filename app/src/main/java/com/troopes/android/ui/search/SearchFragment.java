@@ -2,10 +2,12 @@ package com.troopes.android.ui.search;
 
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
 
 import com.troopes.android.R;
 import com.troopes.android.common.BaseAdapter;
@@ -19,21 +21,33 @@ import butterknife.BindView;
 
 public class SearchFragment extends BaseFragment implements BaseAdapter.OnItemClickListener {
 
-    @BindView(R.id.search_bar)
-    AutoCompleteTextView searchBar;
+    private static final String ARG_IS_TRENDING = "isTrending";
+    @BindView(R.id.trending_tags)
+    RecyclerView trendingTags;
+
     @BindView(R.id.search_section_name_list)
     RecyclerView sectionNameList;
     @BindView(R.id.search_section_list)
     RecyclerView sectionList;
+    @BindView(R.id.trending_subsection)
+    ConstraintLayout trendingLayout;
+    @BindView(R.id.search_subsection)
+    ConstraintLayout searchLayout;
+    private boolean isTrending;
 
     private SectionNameAdapter sectionNameAdapter;
     private SectionAdapter searchSectionAdapter;
+    private TagAdapter tagAdapter;
     private LinearLayoutManager sectionListLayoutManager;
 
     private MainViewModel mainViewModel;
 
-    public static SearchFragment newInstance() {
-        return new SearchFragment();
+    public static SearchFragment newInstance(boolean isTrending) {
+        SearchFragment fragment = new SearchFragment();
+        Bundle args = new Bundle();
+        args.putBoolean(ARG_IS_TRENDING, isTrending);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -53,30 +67,48 @@ public class SearchFragment extends BaseFragment implements BaseAdapter.OnItemCl
             return;
         }
 
-        sectionNameAdapter = new SectionNameAdapter();
-        sectionNameAdapter.setOnItemClickListener(this);
-        searchSectionAdapter = new SectionAdapter();
+        if (getArguments() != null) {
+            isTrending = getArguments().getBoolean(ARG_IS_TRENDING);
+        }
+
         mainViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
+        if (isTrending) {
+            Log.i("SEARCH", "isTrending " + true);
+            searchLayout.setVisibility(View.GONE);
+            tagAdapter = new TagAdapter();
+            LinearLayoutManager llManager = new LinearLayoutManager(view.getContext());
+            llManager.setOrientation(LinearLayoutManager.VERTICAL);
+            trendingTags.setAdapter(tagAdapter);
+            trendingTags.setLayoutManager(llManager);
+        } else {
+            Log.i("SEARCH", "isTrending " + false);
+            trendingLayout.setVisibility(View.GONE);
+            sectionNameAdapter = new SectionNameAdapter();
+            sectionNameAdapter.setOnItemClickListener(this);
+            searchSectionAdapter = new SectionAdapter();
 
-        ArrayList<Search> searchSectionList = mainViewModel.getSearchSectionList();
-        searchSectionAdapter.setData(searchSectionList);
-        sectionNameAdapter.setSearchItemList(searchSectionList);
+            ArrayList<Search> searchSectionList = mainViewModel.getSearchSectionList();
+            searchSectionAdapter.setData(searchSectionList);
+            sectionNameAdapter.setSearchItemList(searchSectionList);
 
-        LinearLayoutManager sectionNameListLayoutManager = new LinearLayoutManager(view.getContext());
-        sectionNameListLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            LinearLayoutManager sectionNameListLayoutManager = new LinearLayoutManager(view.getContext());
+            sectionNameListLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        sectionListLayoutManager = new LinearLayoutManager(view.getContext());
-        sectionListLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            sectionListLayoutManager = new LinearLayoutManager(view.getContext());
+            sectionListLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        sectionNameList.setLayoutManager(sectionNameListLayoutManager);
-        sectionNameList.setAdapter(sectionNameAdapter);
-        sectionList.setLayoutManager(sectionListLayoutManager);
-        sectionList.setAdapter(searchSectionAdapter);
+            sectionNameList.setAdapter(sectionNameAdapter);
+            sectionNameList.setLayoutManager(sectionNameListLayoutManager);
+            sectionList.setAdapter(searchSectionAdapter);
+            sectionList.setLayoutManager(sectionListLayoutManager);
+        }
     }
 
     @Override
     public void onItemClick(int position) {
-        sectionListLayoutManager.scrollToPositionWithOffset(position, 0);
-        searchSectionAdapter.notifyDataSetChanged();
+        if (!isTrending) {
+            sectionListLayoutManager.scrollToPositionWithOffset(position, 0);
+            searchSectionAdapter.notifyDataSetChanged();
+        }
     }
 }
