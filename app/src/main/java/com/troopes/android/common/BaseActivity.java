@@ -41,21 +41,11 @@ public abstract class BaseActivity extends AppCompatActivity{
 
     protected void init() {}
 
-    protected void showToolbar(String message, boolean backButton) {
-        if(getSupportActionBar()!=null) {
-            getSupportActionBar().show();
-            getSupportActionBar().setTitle(message);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(backButton);
-        }
-    }
-
-    protected void hideToolbar() {
-        if(getSupportActionBar()!=null) {
-            getSupportActionBar().hide();
-        }
+    protected void setToolbar(Fragment fragment) {
     }
 
     protected void replaceFragment(Fragment fragment) {
+        setToolbar(fragment);
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         List<Fragment> fragments = manager.getFragments();
