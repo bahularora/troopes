@@ -15,7 +15,7 @@ import com.troopes.android.data.model.product.Product;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class LinearListProductHolder extends BaseViewHolder {
+public class LinearListProductHolder extends BaseViewHolder implements View.OnClickListener {
     @BindView(R.id.product_name)
     TextView name;
     @BindView(R.id.product_cost)
@@ -29,9 +29,12 @@ public class LinearListProductHolder extends BaseViewHolder {
 
     private static final String CURRENCY = "Rs ";
 
+    private OnViewHolderClickListener onViewHolderClickListener;
+
     public LinearListProductHolder(@NonNull View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
+        itemView.setOnClickListener(this);
     }
 
     public void bindData(Product product) {
@@ -47,5 +50,17 @@ public class LinearListProductHolder extends BaseViewHolder {
             }
         });
         Picasso.get().load(product.imageUrl).fit().centerCrop().into(image);
+    }
+
+    @Override
+    protected void setOnViewHolderClick(OnViewHolderClickListener onViewHolderClickListener) {
+        this.onViewHolderClickListener = onViewHolderClickListener;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (onViewHolderClickListener != null) {
+            onViewHolderClickListener.onViewHolderClick(this);
+        }
     }
 }

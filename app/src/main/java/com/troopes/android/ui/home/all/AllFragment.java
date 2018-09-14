@@ -1,6 +1,7 @@
 package com.troopes.android.ui.home.all;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
@@ -9,7 +10,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.troopes.android.R;
+import com.troopes.android.common.BaseAdapter;
 import com.troopes.android.common.BaseFragment;
+import com.troopes.android.ui.product.ProductActivity;
 import com.troopes.android.ui.product.linearList.LinearListProductAdapter;
 import com.troopes.android.viewmodel.MainViewModel;
 
@@ -20,7 +23,9 @@ import java.util.TimerTask;
 import butterknife.BindView;
 import me.relex.circleindicator.CircleIndicator;
 
-public class AllFragment extends BaseFragment {
+public class AllFragment extends BaseFragment implements BaseAdapter.OnItemClickListener {
+
+    private static final String ARG_PRODUCT_ID = "productId";
 
     @BindView(R.id.banner)
     ViewPager bannerPager;
@@ -29,8 +34,8 @@ public class AllFragment extends BaseFragment {
     @BindView(R.id.indicator)
     CircleIndicator indicator;
 
-    BannerPagerAdapter bannerPagerAdapter;
-    LinearListProductAdapter linearListProductAdapter;
+    private BannerPagerAdapter bannerPagerAdapter;
+    private LinearListProductAdapter linearListProductAdapter;
 
     private MainViewModel mainViewModel;
 
@@ -70,6 +75,8 @@ public class AllFragment extends BaseFragment {
 //        bannerPagerAdapter.registerDataSetObserver(indicator.getDataSetObserver());
         ViewCompat.setNestedScrollingEnabled(recyclerView, false);
 
+        linearListProductAdapter.setOnItemClickListener(this);
+
         // TODO: use something other than handler and fix circle indicator not showing
         // TODO: decouple this part from bannerImagesList
         final Handler handler = new Handler();
@@ -90,5 +97,13 @@ public class AllFragment extends BaseFragment {
         }, 3000, 3000);
 
         hideProgressBar();
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        long productId = mainViewModel.getAllProductList().get(position).productId;
+        Intent intent = new Intent(getActivity(), ProductActivity.class);
+        intent.putExtra(ARG_PRODUCT_ID, productId);
+        startActivity(intent);
     }
 }
