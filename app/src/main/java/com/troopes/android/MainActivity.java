@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.troopes.android.common.BaseActivity;
 import com.troopes.android.ui.account.AccountFragment;
@@ -19,6 +21,8 @@ public class MainActivity extends BaseActivity {
 
     @BindView(R.id.bottom_navigation)
     BottomNavigationView bottomNavigationView;
+    @BindView(R.id.search_container)
+    LinearLayout searchContainer;
 
     private MainViewModel mainViewModel;
 
@@ -70,6 +74,21 @@ public class MainActivity extends BaseActivity {
                         break;
                 }
                 return true;
+            }
+        });
+
+        searchContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Fragment fragment = SearchFragment.newInstance(true);
+                // replaceFragment method not working due to problem that trendingScreen and SearchScreen both have same Tag
+                // Why is the replaceFragment method not working here
+                // replaceFragment(SearchFragment.newInstance(true));
+                Fragment fragment = SearchFragment.newInstance(true);
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, fragment, fragment.getClass().getSimpleName())
+                        .commit();
+                setToolbar(fragment);
             }
         });
     }
