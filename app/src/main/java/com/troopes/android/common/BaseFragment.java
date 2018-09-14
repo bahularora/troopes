@@ -49,4 +49,11 @@ public abstract class BaseFragment extends Fragment {
             progressBar.setVisibility(View.GONE);
         }
     }
+
+    public void setOnFragmentInteractionListener(OnFragmentInteractionListener onFragmentInteractionListener) {
+    }
+
+    public interface OnFragmentInteractionListener {
+        void onInteraction(Fragment fragment);
+    }
 }
