@@ -22,6 +22,14 @@
     <string name="product_description_title">Product Description</string>
     <string name="similar_products_title">Similar Products</string>
 
+    <!-- Product Screen Bottom Sheet -->
+    <string name="_48_hours_delivery_service">48 hours delivery</string>
+    <string name="_7_days_return">7 Days return</string>
+    <string name="full_package_title">Full package</string>
+    <string name="if_delivery_is_not_reached_in_time_more_discount">If delivery is not reached in time, more discount</string>
+    <string name="all_goods_are_unconditional">All goods are unconditional</string>
+    <string name="service_description">Service Description</string>
+
     <!-- Order Screen -->
     <string name="payment_method">Payment Method</string>
     <string name="quantity_title">Quantity</string>
