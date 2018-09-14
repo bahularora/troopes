@@ -2,6 +2,7 @@ package com.troopes.android.ui.product;
 
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
@@ -20,6 +21,7 @@ import com.troopes.android.common.BaseFragment;
 import com.troopes.android.data.model.product.Product;
 import com.troopes.android.ui.product.gridList.ProductGridListAdapter;
 import com.troopes.android.ui.product.productOption.VariantAdapter;
+import com.troopes.android.ui.reviews.ReviewsFragment;
 import com.troopes.android.viewmodel.ProductViewModel;
 
 import java.util.ArrayList;
@@ -60,10 +62,14 @@ public class ProductFragment extends BaseFragment {
     TextView reviewProductName;
     @BindView(R.id.product_grid_listing)
     RecyclerView similarProductList;
+
     private long productId;
+    private ServiceDescriptionBottomSheet serviceDescriptionBottomSheet;
     private ProductImagesPagerAdapter productImagesPagerAdapter;
     private ProductGridListAdapter similarProductAdapter;
     private VariantAdapter variantAdapter;
+
+    private OnFragmentInteractionListener onFragmentInteractionListener;
 
     private ProductViewModel productViewModel;
 
@@ -73,6 +79,17 @@ public class ProductFragment extends BaseFragment {
         args.putLong(ARG_PRODUCT_ID, productId);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            onFragmentInteractionListener = (OnFragmentInteractionListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
     }
 
     @Override
@@ -98,6 +115,7 @@ public class ProductFragment extends BaseFragment {
         productImagesPagerAdapter = new ProductImagesPagerAdapter();
         similarProductAdapter = new ProductGridListAdapter();
         variantAdapter = new VariantAdapter();
+        serviceDescriptionBottomSheet = new ServiceDescriptionBottomSheet();
 
         ViewCompat.setNestedScrollingEnabled(similarProductList, false);
 
@@ -122,9 +140,29 @@ public class ProductFragment extends BaseFragment {
         similarProductList.setLayoutManager(gridLayoutManager);
         variantList.setLayoutManager(variantLayoutManager);
 
-
-        // TODO on click on packageLayout show bottom sheet
         // make a strike through Original Price
         originalPrice.setPaintFlags(originalPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+        packageLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                serviceDescriptionBottomSheet.show(getChildFragmentManager(), "Service Description");
+            }
+        });
+
+        moreRatingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onFragmentInteractionListener != null) {
+                    ReviewsFragment fragment = ReviewsFragment.newInstance(productId);
+                    onFragmentInteractionListener.onInteraction(fragment);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void setOnFragmentInteractionListener(OnFragmentInteractionListener onFragmentInteractionListener) {
+        this.onFragmentInteractionListener = onFragmentInteractionListener;
     }
 }
