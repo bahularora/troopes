@@ -6,6 +6,7 @@ import com.troopes.android.R;
 import com.troopes.android.data.model.Category;
 import com.troopes.android.data.model.Search;
 import com.troopes.android.data.model.SubCategory;
+import com.troopes.android.data.model.Tag;
 import com.troopes.android.data.model.product.Color;
 import com.troopes.android.data.model.product.Product;
 import com.troopes.android.data.model.product.Size;
@@ -22,6 +23,7 @@ public class MainViewModel extends ViewModel {
     private ArrayList<SubCategory> subCategories;
     private ArrayList<Category> categories;
     private ArrayList<Search> sectionNameList;
+    private ArrayList<Tag> trendingTagsList;
 
     public MainViewModel() {
         allProducts = setAllProductsData();
@@ -29,7 +31,23 @@ public class MainViewModel extends ViewModel {
         subCategories = getSubCategories();
         categories = getCategories();
         sectionNameList = setSearchSectionList();
+        trendingTagsList = setTrendingTags();
         bannerImages.addAll(Arrays.asList(R.drawable.sample_viewpager1, R.drawable.sample_viewpager2, R.drawable.sample_viewpager3, R.drawable.sample_viewpager4));
+    }
+
+    private ArrayList<Tag> setTrendingTags() {
+        Tag one = new Tag("tag1", "");
+        Tag two = new Tag("shoes", "");
+        Tag three = new Tag("book", "");
+        Tag four = new Tag("nokia 6.1", "");
+        Tag five = new Tag("zenforce max pro", "");
+        Tag six = new Tag("u", "");
+        Tag seven = new Tag("hello", "");
+        Tag eight = new Tag("hp", "");
+        Tag nine = new Tag("21 tips of 21 century", "");
+        Tag ten = new Tag("tag10", "");
+        Tag eleven = new Tag("11", "");
+        return new ArrayList<>(Arrays.asList(one, two, three, four, five, six, seven, eight, nine, ten, eleven));
     }
 
     private ArrayList<Product> setAllProductsData() {
@@ -91,15 +109,15 @@ public class MainViewModel extends ViewModel {
     }
 
     private ArrayList<SubCategory> getSubCategories() {
-        SubCategory one = new SubCategory("sub cat 1", "https://www.google.com/");
-        SubCategory two = new SubCategory("sub cat 2", "https://www.google.org/");
-        SubCategory three = new SubCategory("sub cat 3", "https://www.google.in/");
-        SubCategory four = new SubCategory("sub cat 4", "https://www.google.de/");
-        SubCategory five = new SubCategory("sub cat 5", "https://www.google.jr/");
-        SubCategory six = new SubCategory("sub cat 6", "https://www.google.fr/");
-        SubCategory seven = new SubCategory("sub cat 7", "https://www.google.usa/");
-        SubCategory eight = new SubCategory("sub cat 8", "https://www.google.uk/");
-        SubCategory nine = new SubCategory("sub cat 9", "https://www.google.com/");
+        SubCategory one = new SubCategory("sub cat 1", "http://i1168.photobucket.com/albums/r489/annardlp/5_zps8jd5cygz.jpg");
+        SubCategory two = new SubCategory("sub cat 2", "http://i484.photobucket.com/albums/rr202/padre_negro/100px/Underfire-front-1.jpg");
+        SubCategory three = new SubCategory("sub cat 3", "http://i814.photobucket.com/albums/zz68/skidpalace/1997%20Harley%20Davidson%20Softail%20Custom/6ddcfb9f-7dc2-4c33-95ab-50a0d753dc91_zps959d36aa.jpg");
+        SubCategory four = new SubCategory("sub cat 4", "http://i208.photobucket.com/albums/bb268/ikki831/patches_closeUp100.gif");
+        SubCategory five = new SubCategory("sub cat 5", "http://i675.photobucket.com/albums/vv115/emomusicislife/eye.jpg");
+        SubCategory six = new SubCategory("sub cat 6", "http://i1290.photobucket.com/albums/b525/thespinnage/eye.jpg");
+        SubCategory seven = new SubCategory("sub cat 7", "http://i1183.photobucket.com/albums/x479/HatsuneMiku7/Lily-100px.png");
+        SubCategory eight = new SubCategory("sub cat 8", "http://i1290.photobucket.com/albums/b538/AG-PixelGod/AG%20Armatars/b8770446-5ab3-4416-afd5-16823bb8f3d7_zpse0691492.jpg");
+        SubCategory nine = new SubCategory("sub cat 9", "http://i137.photobucket.com/albums/q224/moon_wolf363/TC2/isolated14.gif");
         return new ArrayList<>(Arrays.asList(one, two, three, four, five, six, seven, eight, nine));
     }
 
@@ -167,6 +185,10 @@ public class MainViewModel extends ViewModel {
 
     public ArrayList<Integer> getBannerImages() {
         return bannerImages;
+    }
+
+    public ArrayList<Tag> getTrendingTags() {
+        return trendingTagsList;
     }
 
 }
