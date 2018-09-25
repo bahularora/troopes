@@ -1,12 +1,11 @@
 package com.troopes.android.ui.home.category;
 
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 import com.troopes.android.R;
 import com.troopes.android.common.BaseViewHolder;
 import com.troopes.android.data.model.SubCategory;
@@ -28,10 +27,7 @@ public class SubCategoryHolder extends BaseViewHolder {
     }
 
     public void bindData(SubCategory subCategory) {
-        // TODO: Get image from url
-        Glide.with(itemView.getContext())
-                .load(ContextCompat.getDrawable(itemView.getContext(), R.drawable.sample_sub_category))
-                .into(image);
+        Picasso.get().load(subCategory.url).fit().into(image);
         text.setText(subCategory.name);
     }
 
