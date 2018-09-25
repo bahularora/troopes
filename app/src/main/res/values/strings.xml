@@ -44,4 +44,12 @@
     <!-- Search Screen -->
     <string name="search_for_anything">Search for anything</string>
     <string name="see_more">See More</string>
+
+    <!-- Add a new Address Dialog -->
+    <string name="add_a_new_shipping_address">Add a new shipping address</string>
+    <string name="name_selection_area">Name, Selection area</string>
+    <string name="phone">Phone</string>
+    <string name="region">Region</string>
+    <string name="detailed_address">Detailed address</string>
+    <string name="save">Save</string>
 </resources>
