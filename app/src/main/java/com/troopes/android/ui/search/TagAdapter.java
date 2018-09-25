@@ -7,8 +7,14 @@ import android.view.ViewGroup;
 
 import com.troopes.android.R;
 import com.troopes.android.common.BaseAdapter;
+import com.troopes.android.data.model.Tag;
+
+import java.util.ArrayList;
 
 public class TagAdapter extends BaseAdapter<TagHolder> {
+
+    private ArrayList<Tag> data = new ArrayList<>();
+
     @NonNull
     @Override
     public TagHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -18,11 +24,16 @@ public class TagAdapter extends BaseAdapter<TagHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull TagHolder holder, int position) {
-        holder.bindData("random text");
+        holder.bindData(data.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 9;
+        return data.size();
+    }
+
+    public void setData(ArrayList<Tag> data) {
+        this.data = data;
+        notifyDataSetChanged();
     }
 }

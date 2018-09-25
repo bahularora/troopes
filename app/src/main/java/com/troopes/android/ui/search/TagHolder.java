@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.troopes.android.R;
 import com.troopes.android.common.BaseViewHolder;
+import com.troopes.android.data.model.Tag;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,7 +22,7 @@ public class TagHolder extends BaseViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    public void bindData(String tag) {
-        tagText.setText(tag);
+    public void bindData(Tag tag) {
+        tagText.setText(tag.name);
     }
 }
