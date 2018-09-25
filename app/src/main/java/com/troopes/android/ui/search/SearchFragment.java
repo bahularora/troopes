@@ -9,6 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexWrap;
+import com.google.android.flexbox.FlexboxLayoutManager;
+import com.google.android.flexbox.JustifyContent;
 import com.troopes.android.R;
 import com.troopes.android.common.BaseAdapter;
 import com.troopes.android.common.BaseFragment;
@@ -76,10 +80,13 @@ public class SearchFragment extends BaseFragment implements BaseAdapter.OnItemCl
             Log.i("SEARCH", "isTrending " + true);
             searchLayout.setVisibility(View.GONE);
             tagAdapter = new TagAdapter();
-            LinearLayoutManager llManager = new LinearLayoutManager(view.getContext());
-            llManager.setOrientation(LinearLayoutManager.VERTICAL);
+            tagAdapter.setData(mainViewModel.getTrendingTags());
+            FlexboxLayoutManager tagLayoutManager = new FlexboxLayoutManager(view.getContext());
+            tagLayoutManager.setFlexDirection(FlexDirection.ROW);
+            tagLayoutManager.setFlexWrap(FlexWrap.WRAP);
+            tagLayoutManager.setJustifyContent(JustifyContent.FLEX_START);
             trendingTags.setAdapter(tagAdapter);
-            trendingTags.setLayoutManager(llManager);
+            trendingTags.setLayoutManager(tagLayoutManager);
         } else {
             Log.i("SEARCH", "isTrending " + false);
             trendingLayout.setVisibility(View.GONE);
