@@ -8,7 +8,6 @@ import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatDialog;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -33,7 +32,6 @@ public class CustomDialog extends AppCompatDialog {
         //dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
         dialog.show();
-        Log.i("CustomDialog", " showing");
 
         if (builder.isAutoDismiss) {
             handleDialogAutoDismiss(builder, dialog);
@@ -72,7 +70,7 @@ public class CustomDialog extends AppCompatDialog {
         dialog.addContentView(layout, llp);
     }
 
-    private void buildFromLayoutId(Builder builder, Dialog dialog) {
+    private void buildFromLayoutId(final Builder builder, Dialog dialog) {
         dialog.setContentView(builder.dialogLayoutId);
         if (builder.title != null) {
             TextView title = dialog.findViewById(builder.getTitleViewId());
@@ -82,27 +80,68 @@ public class CustomDialog extends AppCompatDialog {
             TextView message = dialog.findViewById(builder.getMessageViewId());
             message.setText(builder.message);
         }
+        // TODO: how to use it when we create dialog
         if (builder.getPositiveButtonId() != -1) {
             Button button = dialog.findViewById(builder.getPositiveButtonId());
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (builder.onPositiveActionListener != null) {
+                        builder.onPositiveActionListener.onAction(view);
+                    }
+                }
+            });
             if (builder.positiveButtonText != null)
                 button.setText(builder.positiveButtonText);
             // set it to do something on onClick
         }
         if (builder.getNegativeButtonId() != -1) {
             Button button = dialog.findViewById(builder.getNegativeButtonId());
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (builder.onNegativeActionListener != null) {
+                        builder.onNegativeActionListener.onAction(view);
+                    }
+                }
+            });
             if (builder.negativeButtonText != null)
                 button.setText(builder.negativeButtonText);
         }
         if (builder.getOkButtonId() != -1) {
             Button button = dialog.findViewById(builder.getOkButtonId());
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (builder.onOKActionListener != null) {
+                        builder.onOKActionListener.onAction(view);
+                    }
+                }
+            });
             if (builder.oKButtonText != null)
                 button.setText(builder.oKButtonText);
         }
     }
 
 
+    public interface OnOKActionListener {
+        void onAction(View view);
+    }
+
+    public interface OnPositiveActionListener {
+        void onAction(View view);
+    }
+
+    public interface OnNegativeActionListener {
+        void onAction(View view);
+    }
+
     public static class Builder {
         private Context context;
+
+        private OnOKActionListener onOKActionListener;
+        private OnOKActionListener onPositiveActionListener;
+        private OnOKActionListener onNegativeActionListener;
 
         // use this alone only when using default implementation
         private String message = null;
@@ -229,9 +268,23 @@ public class CustomDialog extends AppCompatDialog {
             return this.okButtonId;
         }
 
+        public Builder setOnOKActionListener(OnOKActionListener onOKActionListener) {
+            this.onOKActionListener = onOKActionListener;
+            return this;
+        }
+
+        public Builder setOnNegativeActionListener(OnOKActionListener onNegativeActionListener) {
+            this.onNegativeActionListener = onNegativeActionListener;
+            return this;
+        }
+
+        public Builder setOnPositiveActionListener(OnOKActionListener onPositiveActionListener) {
+            this.onPositiveActionListener = onPositiveActionListener;
+            return this;
+        }
+
         public CustomDialog build() {
             return new CustomDialog(this);
         }
     }
-
 }
