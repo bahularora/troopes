@@ -135,7 +135,7 @@ public class ProductViewModel extends ViewModel {
     }
 
     // where will be define the product id ??
-    public List<Review> latestReview(int count) {
+    public ArrayList<Review> latestReview(int count) {
         ArrayList<Review> temp = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             temp.add(reviews.get(i));
