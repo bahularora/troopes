@@ -20,9 +20,11 @@ import android.widget.TextView;
 import com.troopes.android.R;
 import com.troopes.android.common.BaseAdapter;
 import com.troopes.android.common.BaseFragment;
+import com.troopes.android.data.model.Review;
 import com.troopes.android.data.model.product.Product;
 import com.troopes.android.ui.product.gridList.ProductGridListAdapter;
 import com.troopes.android.ui.product.productOption.VariantAdapter;
+import com.troopes.android.ui.reviews.ReviewAdapter;
 import com.troopes.android.ui.reviews.ReviewsFragment;
 import com.troopes.android.viewmodel.ProductViewModel;
 
@@ -54,14 +56,8 @@ public class ProductFragment extends BaseFragment implements BaseAdapter.OnItemC
     @BindView(R.id.review_count)
     TextView reviewCount;
     // recent review
-    @BindView(R.id.reviewer_name)
-    TextView reviewerName;
-    @BindView(R.id.review_date)
-    TextView reviewDate;
-    @BindView(R.id.review_content)
-    TextView reviewContent;
-    @BindView(R.id.review_product_name)
-    TextView reviewProductName;
+    @BindView(R.id.recent_review)
+    RecyclerView recentReviewList;
     @BindView(R.id.product_grid_listing)
     RecyclerView similarProductList;
 
@@ -117,13 +113,16 @@ public class ProductFragment extends BaseFragment implements BaseAdapter.OnItemC
         productImagesPagerAdapter = new ProductImagesPagerAdapter();
         similarProductAdapter = new ProductGridListAdapter();
         variantAdapter = new VariantAdapter();
+        ReviewAdapter recentReviewAdapter = new ReviewAdapter();
         serviceDescriptionBottomSheet = new ServiceDescriptionBottomSheet();
 
         ViewCompat.setNestedScrollingEnabled(similarProductList, false);
 
         Product product = productViewModel.getProduct(productId);
         ArrayList<Product> similarProducts = productViewModel.getSimilarProductList(productId);
+        ArrayList<Review> recentReviews = productViewModel.latestReview(2);
         productImagesPagerAdapter.setData(product.productImagesUrl);
+        recentReviewAdapter.setReviews(recentReviews);
         similarProductAdapter.setProductList(similarProducts);
         variantAdapter.setData(product.variantList);
 
@@ -136,12 +135,16 @@ public class ProductFragment extends BaseFragment implements BaseAdapter.OnItemC
         similarProductAdapter.setOnItemClickListener(this);
         similarProductList.setAdapter(similarProductAdapter);
         variantList.setAdapter(variantAdapter);
+        recentReviewList.setAdapter(recentReviewAdapter);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(view.getContext(), 2);
         LinearLayoutManager variantLayoutManager = new LinearLayoutManager(view.getContext());
         variantLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        LinearLayoutManager reviewLayoutManager = new LinearLayoutManager(view.getContext());
+        reviewLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         similarProductList.setLayoutManager(gridLayoutManager);
         variantList.setLayoutManager(variantLayoutManager);
+        recentReviewList.setLayoutManager(reviewLayoutManager);
 
         // make a strike through Original Price
         originalPrice.setPaintFlags(originalPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);

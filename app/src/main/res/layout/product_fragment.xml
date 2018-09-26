@@ -239,7 +239,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!--TODO fix rating bar-->
             <LinearLayout
                 android:id="@+id/cumulative_review_rating"
                 android:layout_width="match_parent"
@@ -273,31 +272,40 @@
 
             </LinearLayout>
 
-            <include
-                android:id="@+id/recent_review1"
-                layout="@layout/layout_review"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recent_review"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cumulative_review_rating" />
 
-            <include
-                android:id="@+id/recent_review2"
-                layout="@layout/layout_review"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recent_review1" />
+            <!--<include-->
+            <!--android:id="@+id/recent_review1"-->
+            <!--layout="@layout/layout_review"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="16dp"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--android:layout_marginEnd="16dp"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/cumulative_review_rating" />-->
+
+            <!--<include-->
+            <!--android:id="@+id/recent_review2"-->
+            <!--layout="@layout/layout_review"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="16dp"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--android:layout_marginEnd="16dp"-->
+            <!--android:layout_marginBottom="8dp"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/recent_review1" />-->
 
         </android.support.constraint.ConstraintLayout>
 
