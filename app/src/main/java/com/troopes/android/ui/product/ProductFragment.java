@@ -3,6 +3,7 @@ package com.troopes.android.ui.product;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
@@ -17,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.troopes.android.R;
+import com.troopes.android.common.BaseAdapter;
 import com.troopes.android.common.BaseFragment;
 import com.troopes.android.data.model.product.Product;
 import com.troopes.android.ui.product.gridList.ProductGridListAdapter;
@@ -28,7 +30,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 
-public class ProductFragment extends BaseFragment {
+public class ProductFragment extends BaseFragment implements BaseAdapter.OnItemClickListener {
 
     private static final String ARG_PRODUCT_ID = "productId";
     @BindView(R.id.product_viewpager)
@@ -131,6 +133,7 @@ public class ProductFragment extends BaseFragment {
         quantitySold.setText("Sold " + String.valueOf(product.itemsSold) + " items");
 
         productImagePager.setAdapter(productImagesPagerAdapter);
+        similarProductAdapter.setOnItemClickListener(this);
         similarProductList.setAdapter(similarProductAdapter);
         variantList.setAdapter(variantAdapter);
 
@@ -164,5 +167,13 @@ public class ProductFragment extends BaseFragment {
     @Override
     public void setOnFragmentInteractionListener(OnFragmentInteractionListener onFragmentInteractionListener) {
         this.onFragmentInteractionListener = onFragmentInteractionListener;
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        long similarItemProductId = productViewModel.getSimilarProductList(productId).get(position).productId;
+        Intent intent = new Intent(getActivity(), ProductActivity.class);
+        intent.putExtra(ARG_PRODUCT_ID, similarItemProductId);
+        startActivity(intent);
     }
 }
