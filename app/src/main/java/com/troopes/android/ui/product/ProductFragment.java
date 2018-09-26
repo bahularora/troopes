@@ -117,6 +117,7 @@ public class ProductFragment extends BaseFragment implements BaseAdapter.OnItemC
         serviceDescriptionBottomSheet = new ServiceDescriptionBottomSheet();
 
         ViewCompat.setNestedScrollingEnabled(similarProductList, false);
+        ViewCompat.setNestedScrollingEnabled(recentReviewList, false);
 
         Product product = productViewModel.getProduct(productId);
         ArrayList<Product> similarProducts = productViewModel.getSimilarProductList(productId);
