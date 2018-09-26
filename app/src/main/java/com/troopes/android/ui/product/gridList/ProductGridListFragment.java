@@ -26,6 +26,6 @@ public class ProductGridListFragment extends BaseFragment {
     protected void init(View view) {
         super.init(view);
 
-        // TODO::
+        // TODO:: do we need to implement on click for recycler view item
     }
 }

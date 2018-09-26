@@ -28,6 +28,7 @@ public class GridListProductHolder extends BaseViewHolder implements View.OnClic
     public GridListProductHolder(@NonNull View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
+        itemView.setOnClickListener(this);
     }
 
     public void bindData(Product product) {

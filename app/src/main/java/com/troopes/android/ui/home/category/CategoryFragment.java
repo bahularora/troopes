@@ -3,6 +3,7 @@ package com.troopes.android.ui.home.category;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.GridLayoutManager;
@@ -11,9 +12,11 @@ import android.util.DisplayMetrics;
 import android.view.View;
 
 import com.troopes.android.R;
+import com.troopes.android.common.BaseAdapter;
 import com.troopes.android.common.BaseFragment;
 import com.troopes.android.data.model.SubCategory;
 import com.troopes.android.data.model.product.Product;
+import com.troopes.android.ui.product.ProductActivity;
 import com.troopes.android.ui.product.gridList.ProductGridListAdapter;
 import com.troopes.android.viewmodel.MainViewModel;
 
@@ -22,9 +25,10 @@ import java.util.ArrayList;
 import butterknife.BindView;
 
 
-public class CategoryFragment extends BaseFragment {
+public class CategoryFragment extends BaseFragment implements BaseAdapter.OnItemClickListener {
 
     private static final String ARG_CATEGORY_ID = "categoryId";
+    private static final String ARG_PRODUCT_ID = "productId";
 
     private int categoryId;
 
@@ -56,25 +60,31 @@ public class CategoryFragment extends BaseFragment {
     @Override
     protected void init(View view) {
         super.init(view);
+        if (getActivity() == null) {
+            return;
+        }
         if (getArguments() != null) {
             categoryId = getArguments().getInt(ARG_CATEGORY_ID);
         }
 
         mainViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
+        SubCategoryAdapter subCategoryAdapter = new SubCategoryAdapter();
+        ProductGridListAdapter productGridListAdapter = new ProductGridListAdapter();
 
         int subCategoryListGridCount = calculateNoOfColumns(view.getContext());
         GridLayoutManager subCategoryLayoutManager = new GridLayoutManager(view.getContext(), subCategoryListGridCount);
-        SubCategoryAdapter subCategoryAdapter = new SubCategoryAdapter();
+        GridLayoutManager productGridLayoutManager = new GridLayoutManager(view.getContext(), 2);
+
         ArrayList<SubCategory> subCategories = mainViewModel.getCategory(categoryId).getSubCategories();
+        ArrayList<Product> products = mainViewModel.getCategoryProducts();
+
         subCategoryAdapter.setSubCategories(subCategories);
         subCategoryList.setAdapter(subCategoryAdapter);
         subCategoryList.setLayoutManager(subCategoryLayoutManager);
         ViewCompat.setNestedScrollingEnabled(subCategoryList, false);
 
-        GridLayoutManager productGridLayoutManager = new GridLayoutManager(view.getContext(), 2);
-        ProductGridListAdapter productGridListAdapter = new ProductGridListAdapter();
-        ArrayList<Product> products = mainViewModel.getCategoryProducts();
         productGridListAdapter.setProductList(products);
+        productGridListAdapter.setOnItemClickListener(this);
         productList.setAdapter(productGridListAdapter);
         productList.setLayoutManager(productGridLayoutManager);
         ViewCompat.setNestedScrollingEnabled(productList, false);
@@ -86,5 +96,13 @@ public class CategoryFragment extends BaseFragment {
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
         // here 72 is the dp width of each sub category viewholder
         return (int) (dpWidth / 72);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        long productId = mainViewModel.getAllProductList().get(position).productId;
+        Intent intent = new Intent(getActivity(), ProductActivity.class);
+        intent.putExtra(ARG_PRODUCT_ID, productId);
+        startActivity(intent);
     }
 }
