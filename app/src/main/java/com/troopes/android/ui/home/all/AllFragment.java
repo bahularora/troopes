@@ -43,7 +43,7 @@ public class AllFragment extends BaseFragment implements BaseAdapter.OnItemClick
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.fragment_all;
+        return R.layout.all_fragment;
     }
 
     @Override

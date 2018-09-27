@@ -32,7 +32,7 @@ public class HomeFragment extends BaseFragment {
     }
     @Override
     protected int getLayoutResId() {
-        return R.layout.fragment_home;
+        return R.layout.home_fragment;
     }
 
     @Override
