@@ -35,6 +35,7 @@ import butterknife.BindView;
 public class ProductFragment extends BaseFragment implements BaseAdapter.OnItemClickListener {
 
     private static final String ARG_PRODUCT_ID = "productId";
+
     @BindView(R.id.product_viewpager)
     ViewPager productImagePager;
     @BindView(R.id.original_price)
