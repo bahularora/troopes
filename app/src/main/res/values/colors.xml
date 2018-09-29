@@ -11,6 +11,7 @@
     <color name="divider_color">#979797</color>
     <color name="product_option_heading_text_color">#777777</color>
 
+    <color name="errorTextColor">#d0021b</color>
     <color name="fragment_background">#f5f5f5</color>
     <color name="_white">#ffffff</color>
     <color name="_black">#000000</color>

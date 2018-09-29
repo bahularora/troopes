@@ -29,4 +29,10 @@
     </style>
 
     <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
+
+    <!-- TextInputLayout -->
+    <style name="ErrorText" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/errorTextColor</item>
+    </style>
 </resources>

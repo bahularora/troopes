@@ -53,6 +53,7 @@
     <string name="detailed_address">Detailed address</string>
     <string name="save">Save</string>
 
+    <string name="save_address">Save</string>
     <!--Order Pending Fragment -->
     <string name="time_left">Time Left</string>
     <string name="required_1_person_to_invite_to_finish_order">Required 1 person to invite to finish order</string>
