@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -13,7 +13,7 @@ import com.troopes.android.R;
 import com.troopes.android.common.BaseAdapter;
 import com.troopes.android.common.BaseFragment;
 import com.troopes.android.ui.product.ProductActivity;
-import com.troopes.android.ui.product.linearList.LinearListProductAdapter;
+import com.troopes.android.ui.product.gridList.ProductGridListAdapter;
 import com.troopes.android.viewmodel.MainViewModel;
 
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class AllFragment extends BaseFragment implements BaseAdapter.OnItemClick
     CircleIndicator indicator;
 
     private BannerPagerAdapter bannerPagerAdapter;
-    private LinearListProductAdapter linearListProductAdapter;
+    private ProductGridListAdapter productGridListAdapter;
 
     private MainViewModel mainViewModel;
 
@@ -62,20 +62,19 @@ public class AllFragment extends BaseFragment implements BaseAdapter.OnItemClick
         mainViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
         final ArrayList<Integer> bannerImageList = mainViewModel.getBannerImages();
         bannerPagerAdapter = new BannerPagerAdapter(bannerImageList);
-        linearListProductAdapter = new LinearListProductAdapter();
-        linearListProductAdapter.setProductListData(mainViewModel.getAllProductList());
+        productGridListAdapter = new ProductGridListAdapter();
+        productGridListAdapter.setProductList(mainViewModel.getAllProductList());
 
-        LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(llm);
+        GridLayoutManager glm = new GridLayoutManager(view.getContext(), 2);
+        recyclerView.setLayoutManager(glm);
 
-        recyclerView.setAdapter(linearListProductAdapter);
+        recyclerView.setAdapter(productGridListAdapter);
         bannerPager.setAdapter(bannerPagerAdapter);
         indicator.setViewPager(bannerPager);
 //        bannerPagerAdapter.registerDataSetObserver(indicator.getDataSetObserver());
         ViewCompat.setNestedScrollingEnabled(recyclerView, false);
 
-        linearListProductAdapter.setOnItemClickListener(this);
+        productGridListAdapter.setOnItemClickListener(this);
 
         // TODO: use something other than handler and fix circle indicator not showing
         // TODO: decouple this part from bannerImagesList

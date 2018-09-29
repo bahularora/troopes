@@ -5,11 +5,13 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
-    app:cardCornerRadius="2dp">
+    app:cardCornerRadius="2dp"
+    app:cardElevation="0dp">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:background="@drawable/bg_rectangle_light_grey_border"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -18,6 +20,7 @@
             android:id="@+id/product_listing_product_image"
             android:layout_width="200dp"
             android:layout_height="200dp"
+            android:padding="1dp"
             android:scaleType="centerCrop" />
 
         <android.support.constraint.ConstraintLayout
@@ -31,6 +34,8 @@
                 android:layout_marginTop="8dp"
                 android:ellipsize="end"
                 android:maxLines="2"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:textSize="16sp"
