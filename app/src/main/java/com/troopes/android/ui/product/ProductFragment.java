@@ -6,12 +6,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,6 +25,8 @@ import com.troopes.android.common.BaseAdapter;
 import com.troopes.android.common.BaseFragment;
 import com.troopes.android.data.model.Review;
 import com.troopes.android.data.model.product.Product;
+import com.troopes.android.ui.order.OrderFragment;
+import com.troopes.android.ui.order.OrderPendingFragment;
 import com.troopes.android.ui.product.gridList.ProductGridListAdapter;
 import com.troopes.android.ui.product.productOption.VariantAdapter;
 import com.troopes.android.ui.reviews.ReviewAdapter;
@@ -61,6 +66,8 @@ public class ProductFragment extends BaseFragment implements BaseAdapter.OnItemC
     RecyclerView recentReviewList;
     @BindView(R.id.product_grid_listing)
     RecyclerView similarProductList;
+    @BindView(R.id.bottom_navigation)
+    BottomNavigationView bottomNavigationView;
 
     private long productId;
     private ServiceDescriptionBottomSheet serviceDescriptionBottomSheet;
@@ -165,6 +172,25 @@ public class ProductFragment extends BaseFragment implements BaseAdapter.OnItemC
                     ReviewsFragment fragment = ReviewsFragment.newInstance(productId);
                     onFragmentInteractionListener.onInteraction(fragment);
                 }
+            }
+        });
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.group: {
+                        OrderPendingFragment fragment = OrderPendingFragment.newInstance(1013);
+                        onFragmentInteractionListener.onInteraction(fragment);
+                        break;
+                    }
+                    case R.id.single: {
+                        OrderFragment fragment = OrderFragment.newInstance();
+                        onFragmentInteractionListener.onInteraction(fragment);
+                        break;
+                    }
+                }
+                return true;
             }
         });
     }
