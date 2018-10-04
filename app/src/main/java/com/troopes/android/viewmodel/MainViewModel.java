@@ -3,7 +3,9 @@ package com.troopes.android.viewmodel;
 import android.arch.lifecycle.ViewModel;
 
 import com.troopes.android.R;
+import com.troopes.android.data.constants.ORDER_STATUS;
 import com.troopes.android.data.model.Category;
+import com.troopes.android.data.model.Order;
 import com.troopes.android.data.model.Search;
 import com.troopes.android.data.model.SubCategory;
 import com.troopes.android.data.model.Tag;
@@ -24,6 +26,7 @@ public class MainViewModel extends ViewModel {
     private ArrayList<Category> categories;
     private ArrayList<Search> sectionNameList;
     private ArrayList<Tag> trendingTagsList;
+    private ArrayList<Order> orderList;
 
     public MainViewModel() {
         allProducts = setAllProductsData();
@@ -32,7 +35,17 @@ public class MainViewModel extends ViewModel {
         categories = getCategories();
         sectionNameList = setSearchSectionList();
         trendingTagsList = setTrendingTags();
+        orderList = setOrderList();
         bannerImages.addAll(Arrays.asList(R.drawable.sample_viewpager1, R.drawable.sample_viewpager2, R.drawable.sample_viewpager3, R.drawable.sample_viewpager4));
+    }
+
+    private ArrayList<Order> setOrderList() {
+        Order one = new Order(342, 352, "2/3/18", ORDER_STATUS.CANCELLED);
+        Order two = new Order(342, 352, "6/3/18", ORDER_STATUS.DELIVERED);
+        Order three = new Order(342, 352, "2/6/18", ORDER_STATUS.DELIVERED);
+        Order four = new Order(342, 352, "2/10/18", ORDER_STATUS.PENDING);
+        Order five = new Order(342, 352, "12/7/18", ORDER_STATUS.CANCELLED);
+        return new ArrayList<>(Arrays.asList(one, two, three, four, five));
     }
 
     private ArrayList<Tag> setTrendingTags() {
@@ -191,4 +204,11 @@ public class MainViewModel extends ViewModel {
         return trendingTagsList;
     }
 
+    public Product getProduct(long productId) {
+        return allProducts.get((int) (productId % allProducts.size()));
+    }
+
+    public ArrayList<Order> getOrderList() {
+        return orderList;
+    }
 }
