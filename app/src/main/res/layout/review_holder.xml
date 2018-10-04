@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@id/profile_image"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Anmol" />
@@ -33,7 +33,7 @@
         android:id="@+id/review_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
+        android:textSize="11sp"
         app:layout_constraintBaseline_toBaselineOf="@id/profile_name"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="4th Aug, 2018" />

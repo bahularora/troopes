@@ -47,6 +47,8 @@ public class ProductFragment extends BaseFragment implements BaseAdapter.OnItemC
     TextView originalPrice;
     @BindView(R.id.discounted_price)
     TextView discountedPrice;
+    @BindView(R.id.discount_percent)
+    TextView discountPercent;
     @BindView(R.id.sold_times)
     TextView quantitySold;
     @BindView(R.id.product_name)
@@ -59,6 +61,8 @@ public class ProductFragment extends BaseFragment implements BaseAdapter.OnItemC
     ConstraintLayout colorSizeContainer;
     @BindView(R.id.more_rating_icon)
     ImageView moreRatingButton;
+    @BindView(R.id.enter_pincode)
+    TextView enterPincode;
     @BindView(R.id.review_count)
     TextView reviewCount;
     // recent review
@@ -175,6 +179,9 @@ public class ProductFragment extends BaseFragment implements BaseAdapter.OnItemC
             }
         });
 
+        // enter Pincode - open pincode dialog and on update show the value here
+
+        // TODO how to add two rows of text view
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

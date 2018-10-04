@@ -31,8 +31,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:textSize="@dimen/largest_text_size"
-                android:textStyle="bold"
+                android:textColor="@color/_black"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/product_viewpager"
                 tools:text="Rs 20" />
@@ -42,17 +42,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:textColor="@color/original_price_color"
                 android:textSize="12sp"
                 android:textStyle="normal"
-                app:layout_constraintBaseline_toBaselineOf="@id/discounted_price"
+                app:layout_constraintBottom_toBottomOf="@+id/discounted_price"
                 app:layout_constraintStart_toEndOf="@id/discounted_price"
+                app:layout_constraintTop_toTopOf="@+id/discounted_price"
                 tools:text="Rs 50" />
 
             <TextView
+                android:id="@+id/discount_percent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:textColor="@color/colorAppSecondary"
+                android:textColor="@color/colorAppTertiary"
                 android:textSize="12sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/original_price"
                 app:layout_constraintStart_toEndOf="@+id/original_price"
@@ -63,8 +66,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/discounted_price"
+                android:textColor="#636363"
+                app:layout_constraintBottom_toBottomOf="@+id/discounted_price"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/discounted_price"
                 tools:text="Sold 2131 times" />
 
             <TextView
@@ -72,11 +77,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="16dp"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:textSize="@dimen/largest_text_size"
+                android:textColor="@color/product_name_color"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/discounted_price"
@@ -86,7 +92,7 @@
                 android:id="@+id/package_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="14dp"
                 android:background="#ffffff"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -109,10 +115,10 @@
                     android:id="@+id/full_package"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="12dp"
                     android:text="@string/full_package"
-                    android:textColor="#7b7b7b"
+                    android:textColor="#636363"
                     android:textSize="12sp" />
 
                 <ImageView
@@ -126,10 +132,10 @@
                     android:id="@+id/package_return"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="12dp"
                     android:text="@string/_7_day_return"
-                    android:textColor="#7b7b7b"
+                    android:textColor="#636363"
                     android:textSize="12sp" />
 
                 <ImageView
@@ -143,10 +149,10 @@
                     android:id="@+id/package_delivery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="12dp"
                     android:text="@string/_48_hours_delivery"
-                    android:textColor="#7b7b7b"
+                    android:textColor="#636363"
                     android:textSize="12sp" />
                 <!-- TODO: align it properly-->
                 <ImageView
@@ -157,26 +163,65 @@
 
             </LinearLayout>
 
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/seller_availability"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@color/_white"
+                android:paddingStart="16dp"
+                android:paddingTop="18dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="18dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/package_layout">
+
+                <TextView
+                    android:id="@+id/find_seller_availability_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/find_if_seller_ships_or_not"
+                    android:textColor="@color/_black"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/enter_pincode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="@string/enter_pincode"
+                    android:textColor="@color/colorAppSecondary"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </android.support.constraint.ConstraintLayout>
+
             <LinearLayout
                 android:id="@+id/product_variant_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="#ffffff"
+                android:layout_marginTop="14dp"
+                android:background="@color/_white"
                 android:orientation="vertical"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:paddingBottom="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/package_layout">
+                app:layout_constraintTop_toBottomOf="@+id/seller_availability">
 
-                <!-- for it to happen, I need to change the marginTop of RecyclerView from where we have a constraint to TextView -->
                 <TextView
                     android:id="@+id/product_variant_heading"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:paddingTop="10dp"
                     android:text="@string/other_variants_title"
+                    android:textColor="@color/_black"
                     android:textSize="16sp" />
 
                 <android.support.v7.widget.RecyclerView
@@ -191,11 +236,13 @@
                 android:id="@+id/color_size_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="#ffffff"
+                android:layout_marginTop="14dp"
+                android:background="@color/_white"
                 android:orientation="horizontal"
                 android:paddingStart="16dp"
+                android:paddingTop="10dp"
                 android:paddingEnd="16dp"
+                android:paddingBottom="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/product_variant_container">
 
@@ -203,8 +250,8 @@
                     android:id="@+id/color_size_heading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="4dp"
                     android:text="@string/color_and_size_title"
+                    android:textColor="@color/_black"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -221,33 +268,45 @@
 
             </android.support.constraint.ConstraintLayout>
 
+            <include
+                android:id="@+id/description_container"
+                layout="@layout/product_description"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="14dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/color_size_container" />
+
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/reviews_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="#ffffff"
+                android:layout_marginTop="14dp"
+                android:background="@color/_white"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/color_size_container">
+                app:layout_constraintTop_toBottomOf="@id/description_container">
 
                 <TextView
                     android:id="@+id/reviews_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="10dp"
                     android:text="@string/reviews_title"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
+                    android:textColor="@color/_black"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/review_count"
                     android:layout_width="wrap_content"
-                    android:layout_height="16dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:textColor="@color/_black"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/reviews_title"
                     app:layout_constraintStart_toEndOf="@id/reviews_title"
                     app:layout_constraintTop_toTopOf="@id/reviews_title"
                     tools:text="(13725)" />
@@ -256,11 +315,11 @@
                     android:id="@+id/more_rating_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:src="@drawable/more_info_right_arrow"
+                    app:layout_constraintBottom_toBottomOf="@+id/reviews_title"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="@+id/reviews_title" />
 
                 <LinearLayout
                     android:id="@+id/cumulative_review_rating"
@@ -290,7 +349,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:gravity="center"
-                        android:padding="4dp"
                         tools:text="4.6 out of 5 stars" />
 
                 </LinearLayout>
@@ -299,7 +357,7 @@
                     android:id="@+id/recent_review"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/cumulative_review_rating" />
@@ -307,21 +365,11 @@
             </android.support.constraint.ConstraintLayout>
 
             <include
-                android:id="@+id/description_container"
-                layout="@layout/product_description"
-                android:layout_width="match_parent"
-                android:layout_height="500dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/reviews_container" />
-
-            <include
                 layout="@layout/similar_products"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/description_container" />
+                app:layout_constraintTop_toBottomOf="@id/reviews_container" />
 
         </android.support.constraint.ConstraintLayout>
 
@@ -334,9 +382,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
-        android:background="@color/colorPrimary"
-        app:itemIconTint="@color/_white"
-        app:itemTextColor="@color/_black"
+        android:background="@color/colorAppMain"
+        app:itemTextColor="@color/_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
