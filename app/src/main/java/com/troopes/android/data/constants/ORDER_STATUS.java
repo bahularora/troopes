@@ -1,5 +1,5 @@
 package com.troopes.android.data.constants;
 
 public enum ORDER_STATUS {
-    PENDING, DELIVERED, CANCELLED
+    PENDING, DELIVERED, CANCELLED, IN_PROCESS
 }
