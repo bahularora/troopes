@@ -69,4 +69,11 @@
     <string name="wishlist">Wishlist</string>
     <string name="account_settings">Account Settings</string>
     <string name="my_profile">My Profile</string>
+
+    <!--My Profile Fragment-->
+    <string name="edit_photo">Edit photo</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="gender">Gender</string>
+    <string name="save_profile">Save</string>
 </resources>
