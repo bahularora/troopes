@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.troopes.android.common.BaseActivity;
+import com.troopes.android.common.BaseFragment;
 import com.troopes.android.ui.account.AccountFragment;
 import com.troopes.android.ui.home.HomeFragment;
 import com.troopes.android.ui.search.SearchFragment;
@@ -17,7 +18,7 @@ import com.troopes.android.viewmodel.MainViewModel;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements BaseFragment.OnFragmentInteractionListener {
 
     @BindView(R.id.bottom_navigation)
     BottomNavigationView bottomNavigationView;
@@ -69,9 +70,12 @@ public class MainActivity extends BaseActivity {
                     case R.id.search:
                         replaceFragment(SearchFragment.newInstance(false));
                         break;
-                    case R.id.account:
-                        replaceFragment(AccountFragment.newInstance());
+                    case R.id.account: {
+                        AccountFragment fragment = AccountFragment.newInstance();
+                        fragment.setOnFragmentInteractionListener(MainActivity.this);
+                        replaceFragment(fragment);
                         break;
+                    }
                 }
                 return true;
             }
@@ -91,5 +95,10 @@ public class MainActivity extends BaseActivity {
                 setToolbar(fragment);
             }
         });
+    }
+
+    @Override
+    public void onInteraction(Fragment fragment) {
+        replaceFragment(fragment);
     }
 }
