@@ -52,6 +52,7 @@ public class AccountFragment extends BaseFragment {
     @Override
     protected void init(View view) {
         super.init(view);
+        profileName.setText("Hi");
         aboutContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,7 +87,8 @@ public class AccountFragment extends BaseFragment {
         accountsContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // do something
+                AccountSettingFragment fragment = AccountSettingFragment.newInstance();
+                onFragmentInteractionListener.onInteraction(fragment);
             }
         });
         myProfileContainer.setOnClickListener(new View.OnClickListener() {
