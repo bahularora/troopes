@@ -2,6 +2,7 @@ package com.troopes.android.ui.account;
 
 
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,7 +13,7 @@ import com.troopes.android.ui.account.myOrders.MyOrdersFragment;
 
 import butterknife.BindView;
 
-public class AccountFragment extends BaseFragment {
+public class AccountFragment extends BaseFragment implements BaseFragment.OnFragmentInteractionListener {
 
     @BindView(R.id.profile_image)
     ImageView profileImage;
@@ -88,6 +89,7 @@ public class AccountFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 AccountSettingFragment fragment = AccountSettingFragment.newInstance();
+                fragment.setOnFragmentInteractionListener(AccountFragment.this);
                 onFragmentInteractionListener.onInteraction(fragment);
             }
         });
@@ -103,5 +105,11 @@ public class AccountFragment extends BaseFragment {
     @Override
     public void setOnFragmentInteractionListener(OnFragmentInteractionListener onFragmentInteractionListener) {
         this.onFragmentInteractionListener = onFragmentInteractionListener;
+    }
+
+    // from child fragment
+    @Override
+    public void onInteraction(Fragment fragment) {
+        onFragmentInteractionListener.onInteraction(fragment);
     }
 }

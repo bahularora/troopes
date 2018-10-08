@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:gravity="center_horizontal"
-            android:text="Hi, Robin"
+            tools:text="Hi, Robin"
             android:textColor="@color/_black"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
