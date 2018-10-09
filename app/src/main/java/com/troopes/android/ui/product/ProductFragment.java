@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.troopes.android.R;
 import com.troopes.android.common.BaseAdapter;
@@ -31,6 +32,7 @@ import com.troopes.android.ui.product.gridList.ProductGridListAdapter;
 import com.troopes.android.ui.product.productOption.VariantAdapter;
 import com.troopes.android.ui.reviews.ReviewAdapter;
 import com.troopes.android.ui.reviews.ReviewsFragment;
+import com.troopes.android.utils.CustomDialog;
 import com.troopes.android.viewmodel.ProductViewModel;
 
 import java.util.ArrayList;
@@ -139,7 +141,7 @@ public class ProductFragment extends BaseFragment implements BaseAdapter.OnItemC
         similarProductAdapter.setProductList(similarProducts);
         variantAdapter.setData(product.variantList);
 
-        originalPrice.setText("Rs" + String.valueOf(product.cost));
+        originalPrice.setText("Rs " + String.valueOf(product.cost));
         discountedPrice.setText("Rs " + String.valueOf(product.cost)); // TODO: add field in model
         productName.setText(product.name);
         quantitySold.setText("Sold " + String.valueOf(product.itemsSold) + " items");
@@ -179,7 +181,26 @@ public class ProductFragment extends BaseFragment implements BaseAdapter.OnItemC
             }
         });
 
-        // enter Pincode - open pincode dialog and on update show the value here
+
+        // TODO
+        enterPincode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final CustomDialog dialog = new CustomDialog.Builder(v.getContext())
+                        .setDialog(R.layout.add_pincode_dialog)
+                        .setOKButtonId(R.id.submit_button)
+                        .setOnOKActionListener(new CustomDialog.OnOKActionListener() {
+                            @Override
+                            public void onAction(View view) {
+                                // do something
+                                Toast.makeText(view.getContext(), "Hello", Toast.LENGTH_LONG).show();
+                            }
+                        })
+                        .setViewButtonId(R.id.close_button)
+                        .setViewButtonAction(CustomDialog.Builder.VIEW_BUTTON_ACTION.CLOSE)
+                        .build();
+            }
+        });
 
         // TODO how to add two rows of text view
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
