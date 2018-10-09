@@ -70,7 +70,7 @@ public class AddAddressFragment extends BaseFragment {
         flatNoText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                if (s.length() < 4) {
+                if (s.length() < 4 && s.length() > 0) {
                     flatNoLayout.setErrorEnabled(true);
                 }
             }
