@@ -3,10 +3,13 @@ package com.troopes.android.ui.order;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.troopes.android.R;
 
 import java.util.List;
 
@@ -43,8 +46,7 @@ public class SpinnerAdapter extends ArrayAdapter {
         View view = super.getDropDownView(position, convertView, parent);
         TextView tv = (TextView) view;
         if (position == 0) {
-            // Set the hint text color gray
-            tv.setTextColor(Color.GRAY);
+            tv.setTextColor(ContextCompat.getColor(parent.getContext(), R.color.grey50Text));
         } else {
             tv.setTextColor(Color.BLACK);
         }

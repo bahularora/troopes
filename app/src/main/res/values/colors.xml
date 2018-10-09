@@ -24,4 +24,6 @@
     <color name="inProcessOrder">@color/colorAppSecondary</color>
     <color name="deliveredOrder">#417505</color>
     <color name="cancelledOrder">#f5a623</color>
+
+    <color name="grey50Text">#80000000</color>
 </resources>
