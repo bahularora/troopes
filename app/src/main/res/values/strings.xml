@@ -101,4 +101,8 @@
     <string name="mobile_number">Mobile Number</string>
     <string name="full_name">Full Name</string>
     <string name="pincode">Pincode</string>
+
+    <!--Wishlist screen-->
+    <string name="see_items">See items</string>
+    <string name="no_items_has_been_wishlisted_by_you">No items has been wishlisted by you</string>
 </resources>
