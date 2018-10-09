@@ -9,6 +9,7 @@ import com.troopes.android.data.model.Order;
 import com.troopes.android.data.model.Search;
 import com.troopes.android.data.model.SubCategory;
 import com.troopes.android.data.model.Tag;
+import com.troopes.android.data.model.Wishlist;
 import com.troopes.android.data.model.product.Color;
 import com.troopes.android.data.model.product.Product;
 import com.troopes.android.data.model.product.Size;
@@ -27,6 +28,7 @@ public class MainViewModel extends ViewModel {
     private ArrayList<Search> sectionNameList;
     private ArrayList<Tag> trendingTagsList;
     private ArrayList<Order> orderList;
+    private ArrayList<Wishlist> wishlists;
 
     public MainViewModel() {
         allProducts = setAllProductsData();
@@ -36,6 +38,7 @@ public class MainViewModel extends ViewModel {
         sectionNameList = setSearchSectionList();
         trendingTagsList = setTrendingTags();
         orderList = setOrderList();
+        wishlists = setWishList();
         bannerImages.addAll(Arrays.asList(R.drawable.sample_viewpager1, R.drawable.sample_viewpager2, R.drawable.sample_viewpager3, R.drawable.sample_viewpager4));
     }
 
@@ -45,6 +48,15 @@ public class MainViewModel extends ViewModel {
         Order three = new Order(373, 262, "2/6/18", ORDER_STATUS.DELIVERED, "HP Ak007tx", 60000, 66642, 10, null, "http://www.bidjeeto.com/img/files/image/LG-22LE5300-TV.jpg");
         Order four = new Order(32642, 2662, "2/10/18", ORDER_STATUS.PENDING, "Predator", 80000, 93353, 15, null, "http://www.bidjeeto.com/img/files/image/HTC%20Tattoo%20A3288.jpg");
         Order five = new Order(537, 262, "12/7/18", ORDER_STATUS.CANCELLED, "Thinkpad", 20000, 59934, 79, null, "http://www.bidjeeto.com/img/files/image/Sony_NWZ_B153_B150_B_Series_Demo.jpg");
+        return new ArrayList<>(Arrays.asList(one, two, three, four, five));
+    }
+
+    private ArrayList<Wishlist> setWishList() {
+        Wishlist one = new Wishlist(342, "lakme", 435, 10101, 57, null, "http://www.bidjeeto.com/img/files/image/Benq_MP515.jpg");
+        Wishlist two = new Wishlist(46, "two", 10007, 20101, 51, null, "http://www.bidjeeto.com/img/files/image/Creative-GigaWorks-T20-Series-II.jpg");
+        Wishlist three = new Wishlist(373, "HP Ak007tx", 60000, 66642, 10, null, "http://www.bidjeeto.com/img/files/image/LG-22LE5300-TV.jpg");
+        Wishlist four = new Wishlist(32642, "Predator", 80000, 93353, 15, null, "http://www.bidjeeto.com/img/files/image/HTC%20Tattoo%20A3288.jpg");
+        Wishlist five = new Wishlist(537, "Thinkpad", 20000, 59934, 79, null, "http://www.bidjeeto.com/img/files/image/Sony_NWZ_B153_B150_B_Series_Demo.jpg");
         return new ArrayList<>(Arrays.asList(one, two, three, four, five));
     }
 
@@ -210,5 +222,9 @@ public class MainViewModel extends ViewModel {
 
     public ArrayList<Order> getOrderList() {
         return orderList;
+    }
+
+    public ArrayList<Wishlist> getWishlists() {
+        return wishlists;
     }
 }
