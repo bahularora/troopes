@@ -28,6 +28,8 @@ public class SearchFragment extends BaseFragment implements BaseAdapter.OnItemCl
     private static final String ARG_IS_TRENDING = "isTrending";
     @BindView(R.id.trending_tags)
     RecyclerView trendingTags;
+    @BindView(R.id.recent_tags)
+    RecyclerView recentTags;
 
     @BindView(R.id.search_section_name_list)
     RecyclerView sectionNameList;
@@ -42,6 +44,7 @@ public class SearchFragment extends BaseFragment implements BaseAdapter.OnItemCl
     private SectionNameAdapter sectionNameAdapter;
     private SectionAdapter searchSectionAdapter;
     private TagAdapter tagAdapter;
+    private TagAdapter recentTagAdapter;
     private LinearLayoutManager sectionListLayoutManager;
 
     private MainViewModel mainViewModel;
@@ -81,10 +84,22 @@ public class SearchFragment extends BaseFragment implements BaseAdapter.OnItemCl
             searchLayout.setVisibility(View.GONE);
             tagAdapter = new TagAdapter();
             tagAdapter.setData(mainViewModel.getTrendingTags());
+            recentTagAdapter = new TagAdapter();
+            recentTagAdapter.setData(mainViewModel.getTrendingTags());
+
             FlexboxLayoutManager tagLayoutManager = new FlexboxLayoutManager(view.getContext());
             tagLayoutManager.setFlexDirection(FlexDirection.ROW);
             tagLayoutManager.setFlexWrap(FlexWrap.WRAP);
             tagLayoutManager.setJustifyContent(JustifyContent.FLEX_START);
+
+            FlexboxLayoutManager recentTagLayoutManager = new FlexboxLayoutManager(view.getContext());
+            recentTagLayoutManager.setFlexDirection(FlexDirection.ROW);
+            recentTagLayoutManager.setFlexWrap(FlexWrap.WRAP);
+            recentTagLayoutManager.setJustifyContent(JustifyContent.FLEX_START);
+
+            recentTags.setAdapter(recentTagAdapter);
+            recentTags.setLayoutManager(recentTagLayoutManager);
+
             trendingTags.setAdapter(tagAdapter);
             trendingTags.setLayoutManager(tagLayoutManager);
         } else {
