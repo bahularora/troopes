@@ -20,9 +20,10 @@
         android:id="@+id/product_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
+        android:fontFamily="@font/lato"
         android:textColor="#636363"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,8 +35,9 @@
         android:id="@+id/product_discounted_price"
         android:layout_width="51dp"
         android:layout_height="20dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/lato"
         android:textColor="@color/_black"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/product_image"
@@ -47,11 +49,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:fontFamily="@font/lato"
         android:textColor="#7f000000"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/product_discounted_price"
+        app:layout_constraintBaseline_toBaselineOf="@+id/product_discounted_price"
         app:layout_constraintStart_toEndOf="@+id/product_discounted_price"
-        app:layout_constraintTop_toTopOf="@+id/product_discounted_price"
         tools:text="Rs 50" />
 
     <TextView
@@ -59,11 +61,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:fontFamily="@font/lato"
         android:textColor="@color/colorAppTertiary"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/product_discounted_price"
+        app:layout_constraintBaseline_toBaselineOf="@+id/product_discounted_price"
         app:layout_constraintStart_toEndOf="@+id/product_original_price"
-        app:layout_constraintTop_toTopOf="@+id/product_discounted_price"
         tools:text="70%" />
 
     <ImageView
@@ -81,6 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:fontFamily="@font/lato"
         android:textColor="#000000"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/other_buyer_icon"
@@ -95,6 +98,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="16dp"
+        android:fontFamily="@font/lato"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,9 +110,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/order_status"
+        android:fontFamily="@font/lato"
+        app:layout_constraintBaseline_toBaselineOf="@+id/order_status"
         app:layout_constraintStart_toEndOf="@+id/order_status"
-        app:layout_constraintTop_toTopOf="@+id/order_status"
         tools:text="Expected Delivery date by 24 Sept, 2018" />
 
     <View

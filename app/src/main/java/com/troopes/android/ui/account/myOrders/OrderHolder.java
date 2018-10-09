@@ -45,8 +45,8 @@ public class OrderHolder extends BaseViewHolder {
     public void bindData(Order order) {
         Picasso.get().load(order.productImageUrl).fit().centerCrop().into(productImage);
         productName.setText(order.productName);
-        productDiscountedPrice.setText("Rs" + String.valueOf(order.productCost));
-        productOriginalPrice.setText("Rs" + String.valueOf(order.originalCost));
+        productDiscountedPrice.setText("Rs " + String.valueOf(order.productCost));
+        productOriginalPrice.setText("Rs " + String.valueOf(order.originalCost));
         productOriginalPrice.setPaintFlags(productOriginalPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         discountPercent.setText(String.valueOf(order.discountedPercent) + "%");
 
