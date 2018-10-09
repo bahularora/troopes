@@ -3,9 +3,11 @@ package com.troopes.android.ui.account.myOrders;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 
 import com.troopes.android.R;
 import com.troopes.android.common.BaseFragment;
@@ -20,9 +22,16 @@ import butterknife.BindView;
 public class OrderTypeFragment extends BaseFragment {
 
     private static final String ARG_ORDER_TYPE = "order_type";
+
     @BindView(R.id.order_list)
     RecyclerView orderList;
+    @BindView(R.id.no_orders)
+    ConstraintLayout noOrderLayout;
+    @BindView(R.id.see_items)
+    Button seeItems;
+
     private String orderType;
+    private LinearLayoutManager llm;
     private OrderAdapter orderAdapter;
 
     private MainViewModel mainViewModel;
@@ -58,41 +67,72 @@ public class OrderTypeFragment extends BaseFragment {
         mainViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
         ArrayList<Order> orders = mainViewModel.getOrderList();
         orderAdapter = new OrderAdapter();
-        LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        llm = new LinearLayoutManager(view.getContext());
 
-        if (orderType.equals("all")) {
-            orderAdapter.setData(orders);
-        } else if (orderType.equals("pending")) {
-            ArrayList<Order> temp = new ArrayList<>();
-            for (int i = 0; i < orders.size(); i++) {
-                Order order = orders.get(i);
-                if (order.orderStatus == ORDER_STATUS.IN_PROCESS || order.orderStatus == ORDER_STATUS.PENDING) {
-                    temp.add(order);
+
+        switch (orderType) {
+            case "all":
+                setupOrderScreen(orders);
+                break;
+            case "pending": {
+                ArrayList<Order> temp = new ArrayList<>();
+                for (int i = 0; i < orders.size(); i++) {
+                    Order order = orders.get(i);
+                    if (order.orderStatus == ORDER_STATUS.IN_PROCESS || order.orderStatus == ORDER_STATUS.PENDING) {
+                        temp.add(order);
+                    }
                 }
+                setupOrderScreen(temp);
+                break;
             }
-            orderAdapter.setData(temp);
-        } else if (orderType.equals("delivered")) {
-            ArrayList<Order> temp = new ArrayList<>();
-            for (int i = 0; i < orders.size(); i++) {
-                Order order = orders.get(i);
-                if (order.orderStatus == ORDER_STATUS.DELIVERED) {
-                    temp.add(order);
+            case "delivered": {
+                ArrayList<Order> temp = new ArrayList<>();
+                for (int i = 0; i < orders.size(); i++) {
+                    Order order = orders.get(i);
+                    if (order.orderStatus == ORDER_STATUS.DELIVERED) {
+                        temp.add(order);
+                    }
                 }
+                setupOrderScreen(temp);
+                break;
             }
-            orderAdapter.setData(temp);
-        } else if (orderType.equals("cancelled")) {
-            ArrayList<Order> temp = new ArrayList<>();
-            for (int i = 0; i < orders.size(); i++) {
-                Order order = orders.get(i);
-                if (order.orderStatus == ORDER_STATUS.CANCELLED) {
-                    temp.add(order);
+            case "cancelled": {
+                ArrayList<Order> temp = new ArrayList<>();
+                for (int i = 0; i < orders.size(); i++) {
+                    Order order = orders.get(i);
+                    if (order.orderStatus == ORDER_STATUS.CANCELLED) {
+                        temp.add(order);
+                    }
                 }
+                setupOrderScreen(temp);
+                break;
             }
-            orderAdapter.setData(temp);
         }
 
-        orderList.setAdapter(orderAdapter);
-        orderList.setLayoutManager(llm);
+
+    }
+
+    private void setupOrderScreen(ArrayList<Order> orders) {
+        if (orders.size() == 0 || orders == null) {
+            orderList.setVisibility(View.GONE);
+            noOrderLayout.setVisibility(View.VISIBLE);
+
+            seeItems.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // do something
+                }
+            });
+        } else {
+            noOrderLayout.setVisibility(View.GONE);
+            orderList.setVisibility(View.VISIBLE);
+
+            llm.setOrientation(LinearLayoutManager.VERTICAL);
+            orderAdapter.setData(orders);
+
+            orderList.setAdapter(orderAdapter);
+            orderList.setLayoutManager(llm);
+        }
+
     }
 }

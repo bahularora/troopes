@@ -105,4 +105,5 @@
     <!--Wishlist screen-->
     <string name="see_items">See items</string>
     <string name="no_items_has_been_wishlisted_by_you">No items has been wishlisted by you</string>
+    <string name="no_item_has_been_ordered_by_you">No item has been ordered by you</string>
 </resources>
