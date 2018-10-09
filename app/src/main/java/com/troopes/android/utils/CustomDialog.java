@@ -121,6 +121,30 @@ public class CustomDialog extends AppCompatDialog {
             if (builder.oKButtonText != null)
                 button.setText(builder.oKButtonText);
         }
+        if (builder.getViewButtonId() != -1) {
+            View button = dialog.findViewById(builder.getViewButtonId());
+            if (Builder.VIEW_BUTTON_ACTION.OK == builder.viewButtonAction) {
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (builder.onOKActionListener != null) {
+                            builder.onOKActionListener.onAction(view);
+                        }
+                    }
+                });
+            } else if (Builder.VIEW_BUTTON_ACTION.CLOSE == builder.viewButtonAction) {
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (builder.onNegativeActionListener != null) {
+                            builder.onNegativeActionListener.onAction(view);
+                        }
+                    }
+                });
+            }
+
+            // set it to do something on onClick
+        }
     }
 
 
@@ -140,8 +164,8 @@ public class CustomDialog extends AppCompatDialog {
         private Context context;
 
         private OnOKActionListener onOKActionListener;
-        private OnOKActionListener onPositiveActionListener;
-        private OnOKActionListener onNegativeActionListener;
+        private OnPositiveActionListener onPositiveActionListener;
+        private OnNegativeActionListener onNegativeActionListener;
 
         // use this alone only when using default implementation
         private String message = null;
@@ -157,6 +181,8 @@ public class CustomDialog extends AppCompatDialog {
         private String negativeButtonText = null;
         private int okButtonId = -1;
         private String oKButtonText = null;
+        private int viewButtonId = -1;
+        private VIEW_BUTTON_ACTION viewButtonAction;
         private int dialogLayoutId = -1;
 
         /**
@@ -268,19 +294,37 @@ public class CustomDialog extends AppCompatDialog {
             return this.okButtonId;
         }
 
+        public Builder setViewButtonAction(VIEW_BUTTON_ACTION viewButtonAction) {
+            this.viewButtonAction = viewButtonAction;
+            return this;
+        }
+
+        int getViewButtonId() {
+            return this.viewButtonId;
+        }
+
+        public Builder setViewButtonId(@IdRes int viewButtonId) {
+            this.viewButtonId = viewButtonId;
+            return this;
+        }
+
         public Builder setOnOKActionListener(OnOKActionListener onOKActionListener) {
             this.onOKActionListener = onOKActionListener;
             return this;
         }
 
-        public Builder setOnNegativeActionListener(OnOKActionListener onNegativeActionListener) {
+        public Builder setOnNegativeActionListener(OnNegativeActionListener onNegativeActionListener) {
             this.onNegativeActionListener = onNegativeActionListener;
             return this;
         }
 
-        public Builder setOnPositiveActionListener(OnOKActionListener onPositiveActionListener) {
+        public Builder setOnPositiveActionListener(OnPositiveActionListener onPositiveActionListener) {
             this.onPositiveActionListener = onPositiveActionListener;
             return this;
+        }
+
+        public enum VIEW_BUTTON_ACTION {
+            OK, CANCEL, CLOSE, NONE
         }
 
         public CustomDialog build() {
