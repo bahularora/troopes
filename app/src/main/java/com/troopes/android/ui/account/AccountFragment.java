@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.troopes.android.R;
 import com.troopes.android.common.BaseFragment;
 import com.troopes.android.ui.account.myOrders.MyOrdersFragment;
+import com.troopes.android.ui.account.wishlist.WishlistFragment;
 
 import butterknife.BindView;
 
@@ -82,7 +83,8 @@ public class AccountFragment extends BaseFragment implements BaseFragment.OnFrag
         wishlistContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // do something
+                WishlistFragment fragment = WishlistFragment.newInstance();
+                onFragmentInteractionListener.onInteraction(fragment);
             }
         });
         accountsContainer.setOnClickListener(new View.OnClickListener() {
