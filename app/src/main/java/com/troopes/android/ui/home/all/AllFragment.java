@@ -14,6 +14,7 @@ import com.troopes.android.common.BaseAdapter;
 import com.troopes.android.common.BaseFragment;
 import com.troopes.android.ui.product.ProductActivity;
 import com.troopes.android.ui.product.gridList.ProductGridListAdapter;
+import com.troopes.android.utils.GridSpacingItemDecoration;
 import com.troopes.android.viewmodel.MainViewModel;
 
 import java.util.ArrayList;
@@ -67,6 +68,7 @@ public class AllFragment extends BaseFragment implements BaseAdapter.OnItemClick
 
         GridLayoutManager glm = new GridLayoutManager(view.getContext(), 2);
         recyclerView.setLayoutManager(glm);
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, 6, true));
 
         recyclerView.setAdapter(productGridListAdapter);
         bannerPager.setAdapter(bannerPagerAdapter);

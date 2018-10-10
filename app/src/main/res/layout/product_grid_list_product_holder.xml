@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
     app:cardCornerRadius="2dp"
     app:cardElevation="0dp">
 
@@ -34,11 +33,13 @@
                 android:layout_marginTop="8dp"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
                 android:paddingStart="8dp"
+                android:paddingTop="0dp"
                 android:paddingEnd="8dp"
-                android:textSize="16sp"
+                android:paddingBottom="0dp"
+                android:textColor="#636363"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="HP 15 Pavilion AK008-tx i7-6700HQ, 8GB, 128GB SDD + 1TB HDD" />
 
@@ -47,8 +48,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="22dp"
                 android:layout_marginStart="8dp"
-                android:textSize="12sp"
-                android:textStyle="bold"
+                android:textColor="@color/_black"
+                android:textSize="16sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/product_listing_product_quantity_sold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="Rs 431" />
@@ -62,7 +63,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:ellipsize="end"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"

@@ -33,6 +33,7 @@ import com.troopes.android.ui.product.productOption.VariantAdapter;
 import com.troopes.android.ui.reviews.ReviewAdapter;
 import com.troopes.android.ui.reviews.ReviewsFragment;
 import com.troopes.android.utils.CustomDialog;
+import com.troopes.android.utils.GridSpacingItemDecoration;
 import com.troopes.android.viewmodel.ProductViewModel;
 
 import java.util.ArrayList;
@@ -157,6 +158,7 @@ public class ProductFragment extends BaseFragment implements BaseAdapter.OnItemC
         variantLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         LinearLayoutManager reviewLayoutManager = new LinearLayoutManager(view.getContext());
         reviewLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        similarProductList.addItemDecoration(new GridSpacingItemDecoration(2, 6, true));
         similarProductList.setLayoutManager(gridLayoutManager);
         variantList.setLayoutManager(variantLayoutManager);
         recentReviewList.setLayoutManager(reviewLayoutManager);

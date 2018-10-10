@@ -18,6 +18,7 @@ import com.troopes.android.data.model.SubCategory;
 import com.troopes.android.data.model.product.Product;
 import com.troopes.android.ui.product.ProductActivity;
 import com.troopes.android.ui.product.gridList.ProductGridListAdapter;
+import com.troopes.android.utils.GridSpacingItemDecoration;
 import com.troopes.android.viewmodel.MainViewModel;
 
 import java.util.ArrayList;
@@ -86,6 +87,7 @@ public class CategoryFragment extends BaseFragment implements BaseAdapter.OnItem
         productGridListAdapter.setProductList(products);
         productGridListAdapter.setOnItemClickListener(this);
         productList.setAdapter(productGridListAdapter);
+        productList.addItemDecoration(new GridSpacingItemDecoration(2, 6, true));
         productList.setLayoutManager(productGridLayoutManager);
         ViewCompat.setNestedScrollingEnabled(productList, false);
 
