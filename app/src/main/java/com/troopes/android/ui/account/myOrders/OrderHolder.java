@@ -51,19 +51,19 @@ public class OrderHolder extends BaseViewHolder {
         discountPercent.setText(String.valueOf(order.discountedPercent) + "%");
 
         if (order.orderStatus == ORDER_STATUS.DELIVERED) {
-            deliveryDate.setText("Delivered on " + order.orderDate);
+            deliveryDate.setText("(Delivered on " + order.orderDate + ")");
             orderStatus.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.deliveredOrder));
             orderStatus.setText("Delivered");
         } else if (order.orderStatus == ORDER_STATUS.PENDING) {
-            deliveryDate.setText("Order on " + order.orderDate);
+            deliveryDate.setText("(Ordered on " + order.orderDate + ")");
             orderStatus.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.pendingOrder));
             orderStatus.setText("Pending");
         } else if (order.orderStatus == ORDER_STATUS.CANCELLED) {
-            deliveryDate.setText("Cancelled on " + order.orderDate);
+            deliveryDate.setText("(Cancelled on " + order.orderDate + ")");
             orderStatus.setText("Cancelled");
             orderStatus.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.cancelledOrder));
         } else if (order.orderStatus == ORDER_STATUS.IN_PROCESS) {
-            deliveryDate.setText("Arriving on " + order.orderDate);
+            deliveryDate.setText("(Arriving on " + order.orderDate + ")");
             orderStatus.setTextColor(ContextCompat.getColor(itemView.getContext(), R.color.inProcessOrder));
             orderStatus.setText("In Process");
         }

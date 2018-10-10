@@ -8,10 +8,10 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
+        style="@style/ToolbarTheme"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        style="@style/ToolbarTheme"
         app:layout_scrollFlags="scroll|enterAlways|snap">
 
         <android.support.constraint.ConstraintLayout
@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/ic_back_arrow_24dp"
+                    android:src="@drawable/ic_back_arrow_white_24dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -82,8 +82,8 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:gravity="center_vertical"
                 android:background="@drawable/oval_view_background"
+                android:gravity="center_vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

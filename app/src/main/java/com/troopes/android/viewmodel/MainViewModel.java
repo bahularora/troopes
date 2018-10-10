@@ -45,7 +45,7 @@ public class MainViewModel extends ViewModel {
     private ArrayList<Order> setOrderList() {
         Order one = new Order(342, 352, "2/3/18", ORDER_STATUS.CANCELLED, "lakme", 435, 10101, 57, null, "http://www.bidjeeto.com/img/files/image/Benq_MP515.jpg");
         Order two = new Order(46, 2362, "6/3/18", ORDER_STATUS.DELIVERED, "fanideaz Men's Cotton Polo (Fmps5002)", 10007, 20101, 51, null, "http://www.bidjeeto.com/img/files/image/Creative-GigaWorks-T20-Series-II.jpg");
-        Order three = new Order(373, 262, "2/6/18", ORDER_STATUS.DELIVERED, "HP Ak007tx", 60000, 66642, 10, null, "http://www.bidjeeto.com/img/files/image/LG-22LE5300-TV.jpg");
+        Order three = new Order(373, 262, "2/6/18", ORDER_STATUS.DELIVERED, "HP Ak007tx", 6000, 66642, 10, null, "http://www.bidjeeto.com/img/files/image/LG-22LE5300-TV.jpg");
         Order four = new Order(32642, 2662, "2/10/18", ORDER_STATUS.PENDING, "Predator", 80000, 93353, 15, null, "http://www.bidjeeto.com/img/files/image/HTC%20Tattoo%20A3288.jpg");
         Order five = new Order(537, 262, "12/7/18", ORDER_STATUS.CANCELLED, "Blackberrys - Brown Printed Slim Fit Formal Shirt", 20000, 59934, 79, null, "http://www.bidjeeto.com/img/files/image/Sony_NWZ_B153_B150_B_Series_Demo.jpg");
         return new ArrayList<>(Arrays.asList(one, two, three, four, five));

@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
     android:layout_marginStart="4dp"
     android:layout_marginEnd="4dp">
 
@@ -11,7 +13,7 @@
         android:id="@+id/section_item_image"
         android:layout_width="72dp"
         android:layout_height="72dp"
-        android:background="#f3f3f3"
+        android:background="@drawable/bg_rectangle_d8d8d8_45_radius2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:textSize="12sp"
+        android:textColor="#B3000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -2,6 +2,7 @@ package com.troopes.android.ui.product;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 
 import com.troopes.android.R;
 import com.troopes.android.common.BaseActivity;
@@ -38,13 +39,11 @@ public class ProductActivity extends BaseActivity implements BaseFragment.OnFrag
     @Override
     protected void setToolbar(Fragment fragment) {
         if (fragment.getClass().getSimpleName().equals(ReviewsFragment.class.getSimpleName())) {
-            ToolbarUtils.show(this);
-            ToolbarUtils.hideSearchBar(this);
-            ToolbarUtils.hideFavourite(this);
-            ToolbarUtils.hideShare(this);
-            ToolbarUtils.setToolbarTitle(this, "Reviews");
+            ToolbarUtils.setupSimpleToolbar(ProductActivity.this, "Reviews", R.color._white);
         } else if (fragment.getClass().getSimpleName().equals(ProductFragment.class.getSimpleName())) {
             ToolbarUtils.show(this);
+            ToolbarUtils.changeBackButtonIcon(ProductActivity.this,
+                    ContextCompat.getDrawable(ProductActivity.this, R.drawable.ic_back_arrow_24dp));
             ToolbarUtils.hideSearchBar(this);
         }
     }
