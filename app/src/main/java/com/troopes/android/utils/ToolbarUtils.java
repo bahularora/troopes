@@ -1,7 +1,11 @@
 package com.troopes.android.utils;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorRes;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.troopes.android.R;
@@ -92,12 +96,26 @@ public class ToolbarUtils {
         }
     }
 
+    // method to change back button color
+
     public static void hideBackButton(Activity activity) {
         if ((activity) != null) {
             activity.findViewById(R.id.toolbar)
                     .findViewById(R.id.toolbar_container)
                     .findViewById(R.id.back_button)
                     .setVisibility(View.GONE);
+            isBackButtonVisible = false;
+        }
+    }
+
+    public static void changeBackButtonIcon(Activity activity, Drawable buttonDrawable) {
+        if ((activity) != null) {
+            ImageButton button = activity.findViewById(R.id.toolbar)
+                    .findViewById(R.id.toolbar_container)
+                    .findViewById(R.id.back_button);
+
+            button.setVisibility(View.VISIBLE);
+            button.setImageDrawable(buttonDrawable);
             isBackButtonVisible = false;
         }
     }
@@ -109,6 +127,15 @@ public class ToolbarUtils {
                     .findViewById(R.id.toolbar_title);
             textview.setVisibility(View.VISIBLE);
             textview.setText(title);
+        }
+    }
+
+    public static void setToolbarTitleColor(Activity activity, @ColorRes int color) {
+        if ((activity) != null) {
+            TextView textview = activity.findViewById(R.id.toolbar)
+                    .findViewById(R.id.toolbar_container)
+                    .findViewById(R.id.toolbar_title);
+            textview.setTextColor(ContextCompat.getColor(activity, color));
         }
     }
 
@@ -133,6 +160,16 @@ public class ToolbarUtils {
             activity.findViewById(R.id.search_container)
                     .setVisibility(View.GONE);
         }
+    }
+
+    public static void setupSimpleToolbar(Activity activity, String title, @ColorRes int color) {
+        show(activity);
+        hideSearchBar(activity);
+        showToolbar(activity);
+        hideShare(activity);
+        hideFavourite(activity);
+        setToolbarTitleColor(activity, color);
+        setToolbarTitle(activity, title);
     }
 
     public static boolean isIsBackButtonVisible() {
