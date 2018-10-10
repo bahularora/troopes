@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         app:stl_dividerColor="@color/_white"
         app:stl_dividerThickness="0dp"
-        app:stl_indicatorColor="@color/colorAppMain"
+        app:stl_indicatorColor="@color/colorAppSecondary"
         app:stl_indicatorCornerRadius="2dp"
         app:stl_indicatorThickness="3dp"
         android:layout_height="wrap_content">

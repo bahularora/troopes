@@ -81,6 +81,7 @@ public class CategoryFragment extends BaseFragment implements BaseAdapter.OnItem
 
         subCategoryAdapter.setSubCategories(subCategories);
         subCategoryList.setAdapter(subCategoryAdapter);
+        subCategoryList.addItemDecoration(new GridSpacingItemDecoration(subCategoryListGridCount, 6, true));
         subCategoryList.setLayoutManager(subCategoryLayoutManager);
         ViewCompat.setNestedScrollingEnabled(subCategoryList, false);
 
@@ -96,8 +97,8 @@ public class CategoryFragment extends BaseFragment implements BaseAdapter.OnItem
     private int calculateNoOfColumns(Context context) {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-        // here 72 is the dp width of each sub category viewholder
-        return (int) (dpWidth / 72);
+        // here 72 is the dp width of each sub category viewholder , 6 for padding
+        return (int) (dpWidth / (72 + 12));
     }
 
     @Override

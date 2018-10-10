@@ -29,9 +29,10 @@
             <TextView
                 android:id="@+id/product_listing_product_name"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 android:ellipsize="end"
+                android:gravity="center_vertical"
                 android:maxLines="2"
                 android:paddingStart="8dp"
                 android:paddingTop="0dp"

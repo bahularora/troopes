@@ -20,7 +20,7 @@
             <android.support.v4.view.ViewPager
                 android:id="@+id/product_viewpager"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="301dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -30,11 +30,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:textColor="@color/_black"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/product_viewpager"
+                app:layout_constraintTop_toBottomOf="@+id/product_name"
                 tools:text="Rs 20" />
 
             <TextView
@@ -77,22 +77,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:textColor="@color/product_name_color"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/discounted_price"
+                app:layout_constraintTop_toBottomOf="@+id/product_viewpager"
                 tools:text="Name of the product is kamehame and it's very good right, agree?" />
 
             <LinearLayout
                 android:id="@+id/package_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="16dp"
                 android:background="#ffffff"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -102,7 +103,7 @@
                 android:paddingBottom="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/product_name">
+                app:layout_constraintTop_toBottomOf="@+id/discounted_price">
 
                 <ImageView
                     android:id="@+id/package_full_tick"
@@ -159,7 +160,7 @@
                     android:id="@+id/product_more"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/more_info_right_arrow" />
+                    android:src="@drawable/more_info_right_arrow_black70" />
 
             </LinearLayout>
 
@@ -221,8 +222,8 @@
                     android:layout_marginTop="8dp"
                     android:paddingTop="10dp"
                     android:text="@string/other_variants_title"
-                    android:textColor="@color/_black"
-                    android:textSize="16sp" />
+                    android:textColor="#B3000000"
+                    android:textSize="14sp" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/product_variant_list"
@@ -251,8 +252,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/color_and_size_title"
-                    android:textColor="@color/_black"
-                    android:textSize="16sp"
+                    android:textColor="#B3000000"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -261,7 +262,7 @@
                     android:id="@+id/more_color_size"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/more_info_right_arrow"
+                    android:src="@drawable/more_info_right_arrow_black70"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -294,7 +295,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="10dp"
                     android:text="@string/reviews_title"
-                    android:textColor="@color/_black"
+                    android:textColor="#636363"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -304,7 +305,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:textColor="@color/_black"
+                    android:textColor="#636363"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/reviews_title"
                     app:layout_constraintStart_toEndOf="@id/reviews_title"
@@ -316,7 +317,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:src="@drawable/more_info_right_arrow"
+                    android:src="@drawable/more_info_right_arrow_black70"
                     app:layout_constraintBottom_toBottomOf="@+id/reviews_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/reviews_title" />

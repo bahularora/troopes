@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="colorAppMain">#5b4886</color>
+    <color name="colorAppMainDarker">#413361</color>
     <color name="colorAppSecondary">#7ecfdf</color>
     <color name="colorAppTertiary">#f15541</color>
 

@@ -90,12 +90,12 @@ public class SearchFragment extends BaseFragment implements BaseAdapter.OnItemCl
             FlexboxLayoutManager tagLayoutManager = new FlexboxLayoutManager(view.getContext());
             tagLayoutManager.setFlexDirection(FlexDirection.ROW);
             tagLayoutManager.setFlexWrap(FlexWrap.WRAP);
-            tagLayoutManager.setJustifyContent(JustifyContent.FLEX_START);
+            tagLayoutManager.setJustifyContent(JustifyContent.SPACE_AROUND);
 
             FlexboxLayoutManager recentTagLayoutManager = new FlexboxLayoutManager(view.getContext());
             recentTagLayoutManager.setFlexDirection(FlexDirection.ROW);
             recentTagLayoutManager.setFlexWrap(FlexWrap.WRAP);
-            recentTagLayoutManager.setJustifyContent(JustifyContent.FLEX_START);
+            recentTagLayoutManager.setJustifyContent(JustifyContent.SPACE_AROUND);
 
             recentTags.setAdapter(recentTagAdapter);
             recentTags.setLayoutManager(recentTagLayoutManager);
