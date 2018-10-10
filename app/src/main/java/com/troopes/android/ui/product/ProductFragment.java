@@ -197,7 +197,13 @@ public class ProductFragment extends BaseFragment implements BaseAdapter.OnItemC
                             }
                         })
                         .setViewButtonId(R.id.close_button)
-                        .setViewButtonAction(CustomDialog.Builder.VIEW_BUTTON_ACTION.CLOSE)
+                        .setViewButtonAction(new CustomDialog.OnViewActionListener() {
+                            @Override
+                            public void onAction(View view) {
+                                // how to close?
+                                Toast.makeText(view.getContext(), "How to close?", Toast.LENGTH_LONG).show();
+                            }
+                        })
                         .build();
             }
         });
