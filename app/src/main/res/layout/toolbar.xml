@@ -6,25 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        style="@style/ToolbarTheme"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        app:layout_scrollFlags="scroll|enterAlways|snap">
-
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/main_container"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            app:layout_scrollFlags="scroll|enterAlways|snap">
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/toolbar_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_height="0dp"
                 android:gravity="center_vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -44,8 +36,10 @@
                     android:id="@+id/toolbar_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="32dp"
                     android:layout_marginEnd="8dp"
+                    android:textColor="@color/_white"
+                    android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/share_button"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -79,9 +73,6 @@
                 android:id="@+id/search_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
                 android:background="@drawable/oval_view_background"
                 android:gravity="center_vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -109,8 +100,6 @@
             </LinearLayout>
 
         </android.support.constraint.ConstraintLayout>
-
-    </android.support.v7.widget.Toolbar>
 
 </android.support.design.widget.AppBarLayout>
 

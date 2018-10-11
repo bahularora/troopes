@@ -17,7 +17,7 @@
             android:id="@+id/share_part"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="7dp"
             android:background="@color/_white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,10 +28,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="14dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/time_left"
-                android:textColor="@color/_black"
+                android:textColor="#CC000000"
                 android:textSize="@dimen/text_size_14"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -44,9 +44,9 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
+                android:fontFamily="@font/lato_bold"
                 android:textColor="@color/_black"
-                android:textSize="@dimen/largest_text_size"
-                android:textStyle="bold"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/time_left_title"
@@ -60,7 +60,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/required_1_person_to_invite_to_finish_order"
-                android:textColor="@color/_black"
+                android:textColor="#B3000000"
                 android:textSize="@dimen/text_size_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +82,7 @@
                     android:id="@+id/user_pic"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@color/_black" />
+                    android:background="@drawable/circle_placeholder_image" />
 
                 <TextView
                     android:id="@+id/user_name"
@@ -111,7 +111,7 @@
                     android:id="@+id/friend_pic"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@color/_black" />
+                    android:background="@drawable/circle_placeholder_image" />
 
                 <TextView
                     android:id="@+id/friend_name"
@@ -128,12 +128,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="16dp"
-                android:background="@drawable/bg_oval_view_red"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
+                android:background="@drawable/bg_oval_view_app_main"
+                android:paddingStart="26dp"
+                android:paddingTop="11dp"
+                android:paddingEnd="26dp"
+                android:paddingBottom="11dp"
                 android:text="@string/invite_friends_from_whatsapp"
                 android:textAllCaps="false"
                 android:textColor="@color/_white"
@@ -149,7 +151,6 @@
             layout="@layout/similar_products"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/share_part" />

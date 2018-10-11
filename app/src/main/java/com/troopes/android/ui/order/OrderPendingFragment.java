@@ -17,6 +17,7 @@ import com.troopes.android.common.BaseFragment;
 import com.troopes.android.data.model.product.Product;
 import com.troopes.android.ui.product.ProductActivity;
 import com.troopes.android.ui.product.gridList.ProductGridListAdapter;
+import com.troopes.android.utils.GridSpacingItemDecoration;
 import com.troopes.android.viewmodel.ProductViewModel;
 
 import java.util.ArrayList;
@@ -79,6 +80,7 @@ public class OrderPendingFragment extends BaseFragment implements BaseAdapter.On
         similarProductList.setAdapter(similarProductAdapter);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(view.getContext(), 2);
+        similarProductList.addItemDecoration(new GridSpacingItemDecoration(2, 6, true));
         similarProductList.setLayoutManager(gridLayoutManager);
 
     }
