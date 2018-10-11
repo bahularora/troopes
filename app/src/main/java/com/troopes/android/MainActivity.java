@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 
 import com.troopes.android.common.BaseActivity;
 import com.troopes.android.common.BaseFragment;
+import com.troopes.android.data.model.Wishlist;
 import com.troopes.android.ui.account.AccountFragment;
 import com.troopes.android.ui.account.AccountSettingFragment;
 import com.troopes.android.ui.account.MyProfileFragment;
@@ -48,38 +49,59 @@ public class MainActivity extends BaseActivity implements BaseFragment.OnFragmen
         } else if (fragment.getClass().getSimpleName().equals(SearchFragment.class.getSimpleName())) {
             bottomNavigationView.setVisibility(View.VISIBLE);
             ToolbarUtils.show(MainActivity.this);
+            ToolbarUtils.setBackgroundColor(MainActivity.this, R.color.colorAppMain);
             ToolbarUtils.hideToolbar(MainActivity.this);
             ToolbarUtils.showSearchBar(MainActivity.this);
+            ToolbarUtils.setBackgroundColor(MainActivity.this, R.color._white);
         } else if (fragment.getClass().getSimpleName().equals(AccountFragment.class.getSimpleName())) {
             bottomNavigationView.setVisibility(View.VISIBLE);
-            ToolbarUtils.show(MainActivity.this);
-            ToolbarUtils.hideSearchBar(MainActivity.this);
-            ToolbarUtils.showToolbar(MainActivity.this);
-            ToolbarUtils.hideShare(MainActivity.this);
+            ToolbarUtils.setupSimpleToolbar(MainActivity.this, "Accounts", R.color._white);
+            ToolbarUtils.setBackgroundColor(MainActivity.this, R.color.colorAppMain);
             ToolbarUtils.hideBackButton(MainActivity.this);
-            ToolbarUtils.hideFavourite(MainActivity.this);
-            ToolbarUtils.setToolbarTitle(MainActivity.this, "Accounts");
         } else if (fragment.getClass().getSimpleName().equals(WishlistFragment.class.getSimpleName())) {
             bottomNavigationView.setVisibility(View.GONE);
+            ToolbarUtils.setBackgroundColor(MainActivity.this, R.color.colorAppMain);
             ToolbarUtils.setupSimpleToolbar(MainActivity.this, "Wishlist", R.color._white);
         } else if (fragment.getClass().getSimpleName().equals(MyOrdersFragment.class.getSimpleName())) {
             bottomNavigationView.setVisibility(View.GONE);
+            ToolbarUtils.setBackgroundColor(MainActivity.this, R.color.colorAppMain);
             ToolbarUtils.setupSimpleToolbar(MainActivity.this, "My Orders", R.color._white);
         } else if (fragment.getClass().getSimpleName().equals(MyProfileFragment.class.getSimpleName())) {
             bottomNavigationView.setVisibility(View.GONE);
+            ToolbarUtils.setBackgroundColor(MainActivity.this, R.color.colorAppMain);
             ToolbarUtils.setupSimpleToolbar(MainActivity.this, "My Profile", R.color._white);
         } else if (fragment.getClass().getSimpleName().equals(AddressFragment.class.getSimpleName())) {
             bottomNavigationView.setVisibility(View.GONE);
+            ToolbarUtils.setBackgroundColor(MainActivity.this, R.color.colorAppMain);
             ToolbarUtils.setupSimpleToolbar(MainActivity.this, "Address", R.color._white);
         } else if (fragment.getClass().getSimpleName().equals(AddAddressFragment.class.getSimpleName())) {
             bottomNavigationView.setVisibility(View.GONE);
+            ToolbarUtils.setBackgroundColor(MainActivity.this, R.color.colorAppMain);
             ToolbarUtils.setupSimpleToolbar(MainActivity.this, "Add a Address", R.color._white);
         } else if (fragment.getClass().getSimpleName().equals(AccountSettingFragment.class.getSimpleName())) {
             bottomNavigationView.setVisibility(View.GONE);
+            ToolbarUtils.setBackgroundColor(MainActivity.this, R.color.colorAppMain);
             ToolbarUtils.setupSimpleToolbar(MainActivity.this, "Account Settings", R.color._white);
         } else {
             ToolbarUtils.hide(this);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        String tag = null;
+        if (getCurrentFragmentTag().equals(AccountSettingFragment.class.getName())) {
+            tag = popTag(1);
+        } else if (getCurrentFragmentTag().equals(AddressFragment.class.getName())) {
+            tag = popTag(2);
+        } else if (getCurrentFragmentTag().equals(AddAddressFragment.class.getName())) {
+            tag = popTag(3);
+        } else if (getCurrentFragmentTag().equals(Wishlist.class.getName())) {
+            tag = popTag(1);
+        } else if (getCurrentFragmentTag().equals(MyOrdersFragment.class.getName())) {
+            tag = popTag(1);
+        }
+        replaceFragmentByTag(tag);
     }
 
     @Override
@@ -117,17 +139,19 @@ public class MainActivity extends BaseActivity implements BaseFragment.OnFragmen
                 // replaceFragment method not working due to problem that trendingScreen and SearchScreen both have same Tag
                 // Why is the replaceFragment method not working here
                 // replaceFragment(SearchFragment.newInstance(true));
+
+                // using add() and hide(f) instead of replace() will be faster
                 if (!tagScreenFlag) {
                     Fragment fragment = SearchFragment.newInstance(true);
                     getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.container, fragment, fragment.getClass().getSimpleName())
+                            .replace(R.id.container, fragment, fragment.getClass().getName())
                             .commit();
                     setToolbar(fragment);
                     tagScreenFlag = true;
                 } else {
                     Fragment fragment = SearchFragment.newInstance(false);
                     getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.container, fragment, fragment.getClass().getSimpleName())
+                            .replace(R.id.container, fragment, fragment.getClass().getName())
                             .commit();
                     setToolbar(fragment);
                     tagScreenFlag = false;

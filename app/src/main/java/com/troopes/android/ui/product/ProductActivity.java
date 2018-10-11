@@ -38,10 +38,12 @@ public class ProductActivity extends BaseActivity implements BaseFragment.OnFrag
 
     @Override
     protected void setToolbar(Fragment fragment) {
-        if (fragment.getClass().getSimpleName().equals(ReviewsFragment.class.getSimpleName())) {
+        if (fragment.getClass().getName().equals(ReviewsFragment.class.getName())) {
+            ToolbarUtils.setBackgroundColor(ProductActivity.this, R.color.colorAppMain);
             ToolbarUtils.setupSimpleToolbar(ProductActivity.this, "Reviews", R.color._white);
-        } else if (fragment.getClass().getSimpleName().equals(ProductFragment.class.getSimpleName())) {
+        } else if (fragment.getClass().getName().equals(ProductFragment.class.getName())) {
             ToolbarUtils.show(this);
+            ToolbarUtils.setBackgroundColor(ProductActivity.this, R.color.colorAppMain);
             ToolbarUtils.changeBackButtonIcon(ProductActivity.this,
                     ContextCompat.getDrawable(ProductActivity.this, R.drawable.ic_back_arrow_24dp));
             ToolbarUtils.hideSearchBar(this);
