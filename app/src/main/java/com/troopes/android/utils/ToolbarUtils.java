@@ -3,6 +3,7 @@ package com.troopes.android.utils;
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorRes;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageButton;
@@ -170,6 +171,14 @@ public class ToolbarUtils {
         hideFavourite(activity);
         setToolbarTitleColor(activity, color);
         setToolbarTitle(activity, title);
+    }
+
+    public static void setBackgroundColor(Activity activity, @ColorRes int color) {
+        if ((activity) != null) {
+            ConstraintLayout constraintLayout = activity.findViewById(R.id.toolbar);
+            constraintLayout.setVisibility(View.VISIBLE);
+            constraintLayout.setBackgroundColor(ContextCompat.getColor(activity, color));
+        }
     }
 
     public static boolean isIsBackButtonVisible() {
