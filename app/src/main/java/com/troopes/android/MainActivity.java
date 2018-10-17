@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 
 import com.troopes.android.common.BaseActivity;
 import com.troopes.android.common.BaseFragment;
-import com.troopes.android.data.model.Wishlist;
+import com.troopes.android.data.modelDummy.Wishlist;
 import com.troopes.android.ui.account.AccountFragment;
 import com.troopes.android.ui.account.AccountSettingFragment;
 import com.troopes.android.ui.account.MyProfileFragment;

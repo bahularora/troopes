@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.troopes.android.R;
 import com.troopes.android.common.BaseViewHolder;
-import com.troopes.android.data.model.product.Size;
+import com.troopes.android.data.modelDummy.product.Size;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

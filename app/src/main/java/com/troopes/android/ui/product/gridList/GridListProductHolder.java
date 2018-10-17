@@ -8,7 +8,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.troopes.android.R;
 import com.troopes.android.common.BaseViewHolder;
-import com.troopes.android.data.model.product.Product;
+import com.troopes.android.data.modelDummy.product.Product;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.troopes.android.R;
 import com.troopes.android.common.BaseViewHolder;
-import com.troopes.android.data.model.SubCategory;
+import com.troopes.android.data.modelDummy.SubCategory;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

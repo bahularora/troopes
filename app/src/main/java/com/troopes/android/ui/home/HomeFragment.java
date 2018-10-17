@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.troopes.android.R;
 import com.troopes.android.common.BaseFragment;
-import com.troopes.android.data.model.Category;
+import com.troopes.android.data.modelDummy.Category;
 import com.troopes.android.viewmodel.MainViewModel;
 
 import butterknife.BindView;

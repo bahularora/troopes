@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.troopes.android.R;
 import com.troopes.android.common.BaseViewHolder;
-import com.troopes.android.data.model.Search;
+import com.troopes.android.data.modelDummy.Search;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

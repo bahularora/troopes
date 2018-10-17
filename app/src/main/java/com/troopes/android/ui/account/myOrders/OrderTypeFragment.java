@@ -12,7 +12,7 @@ import android.widget.Button;
 import com.troopes.android.R;
 import com.troopes.android.common.BaseFragment;
 import com.troopes.android.data.constants.ORDER_STATUS;
-import com.troopes.android.data.model.Order;
+import com.troopes.android.data.modelDummy.Order;
 import com.troopes.android.viewmodel.MainViewModel;
 
 import java.util.ArrayList;

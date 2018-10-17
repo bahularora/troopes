@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.troopes.android.R;
 import com.troopes.android.common.BaseViewHolder;
-import com.troopes.android.data.model.product.Color;
+import com.troopes.android.data.modelDummy.product.Color;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

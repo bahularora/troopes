@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import com.troopes.android.R;
 import com.troopes.android.common.BaseFragment;
-import com.troopes.android.data.model.Wishlist;
+import com.troopes.android.data.modelDummy.Wishlist;
 import com.troopes.android.viewmodel.MainViewModel;
 
 import java.util.ArrayList;

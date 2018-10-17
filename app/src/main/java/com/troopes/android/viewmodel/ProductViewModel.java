@@ -2,11 +2,11 @@ package com.troopes.android.viewmodel;
 
 import android.arch.lifecycle.ViewModel;
 
-import com.troopes.android.data.model.Review;
-import com.troopes.android.data.model.product.Color;
-import com.troopes.android.data.model.product.Product;
-import com.troopes.android.data.model.product.Size;
-import com.troopes.android.data.model.product.Variant;
+import com.troopes.android.data.modelDummy.Review;
+import com.troopes.android.data.modelDummy.product.Color;
+import com.troopes.android.data.modelDummy.product.Product;
+import com.troopes.android.data.modelDummy.product.Size;
+import com.troopes.android.data.modelDummy.product.Variant;
 
 import java.util.ArrayList;
 import java.util.Arrays;

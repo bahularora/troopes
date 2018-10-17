@@ -1,4 +1,4 @@
-package com.troopes.android.data.model.product;
+package com.troopes.android.data.modelDummy.product;
 
 public class Color {
     public int color;

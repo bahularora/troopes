@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import com.troopes.android.R;
 import com.troopes.android.common.BaseAdapter;
-import com.troopes.android.data.model.Wishlist;
+import com.troopes.android.data.modelDummy.Wishlist;
 
 import java.util.ArrayList;
 

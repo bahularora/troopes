@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.troopes.android.R;
 import com.troopes.android.common.BaseAdapter;
 import com.troopes.android.common.BaseFragment;
-import com.troopes.android.data.model.product.Product;
+import com.troopes.android.data.modelDummy.product.Product;
 import com.troopes.android.ui.product.ProductActivity;
 import com.troopes.android.ui.product.gridList.ProductGridListAdapter;
 import com.troopes.android.utils.GridSpacingItemDecoration;

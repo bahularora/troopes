@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso;
 import com.troopes.android.R;
 import com.troopes.android.common.BaseViewHolder;
 import com.troopes.android.data.constants.ORDER_STATUS;
-import com.troopes.android.data.model.Order;
+import com.troopes.android.data.modelDummy.Order;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

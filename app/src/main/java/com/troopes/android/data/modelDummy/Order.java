@@ -1,4 +1,4 @@
-package com.troopes.android.data.model;
+package com.troopes.android.data.modelDummy;
 
 import com.troopes.android.data.constants.ORDER_STATUS;
 

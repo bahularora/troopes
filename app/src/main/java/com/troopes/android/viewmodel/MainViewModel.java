@@ -4,16 +4,16 @@ import android.arch.lifecycle.ViewModel;
 
 import com.troopes.android.R;
 import com.troopes.android.data.constants.ORDER_STATUS;
-import com.troopes.android.data.model.Category;
-import com.troopes.android.data.model.Order;
-import com.troopes.android.data.model.Search;
-import com.troopes.android.data.model.SubCategory;
-import com.troopes.android.data.model.Tag;
-import com.troopes.android.data.model.Wishlist;
-import com.troopes.android.data.model.product.Color;
-import com.troopes.android.data.model.product.Product;
-import com.troopes.android.data.model.product.Size;
-import com.troopes.android.data.model.product.Variant;
+import com.troopes.android.data.modelDummy.Category;
+import com.troopes.android.data.modelDummy.Order;
+import com.troopes.android.data.modelDummy.Search;
+import com.troopes.android.data.modelDummy.SubCategory;
+import com.troopes.android.data.modelDummy.Tag;
+import com.troopes.android.data.modelDummy.Wishlist;
+import com.troopes.android.data.modelDummy.product.Color;
+import com.troopes.android.data.modelDummy.product.Product;
+import com.troopes.android.data.modelDummy.product.Size;
+import com.troopes.android.data.modelDummy.product.Variant;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package com.troopes.android.data.model.product;
+package com.troopes.android.data.modelDummy.product;
 
 import java.util.ArrayList;
 

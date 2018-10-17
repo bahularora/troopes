@@ -1,4 +1,4 @@
-package com.troopes.android.data.model;
+package com.troopes.android.data.modelDummy;
 
 public class Wishlist {
     public long productId;

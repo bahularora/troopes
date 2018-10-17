@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import com.troopes.android.R;
 import com.troopes.android.common.BaseAdapter;
-import com.troopes.android.data.model.product.Size;
+import com.troopes.android.data.modelDummy.product.Size;
 
 import java.util.ArrayList;
 

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.troopes.android.R;
 import com.troopes.android.common.BaseViewHolder;
-import com.troopes.android.data.model.Review;
+import com.troopes.android.data.modelDummy.Review;
 import com.troopes.android.utils.ExpandableTextView;
 
 import butterknife.BindView;

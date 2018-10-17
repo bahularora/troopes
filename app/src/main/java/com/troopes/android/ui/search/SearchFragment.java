@@ -16,7 +16,7 @@ import com.google.android.flexbox.JustifyContent;
 import com.troopes.android.R;
 import com.troopes.android.common.BaseAdapter;
 import com.troopes.android.common.BaseFragment;
-import com.troopes.android.data.model.Search;
+import com.troopes.android.data.modelDummy.Search;
 import com.troopes.android.viewmodel.MainViewModel;
 
 import java.util.ArrayList;

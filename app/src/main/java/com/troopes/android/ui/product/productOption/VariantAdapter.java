@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.troopes.android.R;
-import com.troopes.android.data.model.product.Variant;
+import com.troopes.android.data.modelDummy.product.Variant;
 
 import java.util.ArrayList;
 

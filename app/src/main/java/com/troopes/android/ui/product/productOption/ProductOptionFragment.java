@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.troopes.android.R;
 import com.troopes.android.common.BaseFragment;
-import com.troopes.android.data.model.product.Product;
+import com.troopes.android.data.modelDummy.product.Product;
 import com.troopes.android.viewmodel.ProductViewModel;
 
 import butterknife.BindView;
