@@ -50,7 +50,7 @@ public class LinearListProductAdapter extends BaseAdapter<LinearListProductHolde
     @Override
     public void onViewHolderClick(RecyclerView.ViewHolder viewHolder) {
         if (onItemClickListener != null) {
-            onItemClickListener.onItemClick(viewHolder.getAdapterPosition());
+            onItemClickListener.onItemClick(viewHolder.getAdapterPosition(), "");
         }
     }
 }

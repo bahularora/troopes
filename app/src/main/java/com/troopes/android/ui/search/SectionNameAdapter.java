@@ -51,7 +51,7 @@ public class SectionNameAdapter extends BaseAdapter<SectionNameHolder> implement
     @Override
     public void onViewHolderClick(RecyclerView.ViewHolder viewHolder) {
         if (onItemClickListener != null) {
-            onItemClickListener.onItemClick(viewHolder.getAdapterPosition());
+            onItemClickListener.onItemClick(viewHolder.getAdapterPosition(), "");
         }
     }
 }

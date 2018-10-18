@@ -101,7 +101,7 @@ public class AllFragment extends BaseFragment implements BaseAdapter.OnItemClick
     }
 
     @Override
-    public void onItemClick(int position) {
+    public void onItemClick(int position, String name) {
         long productId = mainViewModel.getAllProductList().get(position).productId;
         Intent intent = new Intent(getActivity(), ProductActivity.class);
         intent.putExtra(ARG_PRODUCT_ID, productId);

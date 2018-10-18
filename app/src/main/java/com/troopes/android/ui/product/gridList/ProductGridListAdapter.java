@@ -44,7 +44,7 @@ public class ProductGridListAdapter extends BaseAdapter<GridListProductHolder> i
     @Override
     public void onViewHolderClick(RecyclerView.ViewHolder viewHolder) {
         if (onItemClickListener != null) {
-            onItemClickListener.onItemClick(viewHolder.getAdapterPosition());
+            onItemClickListener.onItemClick(viewHolder.getAdapterPosition(), "");
         }
     }
 

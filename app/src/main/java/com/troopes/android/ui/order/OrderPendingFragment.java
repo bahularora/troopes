@@ -86,7 +86,7 @@ public class OrderPendingFragment extends BaseFragment implements BaseAdapter.On
     }
 
     @Override
-    public void onItemClick(int position) {
+    public void onItemClick(int position, String name) {
         long similarItemProductId = productViewModel.getSimilarProductList(productId).get(position).productId;
         Intent intent = new Intent(getActivity(), ProductActivity.class);
         intent.putExtra(ARG_PRODUCT_ID, similarItemProductId);

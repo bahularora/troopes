@@ -127,7 +127,7 @@ public class SearchFragment extends BaseFragment implements BaseAdapter.OnItemCl
     }
 
     @Override
-    public void onItemClick(int position) {
+    public void onItemClick(int position, String name) {
         if (!isTrending) {
             sectionListLayoutManager.scrollToPositionWithOffset(position, 0);
             searchSectionAdapter.notifyDataSetChanged();
