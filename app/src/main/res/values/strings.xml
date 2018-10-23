@@ -110,4 +110,7 @@
     <!--Search Fragment: Trending Tags-->
     <string name="recent">Recent</string>
     <string name="trending">Trending</string>
+
+    <!--Order Address select screen-->
+    <string name="quantity">Quantity:</string>
 </resources>
