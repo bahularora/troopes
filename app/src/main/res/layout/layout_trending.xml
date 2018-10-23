@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/trending_subsection"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/recent_title"
+    <ImageView
+        android:id="@+id/recent_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:src="@drawable/ic_recent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/recent_title"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:layout_marginStart="8dp"
         android:text="@string/recent"
         android:textColor="#CC000000"
         android:textSize="16sp"
         android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/recent_icon"
+        app:layout_constraintStart_toEndOf="@+id/recent_icon"
+        app:layout_constraintTop_toTopOf="@+id/recent_icon" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recent_tags"
@@ -27,20 +38,30 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recent_title" />
+        app:layout_constraintTop_toBottomOf="@+id/recent_icon" />
 
-    <TextView
-        android:id="@+id/trending_title"
+    <ImageView
+        android:id="@+id/trending_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/ic_trending_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recent_tags" />
+
+    <TextView
+        android:id="@+id/trending_title"
+        android:layout_width="65dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
         android:text="@string/trending"
         android:textColor="#CC000000"
         android:textSize="16sp"
         android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recent_tags" />
+        app:layout_constraintBottom_toBottomOf="@+id/trending_icon"
+        app:layout_constraintStart_toEndOf="@+id/trending_icon"
+        app:layout_constraintTop_toTopOf="@+id/trending_icon" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/trending_tags"
