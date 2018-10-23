@@ -30,7 +30,7 @@ public class AccountSettingFragment extends BaseFragment implements BaseFragment
     @BindView(R.id.save_button)
     Button saveButton;
 
-    OnFragmentInteractionListener onChildFragmentInteractionListener;
+    OnFragmentInteractionListener onFragmentInteractionListener;
 
     public static AccountSettingFragment newInstance() {
         return new AccountSettingFragment();
@@ -55,17 +55,17 @@ public class AccountSettingFragment extends BaseFragment implements BaseFragment
             public void onClick(View v) {
                 AddressFragment fragment = AddressFragment.newInstance();
                 fragment.setOnFragmentInteractionListener(AccountSettingFragment.this);
-                onChildFragmentInteractionListener.onInteraction(fragment);
+                onFragmentInteractionListener.onInteraction(fragment);
             }
         });
     }
 
-    public void setOnFragmentInteractionListener(OnFragmentInteractionListener onChildFragmentInteractionListener) {
-        this.onChildFragmentInteractionListener = onChildFragmentInteractionListener;
+    public void setOnFragmentInteractionListener(OnFragmentInteractionListener onFragmentInteractionListener) {
+        this.onFragmentInteractionListener = onFragmentInteractionListener;
     }
 
     @Override
     public void onInteraction(Fragment fragment) {
-        onChildFragmentInteractionListener.onInteraction(fragment);
+        onFragmentInteractionListener.onInteraction(fragment);
     }
 }

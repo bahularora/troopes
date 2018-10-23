@@ -2,19 +2,31 @@ package com.troopes.android.ui.product;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 
+import com.troopes.android.BuildConfig;
 import com.troopes.android.R;
 import com.troopes.android.common.BaseActivity;
 import com.troopes.android.common.BaseFragment;
+import com.troopes.android.data.modelDummy.Wishlist;
+import com.troopes.android.ui.account.AccountSettingFragment;
+import com.troopes.android.ui.account.address.AddressFragment;
+import com.troopes.android.ui.account.myOrders.MyOrdersFragment;
+import com.troopes.android.ui.order.AddAddressFragment;
 import com.troopes.android.ui.reviews.ReviewsFragment;
 import com.troopes.android.utils.ToolbarUtils;
 import com.troopes.android.viewmodel.ProductViewModel;
+
+import java.util.List;
 
 public class ProductActivity extends BaseActivity implements BaseFragment.OnFragmentInteractionListener {
 
     private static final String ARG_PRODUCT_ID = "productId";
     private long productId;
+    private int fragmentCount = 0;
 
     private ProductViewModel productViewModel;
 
@@ -37,6 +49,17 @@ public class ProductActivity extends BaseActivity implements BaseFragment.OnFrag
     }
 
     @Override
+    public void onBackPressed() {
+        if (fragmentCount > 0) {
+            fragmentCount--;
+            Log.i("ProductAct", fragmentCount + "");
+            replaceFragment(ProductFragment.newInstance(productId));
+        } else {
+            finish();
+        }
+    }
+
+    @Override
     protected void setToolbar(Fragment fragment) {
         if (fragment.getClass().getName().equals(ReviewsFragment.class.getName())) {
             ToolbarUtils.setBackgroundColor(ProductActivity.this, R.color.colorAppMain);
@@ -52,8 +75,36 @@ public class ProductActivity extends BaseActivity implements BaseFragment.OnFrag
 
     @Override
     public void onInteraction(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment, fragment.getClass().getSimpleName()).commit();
-        // need to explicitly call setToolbar as not using replaceFragment()
+        fragmentCount++;
+        replaceFragment(fragment);
+    }
+
+    void replaceFragment(Fragment fragment) {
         setToolbar(fragment);
+        String tag = fragment.getClass().getName();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        List<Fragment> fragments = manager.getFragments();
+        if (fragments != null) {
+            for (Fragment f : fragments) {
+                if (f != null) {
+                    transaction.hide(f);
+                }
+            }
+        }
+        Fragment f = manager.findFragmentByTag(tag);
+        if (f == null) {
+            f = fragment;
+            transaction.add(R.id.container, f, tag);
+        } else {
+            transaction.show(f);
+        }
+        try {
+            transaction.commit();
+        } catch (IllegalStateException e) {
+
+        } catch (Exception e) {
+
+        }
     }
 }

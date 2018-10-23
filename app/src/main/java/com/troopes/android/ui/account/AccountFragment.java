@@ -1,20 +1,20 @@
 package com.troopes.android.ui.account;
 
 
+import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.troopes.android.R;
 import com.troopes.android.common.BaseFragment;
-import com.troopes.android.ui.account.myOrders.MyOrdersFragment;
-import com.troopes.android.ui.account.wishlist.WishlistFragment;
 
 import butterknife.BindView;
 
-public class AccountFragment extends BaseFragment implements BaseFragment.OnFragmentInteractionListener {
+public class AccountFragment extends BaseFragment {
+
+    private static final String ARG_ACC_SCREEN  = "account_screen";
 
     @BindView(R.id.profile_image)
     ImageView profileImage;
@@ -35,8 +35,6 @@ public class AccountFragment extends BaseFragment implements BaseFragment.OnFrag
     @BindView(R.id.my_profile_container)
     ConstraintLayout myProfileContainer;
 
-    OnFragmentInteractionListener onFragmentInteractionListener;
-
     public static AccountFragment newInstance() {
         return new AccountFragment();
     }
@@ -52,7 +50,7 @@ public class AccountFragment extends BaseFragment implements BaseFragment.OnFrag
     }
 
     @Override
-    protected void init(View view) {
+    protected void init(final View view) {
         super.init(view);
         profileName.setText("Hi");
         aboutContainer.setOnClickListener(new View.OnClickListener() {
@@ -76,42 +74,44 @@ public class AccountFragment extends BaseFragment implements BaseFragment.OnFrag
         myOrdersContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyOrdersFragment fragment = MyOrdersFragment.newInstance();
-                onFragmentInteractionListener.onInteraction(fragment);
+                //MyOrdersFragment fragment = MyOrdersFragment.newInstance();
+                //onFragmentInteractionListener.onInteraction(fragment);
+                Intent intent = new Intent(view.getContext(), AccountMediatorActivity.class);
+                intent.putExtra(ARG_ACC_SCREEN, "MyOrdersFragment");
+                startActivity(intent);
             }
         });
         wishlistContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WishlistFragment fragment = WishlistFragment.newInstance();
-                onFragmentInteractionListener.onInteraction(fragment);
+                //WishlistFragment fragment = WishlistFragment.newInstance();
+                //onFragmentInteractionListener.onInteraction(fragment);
+                Intent intent = new Intent(view.getContext(), AccountMediatorActivity.class);
+                intent.putExtra(ARG_ACC_SCREEN, "WishlistFragment");
+                startActivity(intent);
             }
         });
         accountsContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AccountSettingFragment fragment = AccountSettingFragment.newInstance();
-                fragment.setOnFragmentInteractionListener(AccountFragment.this);
-                onFragmentInteractionListener.onInteraction(fragment);
+                //AccountSettingFragment fragment = AccountSettingFragment.newInstance();
+                //fragment.setOnFragmentInteractionListener(AccountFragment.this);
+                //onFragmentInteractionListener.onInteraction(fragment);
+                Intent intent = new Intent(view.getContext(), AccountMediatorActivity.class);
+                intent.putExtra(ARG_ACC_SCREEN, "AccountSettingFragment");
+                startActivity(intent);
             }
         });
         myProfileContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyProfileFragment fragment = MyProfileFragment.newInstance();
-                onFragmentInteractionListener.onInteraction(fragment);
+                //MyProfileFragment fragment = MyProfileFragment.newInstance();
+                //onFragmentInteractionListener.onInteraction(fragment);
+                Intent intent = new Intent(view.getContext(), AccountMediatorActivity.class);
+                intent.putExtra(ARG_ACC_SCREEN, "MyProfileFragment");
+                startActivity(intent);
             }
         });
     }
 
-    @Override
-    public void setOnFragmentInteractionListener(OnFragmentInteractionListener onFragmentInteractionListener) {
-        this.onFragmentInteractionListener = onFragmentInteractionListener;
-    }
-
-    // from child fragment
-    @Override
-    public void onInteraction(Fragment fragment) {
-        onFragmentInteractionListener.onInteraction(fragment);
-    }
 }

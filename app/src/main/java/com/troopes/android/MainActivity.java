@@ -4,6 +4,8 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -22,6 +24,8 @@ import com.troopes.android.ui.order.AddAddressFragment;
 import com.troopes.android.ui.search.SearchFragment;
 import com.troopes.android.utils.ToolbarUtils;
 import com.troopes.android.viewmodel.MainViewModel;
+
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -58,50 +62,9 @@ public class MainActivity extends BaseActivity implements BaseFragment.OnFragmen
             ToolbarUtils.setupSimpleToolbar(MainActivity.this, "Accounts", R.color._white);
             ToolbarUtils.setBackgroundColor(MainActivity.this, R.color.colorAppMain);
             ToolbarUtils.hideBackButton(MainActivity.this);
-        } else if (fragment.getClass().getSimpleName().equals(WishlistFragment.class.getSimpleName())) {
-            bottomNavigationView.setVisibility(View.GONE);
-            ToolbarUtils.setBackgroundColor(MainActivity.this, R.color.colorAppMain);
-            ToolbarUtils.setupSimpleToolbar(MainActivity.this, "Wishlist", R.color._white);
-        } else if (fragment.getClass().getSimpleName().equals(MyOrdersFragment.class.getSimpleName())) {
-            bottomNavigationView.setVisibility(View.GONE);
-            ToolbarUtils.setBackgroundColor(MainActivity.this, R.color.colorAppMain);
-            ToolbarUtils.setupSimpleToolbar(MainActivity.this, "My Orders", R.color._white);
-        } else if (fragment.getClass().getSimpleName().equals(MyProfileFragment.class.getSimpleName())) {
-            bottomNavigationView.setVisibility(View.GONE);
-            ToolbarUtils.setBackgroundColor(MainActivity.this, R.color.colorAppMain);
-            ToolbarUtils.setupSimpleToolbar(MainActivity.this, "My Profile", R.color._white);
-        } else if (fragment.getClass().getSimpleName().equals(AddressFragment.class.getSimpleName())) {
-            bottomNavigationView.setVisibility(View.GONE);
-            ToolbarUtils.setBackgroundColor(MainActivity.this, R.color.colorAppMain);
-            ToolbarUtils.setupSimpleToolbar(MainActivity.this, "Address", R.color._white);
-        } else if (fragment.getClass().getSimpleName().equals(AddAddressFragment.class.getSimpleName())) {
-            bottomNavigationView.setVisibility(View.GONE);
-            ToolbarUtils.setBackgroundColor(MainActivity.this, R.color.colorAppMain);
-            ToolbarUtils.setupSimpleToolbar(MainActivity.this, "Add a Address", R.color._white);
-        } else if (fragment.getClass().getSimpleName().equals(AccountSettingFragment.class.getSimpleName())) {
-            bottomNavigationView.setVisibility(View.GONE);
-            ToolbarUtils.setBackgroundColor(MainActivity.this, R.color.colorAppMain);
-            ToolbarUtils.setupSimpleToolbar(MainActivity.this, "Account Settings", R.color._white);
         } else {
             ToolbarUtils.hide(this);
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        String tag = null;
-        if (getCurrentFragmentTag().equals(AccountSettingFragment.class.getName())) {
-            tag = popTag(1);
-        } else if (getCurrentFragmentTag().equals(AddressFragment.class.getName())) {
-            tag = popTag(2);
-        } else if (getCurrentFragmentTag().equals(AddAddressFragment.class.getName())) {
-            tag = popTag(3);
-        } else if (getCurrentFragmentTag().equals(Wishlist.class.getName())) {
-            tag = popTag(1);
-        } else if (getCurrentFragmentTag().equals(MyOrdersFragment.class.getName())) {
-            tag = popTag(1);
-        }
-        replaceFragmentByTag(tag);
     }
 
     @Override
@@ -123,7 +86,6 @@ public class MainActivity extends BaseActivity implements BaseFragment.OnFragmen
                         break;
                     case R.id.account: {
                         AccountFragment fragment = AccountFragment.newInstance();
-                        fragment.setOnFragmentInteractionListener(MainActivity.this);
                         replaceFragment(fragment);
                         break;
                     }
@@ -163,5 +125,34 @@ public class MainActivity extends BaseActivity implements BaseFragment.OnFragmen
     @Override
     public void onInteraction(Fragment fragment) {
         replaceFragment(fragment);
+    }
+
+    void replaceFragment(Fragment fragment) {
+        setToolbar(fragment);
+        String tag = fragment.getClass().getName();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        List<Fragment> fragments = manager.getFragments();
+        if (fragments != null) {
+            for (Fragment f : fragments) {
+                if (f != null) {
+                    transaction.hide(f);
+                }
+            }
+        }
+        Fragment f = manager.findFragmentByTag(tag);
+        if (f == null) {
+            f = fragment;
+            transaction.add(R.id.container, f, tag);
+        } else {
+            transaction.show(f);
+        }
+        try {
+            transaction.commit();
+        } catch (IllegalStateException e) {
+
+        } catch (Exception e) {
+
+        }
     }
 }
