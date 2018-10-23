@@ -19,7 +19,7 @@
     <TextView
         android:id="@+id/recent_title"
         android:layout_width="wrap_content"
-        android:layout_height="26dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/recent"
         android:textColor="#CC000000"
@@ -52,8 +52,8 @@
 
     <TextView
         android:id="@+id/trending_title"
-        android:layout_width="65dp"
-        android:layout_height="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/trending"
         android:textColor="#CC000000"
