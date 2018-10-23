@@ -114,4 +114,8 @@
     <!--Order Address select screen-->
     <string name="quantity">Quantity:</string>
     <string name="pay">Pay</string>
+
+    <!--Join Screen -->
+    <string name="required_1_person_only_to_finish_order">Required 1 person only to finish order</string>
+    <string name="join">Join</string>
 </resources>

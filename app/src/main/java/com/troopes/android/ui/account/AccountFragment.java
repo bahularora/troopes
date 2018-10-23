@@ -64,7 +64,7 @@ public class AccountFragment extends BaseFragment {
             public void onClick(View v) {
                 // TODO TESTING
                 Intent intent = new Intent(view.getContext(), AccountMediatorActivity.class);
-                intent.putExtra(ARG_ACC_SCREEN, "OrderSetAddressFragment");
+                intent.putExtra(ARG_ACC_SCREEN, "JoinOrderFragment");
                 startActivity(intent);
             }
         });

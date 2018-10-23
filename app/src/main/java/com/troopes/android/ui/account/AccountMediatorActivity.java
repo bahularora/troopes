@@ -3,7 +3,6 @@ package com.troopes.android.ui.account;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 
 import com.troopes.android.R;
 import com.troopes.android.common.BaseActivity;
@@ -12,6 +11,7 @@ import com.troopes.android.ui.account.address.AddressFragment;
 import com.troopes.android.ui.account.myOrders.MyOrdersFragment;
 import com.troopes.android.ui.account.wishlist.WishlistFragment;
 import com.troopes.android.ui.order.AddAddressFragment;
+import com.troopes.android.ui.order.JoinOrderFragment;
 import com.troopes.android.ui.order.OrderSetAddressFragment;
 import com.troopes.android.utils.ToolbarUtils;
 
@@ -50,7 +50,10 @@ public class AccountMediatorActivity extends BaseActivity implements BaseFragmen
         } else if (fragment.getClass().getSimpleName().equals(OrderSetAddressFragment.class.getSimpleName())) {
             ToolbarUtils.setBackgroundColor(AccountMediatorActivity.this, R.color.colorAppMain);
             ToolbarUtils.setupSimpleToolbar(AccountMediatorActivity.this, "Address", R.color._white);
-        } else {
+        } else if (fragment.getClass().getSimpleName().equals(JoinOrderFragment.class.getSimpleName())) {
+            ToolbarUtils.setBackgroundColor(AccountMediatorActivity.this, R.color.colorAppMain);
+            ToolbarUtils.setupSimpleToolbar(AccountMediatorActivity.this, "Join", R.color._white);
+        }else {
             ToolbarUtils.hide(AccountMediatorActivity.this);
         }
     }
@@ -111,6 +114,8 @@ public class AccountMediatorActivity extends BaseActivity implements BaseFragmen
             replaceFragment(fragment);
         } else if (screenName.equals("MyProfileFragment")) {
             replaceFragment(MyProfileFragment.newInstance());
+        } else if (screenName.equals("JoinOrderFragment")) {
+            replaceFragment(JoinOrderFragment.newInstance());
         }
     }
 
