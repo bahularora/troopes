@@ -3,6 +3,7 @@ package com.troopes.android.ui.account;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 
 import com.troopes.android.R;
 import com.troopes.android.common.BaseActivity;
@@ -11,6 +12,7 @@ import com.troopes.android.ui.account.address.AddressFragment;
 import com.troopes.android.ui.account.myOrders.MyOrdersFragment;
 import com.troopes.android.ui.account.wishlist.WishlistFragment;
 import com.troopes.android.ui.order.AddAddressFragment;
+import com.troopes.android.ui.order.OrderSetAddressFragment;
 import com.troopes.android.utils.ToolbarUtils;
 
 import java.util.List;
@@ -45,6 +47,9 @@ public class AccountMediatorActivity extends BaseActivity implements BaseFragmen
         } else if (fragment.getClass().getSimpleName().equals(AccountSettingFragment.class.getSimpleName())) {
             ToolbarUtils.setBackgroundColor(AccountMediatorActivity.this, R.color.colorAppMain);
             ToolbarUtils.setupSimpleToolbar(AccountMediatorActivity.this, "Account Settings", R.color._white);
+        } else if (fragment.getClass().getSimpleName().equals(OrderSetAddressFragment.class.getSimpleName())) {
+            ToolbarUtils.setBackgroundColor(AccountMediatorActivity.this, R.color.colorAppMain);
+            ToolbarUtils.setupSimpleToolbar(AccountMediatorActivity.this, "Address", R.color._white);
         } else {
             ToolbarUtils.hide(AccountMediatorActivity.this);
         }
@@ -91,6 +96,11 @@ public class AccountMediatorActivity extends BaseActivity implements BaseFragmen
     private void setupScreen(String screenName) {
         if (screenName == null) {
             // do something
+
+        } else if (screenName.equals("OrderSetAddressFragment")) {
+            OrderSetAddressFragment fragment = OrderSetAddressFragment.newInstance();
+            fragment.setOnFragmentInteractionListener(this);
+            replaceFragment(fragment);
         } else if (screenName.equals("MyOrdersFragment")) {
             replaceFragment(MyOrdersFragment.newInstance());
         } else if (screenName.equals("WishlistFragment")) {

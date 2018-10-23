@@ -62,13 +62,19 @@ public class AccountFragment extends BaseFragment {
         faqContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // do something
+                // TODO TESTING
+                Intent intent = new Intent(view.getContext(), AccountMediatorActivity.class);
+                intent.putExtra(ARG_ACC_SCREEN, "OrderSetAddressFragment");
+                startActivity(intent);
             }
         });
         policyContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // do something
+                // TODO TESTING
+                Intent intent = new Intent(view.getContext(), AccountMediatorActivity.class);
+                intent.putExtra(ARG_ACC_SCREEN, "OrderSetAddressFragment");
+                startActivity(intent);
             }
         });
         myOrdersContainer.setOnClickListener(new View.OnClickListener() {

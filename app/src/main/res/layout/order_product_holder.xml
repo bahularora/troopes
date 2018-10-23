@@ -46,7 +46,7 @@
         android:id="@+id/product_original_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:textColor="#7f000000"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/product_discounted_price"

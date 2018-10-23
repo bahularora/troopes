@@ -113,4 +113,5 @@
 
     <!--Order Address select screen-->
     <string name="quantity">Quantity:</string>
+    <string name="pay">Pay</string>
 </resources>
