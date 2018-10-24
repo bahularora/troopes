@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.reviews.WriteReviewFragment">
+    android:background="@color/_white"
+    tools:context=".ui.reviews.writeReview.WriteReviewFragment">
 
     <TextView
         android:id="@+id/rate_title"
@@ -25,6 +26,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:numStars="5"
+        android:stepSize="0.1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rate_title" />
 
@@ -38,19 +40,30 @@
         tools:layout_editor_absoluteX="0dp" />
 
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@color/_white"
-            android:hint="@string/tell_us_how_is_your_experience_with_this_product"
-            android:padding="16dp"
-            android:gravity="start"
-            android:inputType="textMultiLine"
-            android:textColorHint="#66000000"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider1"/>
+    <EditText
+        android:id="@+id/review_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/_white"
+        android:fitsSystemWindows="true"
+        android:gravity="start"
+        android:hint="@string/tell_us_how_is_your_experience_with_this_product"
+        android:inputType="textMultiLine"
+        android:padding="16dp"
+        android:textColorHint="#66000000"
+        app:layout_constraintBottom_toTopOf="@+id/review_images"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider1" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/review_images"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -61,29 +74,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <ImageView
-            android:id="@+id/add_image_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+        <LinearLayout
+            android:id="@+id/add_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:src="@drawable/ic_camera_black70_24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/add_image_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:background="#00000000"
-            android:text="@string/add_image"
-            android:textColor="#B3000000"
-            app:layout_constraintBottom_toBottomOf="@+id/add_image_icon"
-            app:layout_constraintStart_toEndOf="@+id/add_image_icon"
-            app:layout_constraintTop_toTopOf="@+id/add_image_icon" />
+            <ImageView
+                android:id="@+id/add_image_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+
+                android:src="@drawable/ic_camera_black70_24dp" />
+
+            <TextView
+                android:id="@+id/add_image_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:background="#00000000"
+                android:text="@string/add_image"
+                android:textColor="#B3000000" />
+
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/submit_button"
@@ -93,7 +112,7 @@
             android:background="#00000000"
             android:text="@string/submit"
             android:textColor="#B3000000"
-            app:layout_constraintBaseline_toBaselineOf="@+id/add_image_text"
+            app:layout_constraintBaseline_toBaselineOf="@+id/add_image"
             app:layout_constraintEnd_toEndOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
