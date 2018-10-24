@@ -2,12 +2,14 @@ package com.troopes.android.ui.reviews;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.troopes.android.R;
 import com.troopes.android.common.BaseFragment;
+import com.troopes.android.ui.reviews.writeReview.WriteReviewFragment;
 import com.troopes.android.viewmodel.ProductViewModel;
 
 import butterknife.BindView;
@@ -17,8 +19,14 @@ public class ReviewsFragment extends BaseFragment {
     private static final String ARG_PRODUCT_ID = "productId";
     @BindView(R.id.reviews_list)
     RecyclerView reviewList;
+    @BindView(R.id.write_review_layout)
+    ConstraintLayout writeReviewLayout;
+
     ReviewAdapter adapter;
     private long productId;
+
+    private OnFragmentInteractionListener onFragmentInteractionListener;
+
     private ProductViewModel productViewModel;
 
     public static ReviewsFragment newInstance(long productId) {
@@ -57,5 +65,20 @@ public class ReviewsFragment extends BaseFragment {
         LinearLayoutManager reviewLayoutManager = new LinearLayoutManager(view.getContext());
         reviewLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         reviewList.setLayoutManager(reviewLayoutManager);
+
+        writeReviewLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onFragmentInteractionListener != null) {
+                    WriteReviewFragment fragment = WriteReviewFragment.newInstance();
+                    onFragmentInteractionListener.onInteraction(fragment);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void setOnFragmentInteractionListener(OnFragmentInteractionListener onFragmentInteractionListener) {
+        this.onFragmentInteractionListener = onFragmentInteractionListener;
     }
 }

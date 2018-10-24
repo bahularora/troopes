@@ -7,16 +7,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
-import com.troopes.android.BuildConfig;
 import com.troopes.android.R;
 import com.troopes.android.common.BaseActivity;
 import com.troopes.android.common.BaseFragment;
-import com.troopes.android.data.modelDummy.Wishlist;
-import com.troopes.android.ui.account.AccountSettingFragment;
-import com.troopes.android.ui.account.address.AddressFragment;
-import com.troopes.android.ui.account.myOrders.MyOrdersFragment;
-import com.troopes.android.ui.order.AddAddressFragment;
 import com.troopes.android.ui.reviews.ReviewsFragment;
+import com.troopes.android.ui.reviews.writeReview.WriteReviewFragment;
 import com.troopes.android.utils.ToolbarUtils;
 import com.troopes.android.viewmodel.ProductViewModel;
 
@@ -50,13 +45,13 @@ public class ProductActivity extends BaseActivity implements BaseFragment.OnFrag
 
     @Override
     public void onBackPressed() {
-        if (fragmentCount > 0) {
-            fragmentCount--;
+        if (fragmentCount-- > 0) {
             Log.i("ProductAct", fragmentCount + "");
             replaceFragment(ProductFragment.newInstance(productId));
         } else {
             finish();
         }
+
     }
 
     @Override
@@ -64,6 +59,9 @@ public class ProductActivity extends BaseActivity implements BaseFragment.OnFrag
         if (fragment.getClass().getName().equals(ReviewsFragment.class.getName())) {
             ToolbarUtils.setBackgroundColor(ProductActivity.this, R.color.colorAppMain);
             ToolbarUtils.setupSimpleToolbar(ProductActivity.this, "Reviews", R.color._white);
+        } else if (fragment.getClass().getName().equals(WriteReviewFragment.class.getName())) {
+            ToolbarUtils.setBackgroundColor(ProductActivity.this, R.color.colorAppMain);
+            ToolbarUtils.setupSimpleToolbar(ProductActivity.this, "Write a Review", R.color._white);
         } else if (fragment.getClass().getName().equals(ProductFragment.class.getName())) {
             ToolbarUtils.show(this);
             ToolbarUtils.setBackgroundColor(ProductActivity.this, R.color.colorAppMain);

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
@@ -40,7 +41,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 
-public class ProductFragment extends BaseFragment implements BaseAdapter.OnItemClickListener {
+public class ProductFragment extends BaseFragment implements BaseAdapter.OnItemClickListener, BaseFragment.OnFragmentInteractionListener {
 
     private static final String ARG_PRODUCT_ID = "productId";
 
@@ -178,6 +179,7 @@ public class ProductFragment extends BaseFragment implements BaseAdapter.OnItemC
             public void onClick(View v) {
                 if (onFragmentInteractionListener != null) {
                     ReviewsFragment fragment = ReviewsFragment.newInstance(productId);
+                    fragment.setOnFragmentInteractionListener(ProductFragment.this);
                     onFragmentInteractionListener.onInteraction(fragment);
                 }
             }
@@ -242,5 +244,10 @@ public class ProductFragment extends BaseFragment implements BaseAdapter.OnItemC
         Intent intent = new Intent(getActivity(), ProductActivity.class);
         intent.putExtra(ARG_PRODUCT_ID, similarItemProductId);
         startActivity(intent);
+    }
+
+    @Override
+    public void onInteraction(Fragment fragment) {
+        onFragmentInteractionListener.onInteraction(fragment);
     }
 }
