@@ -118,4 +118,10 @@
     <!--Join Screen -->
     <string name="required_1_person_only_to_finish_order">Required 1 person only to finish order</string>
     <string name="join">Join</string>
+
+    <!--Write a review screen-->
+    <string name="rate_this_product">Rate this product</string>
+    <string name="submit">Submit</string>
+    <string name="add_image">Add Image</string>
+    <string name="tell_us_how_is_your_experience_with_this_product">Tell us how is your experience with this product?</string>
 </resources>
